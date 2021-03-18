@@ -104,7 +104,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -270,7 +270,7 @@ Initial position can be adjusted using the vector of coordinates.</p></td>
 
     <p><code>cache_dir = NULL</code> (default) uses and creates <code>/mapSpain</code> directory in the
 temporary directory <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code>. The directory can also be set via options
-with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain = "path/to/dir")</a></code> or
+with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code> or
 <code><a href='https://rdrr.io/r/base/options.html'>options(gisco_cache_dir = "path/to/dir")</a></code> (See <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get()</a></code>)</p>
 <p>Sometimes cached files may be corrupt. On that case, try redownloading
 the data using <code>update_cache = TRUE</code>.</p>
