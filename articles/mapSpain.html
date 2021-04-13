@@ -214,7 +214,7 @@
 <div id="choropleth-and-label-maps" class="section level2">
 <h2 class="hasAnchor">
 <a href="#choropleth-and-label-maps" class="anchor"></a>Choropleth and label maps</h2>
-<p>Let’s analyse the distribution of women in each autonomous community with <code>tmap</code>:</p>
+<p>Let’s analyze the distribution of women in each autonomous community with <code>tmap</code>:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="../reference/pobmun19.html">pobmun19</a></span>
@@ -321,10 +321,45 @@
   <span class="op">)</span></code></pre></div>
 <p><img src="mapSpain_files/figure-html/thematic-1.png" width="100%" height="60%"></p>
 </div>
+<div id="mapspain-and-giscor" class="section level2">
+<h2 class="hasAnchor">
+<a href="#mapspain-and-giscor" class="anchor"></a>mapSpain and giscoR</h2>
+<p>If you need to plot Spain along with another countries, consider using <a href="https://dieghernan.github.io/giscoR/"><code>giscoR</code></a> package, that is installed as a dependency when you installed <code>mapSpain</code>. A basic example:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/giscoR/">giscoR</a></span><span class="op">)</span>
+
+<span class="co"># Set the same resolution for a perfect fit</span>
+
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"20"</span>
+
+<span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span>
+<span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span><span class="op">)</span>
+<span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span>moveCAN <span class="op">=</span> <span class="cn">FALSE</span>, resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span>
+
+<span class="co"># Project to same CRS</span>
+
+<span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">all_countries</span>, <span class="fl">3035</span><span class="op">)</span>
+<span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">eu_countries</span>, <span class="fl">3035</span><span class="op">)</span>
+<span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">ccaa</span>, <span class="fl">3035</span><span class="op">)</span>
+
+<span class="co"># Plot</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">all_countries</span>, bbox <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>, <span class="fl">14</span>, <span class="fl">67</span>, <span class="fl">54</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10e4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_grid.html">tm_graticules</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"#DFDFDF"</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span><span class="st">"#DFDFDF"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">eu_countries</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#FDFBEA"</span>, border.col <span class="op">=</span> <span class="st">"#656565"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">ccaa</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#C12838"</span>, border.col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
+<p><img src="mapSpain_files/figure-html/giscoR-1.png" width="100%" height="60%"></p>
+</div>
 <div id="session-info" class="section level2">
 <h2 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h2>
-<details><p><summary><strong>Details</strong></summary></p>
+<details><p><summary></summary></p>
+<p><strong>Details</strong></p>
+<p></p>
 <pre><code>#&gt; R version 4.0.5 (2021-03-31)
 #&gt; Platform: x86_64-w64-mingw32/x64 (64-bit)
 #&gt; Running under: Windows Server x64 (build 17763)
@@ -342,7 +377,8 @@
 #&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #&gt; 
 #&gt; other attached packages:
-#&gt; [1] sf_0.9-8            tmap_3.3-1          mapSpain_0.2.1.9000
+#&gt; [1] giscoR_0.2.4        sf_0.9-8            tmap_3.3-1         
+#&gt; [4] mapSpain_0.2.1.9000
 #&gt; 
 #&gt; loaded via a namespace (and not attached):
 #&gt;  [1] xfun_0.22          lattice_0.20-41    htmltools_0.5.1.1  stars_0.5-2       

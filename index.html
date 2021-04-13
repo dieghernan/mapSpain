@@ -115,7 +115,8 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><strong><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></strong> is a package that provides spatial <code>sf</code> objects of the administrative boundaries of Spain, including CCAA, provinces and municipalities.</p>
+<!-- badges: end -->
+<p><a href="https://ropenspain.github.io/mapSpain/"><strong>mapSpain</strong></a> is a package that provides spatial <code>sf</code> objects of the administrative boundaries of Spain, including CCAA, provinces and municipalities.</p>
 <p><strong>mapSpain</strong> also provides a leaflet plugin to be used with the <a href="https://rstudio.github.io/leaflet/"><code>leaflet</code> package</a>, that loads several basemaps of public institutions of Spain, and the ability of downloading and processing static tiles.</p>
 <p>Full site with examples and vignettes on <a href="https://ropenspain.github.io/mapSpain/" class="uri">https://ropenspain.github.io/mapSpain/</a></p>
 <div id="installation" class="section level2">
@@ -135,53 +136,53 @@
 <p>This script highlights some features of <code>mapSpain</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
 
 <span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/pobmun19.html">pobmun19</a></span>
 
-<span class="co"># Paste CCAA</span>
-<span class="va">census</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">census</span>, <span class="va">esp_codelist</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"codauto"</span><span class="op">)</span><span class="op">]</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+<span class="co"># Extract CCAA from base dataset</span>
 
-<span class="co"># Summarize</span>
+<span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/esp_codelist.html">esp_codelist</a></span>
+
+<span class="va">census</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">census</span>, <span class="va">codelist</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"codauto"</span><span class="op">)</span><span class="op">]</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Summarize by CCAA</span>
 <span class="va">census_ccaa</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/aggregate.sf.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">pob19</span>, <span class="va">men</span>, <span class="va">women</span><span class="op">)</span> <span class="op">~</span> <span class="va">codauto</span>, data <span class="op">=</span> <span class="va">census</span>, <span class="va">sum</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">pob19</span>, <span class="va">men</span>, <span class="va">women</span><span class="op">)</span> <span class="op">~</span> <span class="va">codauto</span>, data <span class="op">=</span> <span class="va">census</span>, <span class="va">sum</span><span class="op">)</span>
 
 <span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women</span> <span class="op">&lt;-</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">women</span> <span class="op">/</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">pob19</span>
+<span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women_lab</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span>
 
-<span class="va">CCAA.sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co"># Merge into spatial data</span>
 
-<span class="co"># Merge data</span>
-<span class="va">CCAA.sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">CCAA.sf</span>, <span class="va">census_ccaa</span><span class="op">)</span>
+<span class="va">CCAA_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">CCAA_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">CCAA_sf</span>, <span class="va">census_ccaa</span><span class="op">)</span>
+<span class="va">Can</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_can_box.html">esp_get_can_box</a></span><span class="op">(</span><span class="op">)</span>
 
 
+<span class="co"># Plot with tmap</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap">tmap</a></span><span class="op">)</span>
 
-<span class="co"># Choropleth map</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/riatelab/cartography/">cartography</a></span><span class="op">)</span>
-<span class="va">br</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cartography/man/getBreaks.html">getBreaks</a></span><span class="op">(</span><span class="va">CCAA.sf</span><span class="op">$</span><span class="va">porc_women</span>, method <span class="op">=</span> <span class="st">"pretty"</span><span class="op">)</span>
-<span class="va">pal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">br</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>,
-  palette <span class="op">=</span> <span class="st">"Blues 3"</span>,
-  rev <span class="op">=</span> <span class="cn">TRUE</span>,
-  alpha <span class="op">=</span> <span class="fl">0.8</span>
-<span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/cartography/man/choroLayer.html">choroLayer</a></span><span class="op">(</span>
-  <span class="va">CCAA.sf</span>,
-  var <span class="op">=</span> <span class="st">"porc_women"</span>,
-  breaks <span class="op">=</span> <span class="va">br</span>,
-  legend.values.rnd <span class="op">=</span> <span class="fl">3</span>,
-  legend.pos <span class="op">=</span> <span class="st">"bottomright"</span>,
-  col <span class="op">=</span> <span class="va">pal</span>,
-  border <span class="op">=</span> <span class="cn">NA</span>,
-  legend.title.txt <span class="op">=</span> <span class="st">"% women"</span>
-<span class="op">)</span>
-
-<span class="co"># Add lines</span>
-
-<span class="va">CCAAbox</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_can_box.html">esp_get_can_box</a></span><span class="op">(</span><span class="op">)</span>
-
-<span class="fu"><a href="https://r-spatial.github.io/sf/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">CCAAbox</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, col <span class="op">=</span> <span class="va">pal</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">pal</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-static-1.svg"><!-- --></p>
+<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">CCAA_sf</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span>
+    <span class="st">"porc_women"</span>,
+    border.col <span class="op">=</span> <span class="st">"grey70"</span>,
+    title <span class="op">=</span> <span class="st">"Porc. women"</span>,
+    palette <span class="op">=</span> <span class="st">"Blues"</span>,
+    alpha <span class="op">=</span> <span class="fl">0.7</span>,
+    legend.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%1.1f%%"</span>, <span class="fl">100</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span>
+      <span class="op">}</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">CCAA_sf</span>, point.per <span class="op">=</span> <span class="st">"feature"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_text.html">tm_text</a></span><span class="op">(</span><span class="st">"porc_women_lab"</span>, auto.placement <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">Can</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_lines.html">tm_lines</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LEFT"</span>, <span class="st">"center"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-static-1.svg" width="100%"></p>
 <p>You can combine <code>POLYGONS</code> with static tiles</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span>
@@ -207,68 +208,79 @@
     zoom <span class="op">=</span> <span class="fl">8</span>
   <span class="op">)</span>
 
+<span class="co"># Plot</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap">tmap</a></span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">tile</span>, raster.downsample <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_raster.html">tm_rgb</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">Asturias.pop</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span><span class="st">"porc_women"</span>,
+    palette <span class="op">=</span> <span class="st">"-inferno"</span>,
+    title <span class="op">=</span> <span class="st">"% women"</span>,
+    alpha <span class="op">=</span> <span class="fl">0.6</span>,
+    legend.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+        <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%1.0f%%"</span>, <span class="fl">100</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span>
+      <span class="op">}</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>legend.outside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-tile-1.svg" width="100%"></p>
+</div>
+<div id="mapspain-and-giscor" class="section level2">
+<h2 class="hasAnchor">
+<a href="#mapspain-and-giscor" class="anchor"></a>mapSpain and giscoR</h2>
+<p>If you need to plot Spain along with another countries, consider using <a href="https://dieghernan.github.io/giscoR/"><code>giscoR</code></a> package, that is installed as a dependency when you installed <code>mapSpain</code>. A basic example:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/giscoR/">giscoR</a></span><span class="op">)</span>
+
+<span class="co"># Set the same resolution for a perfect fit</span>
+
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"20"</span>
+
+<span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span>
+<span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span><span class="op">)</span>
+<span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span>moveCAN <span class="op">=</span> <span class="cn">FALSE</span>, resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span>
+
+<span class="co"># Project to same CRS</span>
+
+<span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">all_countries</span>, <span class="fl">3035</span><span class="op">)</span>
+<span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">eu_countries</span>, <span class="fl">3035</span><span class="op">)</span>
+<span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">ccaa</span>, <span class="fl">3035</span><span class="op">)</span>
 
 <span class="co"># Plot</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/riatelab/cartography/">cartography</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap">tmap</a></span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/cartography/man/tilesLayer.html">tilesLayer</a></span><span class="op">(</span><span class="va">tile</span><span class="op">)</span>
-<span class="va">br</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/cartography/man/getBreaks.html">getBreaks</a></span><span class="op">(</span><span class="va">Asturias.pop</span><span class="op">$</span><span class="va">porc_women</span>, method <span class="op">=</span> <span class="st">"kmeans"</span><span class="op">)</span>
-
-
-<span class="fu"><a href="https://rdrr.io/pkg/cartography/man/choroLayer.html">choroLayer</a></span><span class="op">(</span>
-  <span class="va">Asturias.pop</span>,
-  var <span class="op">=</span> <span class="st">"porc_women"</span>,
-  breaks <span class="op">=</span> <span class="va">br</span>,
-  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span>
-    n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">br</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>,
-    palette <span class="op">=</span> <span class="st">"inferno"</span>,
-    rev <span class="op">=</span> <span class="cn">TRUE</span>,
-    alpha <span class="op">=</span> <span class="fl">0.4</span>
-  <span class="op">)</span>,
-  add <span class="op">=</span> <span class="cn">TRUE</span>,
-  legend.values.rnd <span class="op">=</span> <span class="fl">2</span>,
-  border <span class="op">=</span> <span class="cn">NA</span>,
-  legend.pos <span class="op">=</span> <span class="st">"n"</span>
-<span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/pkg/cartography/man/legendChoro.html">legendChoro</a></span><span class="op">(</span>
-  pos <span class="op">=</span> <span class="st">"bottomright"</span>,
-  breaks <span class="op">=</span> <span class="va">br</span>,
-  values.rnd <span class="op">=</span> <span class="fl">2</span>,
-  horiz <span class="op">=</span> <span class="cn">TRUE</span>,
-  nodata <span class="op">=</span> <span class="cn">FALSE</span>,
-  col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span>
-    n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">br</span><span class="op">)</span> <span class="op">-</span> <span class="fl">1</span>,
-    palette <span class="op">=</span> <span class="st">"inferno"</span>,
-    rev <span class="op">=</span> <span class="cn">TRUE</span>
-  <span class="op">)</span>,
-  title.txt <span class="op">=</span> <span class="st">"% women"</span>
-<span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-tile-1.svg"><!-- --></p>
-<div id="a-note-on-caching" class="section level3">
-<h3 class="hasAnchor">
-<a href="#a-note-on-caching" class="anchor"></a>A note on caching</h3>
+<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">all_countries</span>, bbox <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">23</span>, <span class="fl">14</span>, <span class="fl">67</span>, <span class="fl">54</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10e4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_grid.html">tm_graticules</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"#DFDFDF"</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span><span class="st">"#DFDFDF"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">eu_countries</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#FDFBEA"</span>, border.col <span class="op">=</span> <span class="st">"#656565"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">ccaa</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#C12838"</span>, border.col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
+<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-giscoR-1.svg" width="100%"></p>
+</div>
+<div id="a-note-on-caching" class="section level2">
+<h2 class="hasAnchor">
+<a href="#a-note-on-caching" class="anchor"></a>A note on caching</h2>
 <p>Some data sets and tiles may have a size larger than 50MB. You can use <code>mapSpain</code> to create your own local repository at a given local directory passing the following option:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>mapSpain_cache_dir <span class="op">=</span> <span class="st">"./path/to/location"</span><span class="op">)</span></code></pre></div>
 <p>When this option is set, <code>mapSpain</code> would look for the cached file and it will load it, speeding up the process.</p>
 </div>
-<div id="plotting-sf-objects" class="section level3">
-<h3 class="hasAnchor">
-<a href="#plotting-sf-objects" class="anchor"></a>Plotting <code>sf</code> objects</h3>
+<div id="plotting-sf-objects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#plotting-sf-objects" class="anchor"></a>Plotting <code>sf</code> objects</h2>
 <p>Some packages recommended for visualization are:</p>
 <ul>
-<li>
-<a href="https://mtennekes.github.io/tmap/"><code>tmap</code></a><br>
-</li>
-<li><a href="http://riatelab.github.io/cartography/docs/"><code>cartography</code></a></li>
+<li><a href="https://mtennekes.github.io/tmap/"><code>tmap</code></a></li>
+<li><a href="https://riatelab.github.io/mapsf/"><code>mapsf</code></a></li>
 <li>
 <a href="https://github.com/tidyverse/ggplot2"><code>ggplot2</code></a> + <a href="https://github.com/paleolimbot/ggspatial"><code>ggspatial</code></a>
 </li>
 <li><a href="https://rstudio.github.io/leaflet/"><code>leaflet</code></a></li>
 </ul>
-</div>
 </div>
 <div id="contribute" class="section level2">
 <h2 class="hasAnchor">
@@ -338,7 +350,7 @@
 <li><a href="https://cran.r-project.org/web/checks/check_results_mapSpain.html"><img src="https://cranchecks.info/badges/worst/mapSpain" alt="CRAN results"></a></li>
 <li><a href="https://github.com/rOpenSpain/mapSpain/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/rOpenSpain/mapSpain/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://codecov.io/gh/rOpenSpain/mapSpain"><img src="https://codecov.io/gh/rOpenSpain/mapSpain/branch/master/graph/badge.svg?token=6L01BKLL85" alt="codecov"></a></li>
-<li><a href="https://doi.org/10.5281/zenodo.4318024"><img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.4318024-blue" alt="DOI"></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.4318024"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.4318024-blue" alt="DOI"></a></li>
 </ul>
 </div>
 </div>
