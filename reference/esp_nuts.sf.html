@@ -203,20 +203,32 @@ rows and fields:</p><ul>
     <div class='dont-index'><p><code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>nuts</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span>
 
-<span class='va'>nuts</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span>
-<span class='va'>nuts3</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>nuts</span>, <span class='va'>LEVL_CODE</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='co'># Select NUTS 3</span>
+<span class='va'>nuts3</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span><span class='op'>[</span><span class='va'>esp_nuts.sf</span><span class='op'>$</span><span class='va'>LEVL_CODE</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='op'>]</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>MOUNT_TYPE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 4 2 3</div><div class='input'>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span>
-  <span class='va'>nuts3</span><span class='op'>[</span>, <span class='st'>"URBN_TYPE"</span><span class='op'>]</span>,
-  pal <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>3</span>, palette <span class='op'>=</span> <span class='st'>"Viridis"</span><span class='op'>)</span>,
-  main <span class='op'>=</span> <span class='st'>"Urban type -  NUTS3 levels of Spain"</span>,
-  key.pos <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='esp_nuts.sf-1.png' alt='' width='701' height='433' /></div></pre>
+<span class='co'># Combine with full shape</span>
+
+<span class='va'>spain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_country.html'>esp_get_country</a></span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span>
+    <span class='st'>"URBN_TYPE"</span>,
+    style <span class='op'>=</span> <span class='st'>"cat"</span>,
+    title <span class='op'>=</span> <span class='st'>"Urban Type"</span>,
+    palette <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='st'>"Teal"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>spain</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span>lines <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
+    main.title <span class='op'>=</span> <span class='st'>"NUTS3 levels of Spain"</span>,
+    legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='esp_nuts.sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

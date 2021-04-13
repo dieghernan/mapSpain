@@ -239,8 +239,11 @@ When set to <code>TRUE</code> it would force a fresh download of the source
     <tr>
       <th>cache_dir</th>
       <td><p>A path to a cache directory. The directory can also be
-set globally with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.
-See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+set globally with:</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
+</ul>
+
+<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -285,7 +288,7 @@ Historical information starts as of 2005.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='esp_get_hex_prov.html'>esp_get_hex_prov()</a></code>, <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>, <code><a href='esp_get_ccaa.html'>esp_get_ccaa()</a></code>,
-<code><a href='esp_get_munic.html'>esp_get_munic()</a></code>, <a href='esp_codelist.html'>esp_codelist</a>.</p></div>
+<code><a href='esp_get_munic.html'>esp_get_munic()</a></code>, <code><a href='esp_codelist.html'>esp_codelist</a></code>.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
@@ -305,8 +308,9 @@ Historical information starts as of 2005.</p>
     <span class='st'>"01"</span>
   <span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>Random</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>6</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_prov-1.png' alt='' width='701' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_prov-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># All Provinces of a Zone plus an addition</span>
+<span class='co'># Low resolution (20M)</span>
 
 <span class='va'>Mix</span> <span class='op'>&lt;-</span>
   <span class='fu'>esp_get_prov</span><span class='op'>(</span>
@@ -323,7 +327,20 @@ Historical information starts as of 2005.</p>
   main <span class='op'>=</span> <span class='cn'>NULL</span>,
   border <span class='op'>=</span> <span class='st'>"white"</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='esp_get_prov-2.png' alt='' width='701' height='433' /></div></pre>
+</div><div class='img'><img src='esp_get_prov-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># ISO codes available</span>
+
+<span class='va'>allprovs</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_prov</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tmap_style.html'>tmap_style</a></span><span class='op'>(</span><span class='st'>"cobalt"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>tmap style set to "cobalt"</span></div><div class='output co'>#&gt; <span class='message'>other available styles are: "white", "gray", "natural", "col_blind", "albatross", "beaver", "bw", "classic", "watercolor" </span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>allprovs</span>, point.per <span class='op'>=</span> <span class='st'>"feature"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_text.html'>tm_text</a></span><span class='op'>(</span><span class='st'>"iso2.prov.code"</span>, remove.overlap <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='esp_get_prov-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tmap_options.html'>tmap_options_reset</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>tmap options successfully reset</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

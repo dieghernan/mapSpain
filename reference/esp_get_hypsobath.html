@@ -212,8 +212,11 @@ When set to <code>TRUE</code> it would force a fresh download of the source
     <tr>
       <th>cache_dir</th>
       <td><p>A path to a cache directory. The directory can also be
-set globally with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.
-See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+set globally with:</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
+</ul>
+
+<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -249,13 +252,12 @@ default is <code>FALSE</code>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># This code would produce a nice plot - It will take a few seconds to run</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/riatelab/cartography/'>cartography</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
 
 <span class='va'>hypsobath</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_hypsobath</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># Tints from Wikipedia</span>
-<span class='co'># https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Maps/Conventions</span>
+<span class='co'># https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Maps/Conventions/Topographic_maps</span>
 
 <span class='va'>bath_tints</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/colorRamp.html'>colorRampPalette</a></span><span class='op'>(</span>
   <span class='fu'><a href='https://rdrr.io/r/base/rev.html'>rev</a></span><span class='op'>(</span>
@@ -280,54 +282,43 @@ default is <code>FALSE</code>.</p></td>
   <span class='op'>)</span>
 <span class='op'>)</span>
 
+<span class='va'>levels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>hypsobath</span><span class='op'>$</span><span class='va'>val_inf</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># Create palette</span>
-<span class='va'>br_bath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>6250</span>, <span class='op'>-</span><span class='fl'>250</span>, <span class='fl'>250</span><span class='op'>)</span>
-<span class='va'>br_terrain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>3100</span>, <span class='fl'>100</span><span class='op'>)</span>
+<span class='va'>br_bath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>levels</span><span class='op'>[</span><span class='va'>levels</span> <span class='op'>&lt;</span> <span class='fl'>0</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>br_terrain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>levels</span><span class='op'>)</span> <span class='op'>-</span> <span class='va'>br_bath</span>
+
+<span class='fu'>bath_tints</span><span class='op'>(</span><span class='va'>br_bath</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "#71ABD8" "#7EB5E0" "#8DC1EA" "#9BCDF3" "#ACDBFB" "#BFE7FF" "#D8F2FE"</div><div class='input'>
+<span class='va'>pal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>bath_tints</span><span class='op'>(</span><span class='op'>(</span><span class='va'>br_bath</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'>hyps_tints</span><span class='op'>(</span><span class='op'>(</span><span class='va'>br_terrain</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
 
-<span class='va'>finalbreaks</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>br_bath</span>, <span class='va'>br_terrain</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>pal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>bath_tints</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>br_bath</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'>hyps_tints</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>br_terrain</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># Plot Canary Islands</span>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hypsobath</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>18.6</span>, <span class='fl'>27</span>, <span class='op'>-</span><span class='fl'>13</span>, <span class='fl'>29.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span><span class='st'>"val_inf"</span>,
+    style <span class='op'>=</span> <span class='st'>"cat"</span>,
+    palette <span class='op'>=</span> <span class='va'>pal</span>,
+    title <span class='op'>=</span> <span class='st'>"Elevation"</span>,
+    legend.is.portrait <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
+    legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    legend.outside.position <span class='op'>=</span> <span class='st'>"bottom"</span>,
+    legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"center"</span>, <span class='st'>"bottom"</span><span class='op'>)</span>,
+    legend.text.size <span class='op'>=</span> <span class='fl'>0.43</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='esp_get_hypsobath-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
-<span class='va'>opar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>no.readonly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-
-<span class='co'># Plot Canarias</span>
-<span class='va'>opar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>no.readonly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot_sf</a></span><span class='op'>(</span><span class='va'>hypsobath</span>,
-  xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>18.6</span>, <span class='op'>-</span><span class='fl'>13.5</span><span class='op'>)</span>,
-  ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>27.6</span>, <span class='fl'>29.5</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/cartography/man/choroLayer.html'>choroLayer</a></span><span class='op'>(</span>
-  <span class='va'>hypsobath</span>,
-  var <span class='op'>=</span> <span class='st'>"val_inf"</span>,
-  breaks <span class='op'>=</span> <span class='va'>finalbreaks</span>,
-  col <span class='op'>=</span> <span class='va'>pal</span>,
-  legend.pos <span class='op'>=</span> <span class='st'>"n"</span>,
-  border <span class='op'>=</span> <span class='cn'>NA</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='esp_get_hypsobath-1.png' alt='' width='701' height='433' /></div><div class='input'>
 <span class='co'># Plot Mainland</span>
-<span class='va'>opar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>no.readonly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot_sf</a></span><span class='op'>(</span><span class='va'>hypsobath</span>,
-  xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>9</span>, <span class='fl'>4.4</span><span class='op'>)</span>,
-  ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>35.8</span>, <span class='fl'>44</span><span class='op'>)</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/cartography/man/choroLayer.html'>choroLayer</a></span><span class='op'>(</span>
-  <span class='va'>hypsobath</span>,
-  var <span class='op'>=</span> <span class='st'>"val_inf"</span>,
-  breaks <span class='op'>=</span> <span class='va'>finalbreaks</span>,
-  col <span class='op'>=</span> <span class='va'>pal</span>,
-  legend.pos <span class='op'>=</span> <span class='st'>"n"</span>,
-  border <span class='op'>=</span> <span class='cn'>NA</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='esp_get_hypsobath-2.png' alt='' width='701' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>opar</span><span class='op'>)</span>
-<span class='co'># }</span>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hypsobath</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>9.5</span>, <span class='fl'>35.8</span>, <span class='fl'>4.4</span>, <span class='fl'>44</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span><span class='st'>"val_inf"</span>,
+    style <span class='op'>=</span> <span class='st'>"cat"</span>,
+    palette <span class='op'>=</span> <span class='va'>pal</span>,
+    title <span class='op'>=</span> <span class='st'>"Elevation"</span>,
+    legend.reverse <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='img'><img src='esp_get_hypsobath-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

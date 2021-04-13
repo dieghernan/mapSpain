@@ -214,80 +214,56 @@ to change the projection.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>, <code><a href='esp_get_ccaa.html'>esp_get_ccaa()</a></code>, <code><a href='esp_get_prov.html'>esp_get_prov()</a></code>, <code><a href='esp_get_munic.html'>esp_get_munic()</a></code>,
-<a href='esp_codelist.html'>esp_codelist</a></p></div>
+<code><a href='esp_codelist.html'>esp_codelist</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/riatelab/cartography/'>cartography</a></span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>This project is in maintenance mode. </span>
-#&gt; <span class='message'>Core functionalities of `cartography` can be found in `mapsf`.</span>
-#&gt; <span class='message'>https://riatelab.github.io/mapsf/</span></div><div class='input'>
-<span class='va'>esp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'><a href='esp_get_country.html'>esp_get_country</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>3857</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
 
-<span class='va'>hexccaa</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>esp_get_hex_ccaa</span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>3857</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot_sf</a></span><span class='op'>(</span><span class='va'>hexccaa</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>esp</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='st'>"grey80"</span>,
-  border <span class='op'>=</span> <span class='cn'>NA</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>hexccaa</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>19</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/cartography/man/labelLayer.html'>labelLayer</a></span><span class='op'>(</span><span class='va'>hexccaa</span>, txt <span class='op'>=</span> <span class='st'>"label"</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_gridmap-1.png' alt='' width='701' height='433' /></div><div class='input'>
+<span class='va'>esp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_country.html'>esp_get_country</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>hexccaa</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_hex_ccaa</span><span class='op'>(</span><span class='op'>)</span>
 
 
-<span class='va'>hexprov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>esp_get_hex_prov</span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>3857</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot_sf</a></span><span class='op'>(</span><span class='va'>hexprov</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>esp</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='st'>"grey80"</span>,
-  border <span class='op'>=</span> <span class='cn'>NA</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>hexprov</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>19</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/cartography/man/labelLayer.html'>labelLayer</a></span><span class='op'>(</span><span class='va'>hexprov</span>, txt <span class='op'>=</span> <span class='st'>"label"</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_gridmap-2.png' alt='' width='701' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>esp</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>13.5</span>, <span class='fl'>32</span>, <span class='fl'>7</span>, <span class='fl'>45</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hexccaa</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"codauto"</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, legend.show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hexccaa</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_text.html'>tm_text</a></span><span class='op'>(</span><span class='st'>"label"</span><span class='op'>)</span>
+</div><div class='img'><img src='esp_get_gridmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
 
-<span class='va'>gridccaa</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>esp_get_grid_ccaa</span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>3857</span><span class='op'>)</span>
+<span class='va'>hexprov</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_hex_prov</span><span class='op'>(</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot_sf</a></span><span class='op'>(</span><span class='va'>gridccaa</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>esp</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='st'>"grey80"</span>,
-  border <span class='op'>=</span> <span class='cn'>NA</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>gridccaa</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>19</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/cartography/man/labelLayer.html'>labelLayer</a></span><span class='op'>(</span><span class='va'>gridccaa</span>, txt <span class='op'>=</span> <span class='st'>"label"</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_gridmap-3.png' alt='' width='701' height='433' /></div><div class='input'>
-<span class='va'>gridprov</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='fu'>esp_get_grid_prov</span><span class='op'>(</span><span class='op'>)</span>, <span class='fl'>3857</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>esp</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>13.5</span>, <span class='fl'>32</span>, <span class='fl'>7</span>, <span class='fl'>45</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hexprov</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"cpro"</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, legend.show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hexprov</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_text.html'>tm_text</a></span><span class='op'>(</span><span class='st'>"label"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Number of levels of the variable "cpro" is 52, which is larger than max.categories (which is 30), so levels are combined. Set tmap_options(max.categories = 52) in the layer function to show all levels.</span></div><div class='img'><img src='esp_get_gridmap-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot_sf</a></span><span class='op'>(</span><span class='va'>gridprov</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>esp</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='st'>"grey80"</span>,
-  border <span class='op'>=</span> <span class='cn'>NA</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>gridprov</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>19</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/cartography/man/labelLayer.html'>labelLayer</a></span><span class='op'>(</span><span class='va'>gridprov</span>, txt <span class='op'>=</span> <span class='st'>"label"</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_gridmap-4.png' alt='' width='701' height='433' /></div></pre>
+
+<span class='va'>gridccaa</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_grid_ccaa</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>esp</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>13.5</span>, <span class='fl'>32</span>, <span class='fl'>7</span>, <span class='fl'>45</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>gridccaa</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"codauto"</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, legend.show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>gridccaa</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_text.html'>tm_text</a></span><span class='op'>(</span><span class='st'>"label"</span><span class='op'>)</span>
+</div><div class='img'><img src='esp_get_gridmap-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>gridprov</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_grid_prov</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>esp</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>13.5</span>, <span class='fl'>32</span>, <span class='fl'>7</span>, <span class='fl'>45</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>gridprov</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"cpro"</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span>, legend.show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>gridprov</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_text.html'>tm_text</a></span><span class='op'>(</span><span class='st'>"label"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Number of levels of the variable "cpro" is 52, which is larger than max.categories (which is 30), so levels are combined. Set tmap_options(max.categories = 52) in the layer function to show all levels.</span></div><div class='img'><img src='esp_get_gridmap-4.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

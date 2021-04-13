@@ -209,7 +209,14 @@ or <code>NULL</code> to get all the autonomous communities. See Details.</p></td
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters from <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+      <td><p>Arguments passed on to <code><a href='esp_get_nuts.html'>esp_get_nuts</a></code></p><dl>
+    <dt><code>spatialtype</code></dt><dd><p>Type of geometry to be returned:
+<ul>
+<li><p>"RG": Regions - <code>MULTIPOLYGON/POLYGON</code> object.</p></li>
+<li><p>"LB": Labels - <code>POINT</code> object.</p></li>
+</ul></p></dd>
+  
+</dl></td>
     </tr>
     <tr>
       <th>year</th>
@@ -239,8 +246,11 @@ When set to <code>TRUE</code> it would force a fresh download of the source
     <tr>
       <th>cache_dir</th>
       <td><p>A path to a cache directory. The directory can also be
-set globally with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.
-See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+set globally with:</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
+</ul>
+
+<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -285,28 +295,33 @@ Historical information starts as of 2005.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='esp_get_hex_prov.html'>esp_get_hex_ccaa()</a></code>, <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>, <code><a href='esp_get_prov.html'>esp_get_prov()</a></code>,
-<code><a href='esp_get_munic.html'>esp_get_munic()</a></code>, <a href='esp_codelist.html'>esp_codelist</a></p></div>
+<code><a href='esp_get_munic.html'>esp_get_munic()</a></code>, <code><a href='esp_codelist.html'>esp_codelist</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='co'># Random CCAA</span>
+<span class='va'>Random</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_ccaa</span><span class='op'>(</span>ccaa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+  <span class='st'>"Euskadi"</span>,
+  <span class='st'>"Catalunya"</span>,
+  <span class='st'>"ES-EX"</span>,
+  <span class='st'>"Canarias"</span>,
+  <span class='st'>"ES52"</span>,
+  <span class='st'>"01"</span>
+<span class='op'>)</span><span class='op'>)</span>
 
-<span class='co'># Random CCAA</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
 
-<span class='va'>Random</span> <span class='op'>&lt;-</span>
-  <span class='fu'>esp_get_ccaa</span><span class='op'>(</span>ccaa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-    <span class='st'>"Euskadi"</span>,
-    <span class='st'>"Catalunya"</span>,
-    <span class='st'>"ES-EX"</span>,
-    <span class='st'>"Canarias"</span>,
-    <span class='st'>"ES52"</span>,
-    <span class='st'>"01"</span>
-  <span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>Random</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>6</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_ccaa-1.png' alt='' width='701' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Random</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"codauto"</span>, legend.show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Random</span>, point.per <span class='op'>=</span> <span class='st'>"feature"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_text.html'>tm_text</a></span><span class='op'>(</span><span class='st'>"codauto"</span>,
+    auto.placement <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    shadow <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='esp_get_ccaa-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
 <span class='co'># All CCAA of a Zone plus an addition</span>
 
 <span class='va'>Mix</span> <span class='op'>&lt;-</span>
@@ -314,6 +329,8 @@ Historical information starts as of 2005.</p>
     ccaa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"La Rioja"</span>, <span class='st'>"Noroeste"</span><span class='op'>)</span>,
     resolution <span class='op'>=</span> <span class='st'>"20"</span>
   <span class='op'>)</span>
+
+<span class='co'># Base plot</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span>
   <span class='va'>Mix</span><span class='op'>[</span>, <span class='st'>"nuts1.code"</span><span class='op'>]</span>,
   pal <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>,
@@ -321,7 +338,28 @@ Historical information starts as of 2005.</p>
   main <span class='op'>=</span> <span class='cn'>NULL</span>,
   border <span class='op'>=</span> <span class='st'>"white"</span>
 <span class='op'>)</span>
-</div><div class='img'><img src='esp_get_ccaa-2.png' alt='' width='701' height='433' /></div></pre>
+</div><div class='img'><img src='esp_get_ccaa-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Combine with giscoR to get countries</span>
+<span class='co'># \donttest{</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dieghernan.github.io/giscoR/'>giscoR</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
+
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fl'>20</span> <span class='co'># Set same resoluion</span>
+
+<span class='va'>europe</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>gisco_get_countries</a></span><span class='op'>(</span>resolution <span class='op'>=</span> <span class='va'>res</span><span class='op'>)</span>
+<span class='va'>ccaa</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_ccaa</span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span>, resolution <span class='op'>=</span> <span class='va'>res</span><span class='op'>)</span>
+
+<span class='co'># Transform to same CRS</span>
+<span class='va'>europe</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='va'>europe</span>, <span class='fl'>3035</span><span class='op'>)</span>
+<span class='va'>ccaa</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>st_transform</a></span><span class='op'>(</span><span class='va'>ccaa</span>, <span class='fl'>3035</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>europe</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>23</span>, <span class='fl'>14</span>, <span class='fl'>74</span>, <span class='fl'>55</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>10e4</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#DFDFDF"</span>, border.col <span class='op'>=</span> <span class='st'>"#656565"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>ccaa</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#FDFBEA"</span>, border.col <span class='op'>=</span> <span class='st'>"#656565"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>bg.color <span class='op'>=</span> <span class='st'>"#C7E7FB"</span><span class='op'>)</span>
+</div><div class='img'><img src='esp_get_ccaa-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

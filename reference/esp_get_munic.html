@@ -240,8 +240,11 @@ When set to <code>TRUE</code> it would force a fresh download of the source
     <tr>
       <th>cache_dir</th>
       <td><p>A path to a cache directory. The directory can also be
-set globally with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.
-See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+set globally with:</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
+</ul>
+
+<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -298,15 +301,13 @@ year ("YYYY" format, as end of year) or as a specific
 date ("YYYY-MM-DD" format). Historical information starts as of 2005.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>, <a href='esp_munic.sf.html'>esp_munic.sf</a>, <a href='esp_codelist.html'>esp_codelist</a>.</p></div>
+    <div class='dont-index'><p><code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>, <code><a href='esp_munic.sf.html'>esp_munic.sf</a></code>, <code><a href='esp_codelist.html'>esp_codelist</a></code>.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-
 <span class='va'>Base</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_munic</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Castilla y Leon"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>SAN</span> <span class='op'>&lt;-</span>
   <span class='fu'>esp_get_munic</span><span class='op'>(</span>
@@ -314,13 +315,19 @@ date ("YYYY-MM-DD" format). Historical information starts as of 2005.</p>
     munic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"^San "</span>, <span class='st'>"^Santa "</span><span class='op'>)</span>
   <span class='op'>)</span>
 
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>Base</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"cornsilk"</span>, border <span class='op'>=</span> <span class='st'>"grey80"</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>SAN</span><span class='op'>)</span>,
-  col <span class='op'>=</span> <span class='st'>"firebrick3"</span>,
-  border <span class='op'>=</span> <span class='cn'>NA</span>,
-  add <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-</div><div class='img'><img src='esp_get_munic-1.png' alt='' width='701' height='433' /></div></pre>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Base</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#FDFBEA"</span>, border.col <span class='op'>=</span> <span class='st'>"#656565"</span>, border.alpha <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>SAN</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#C12838"</span>, border.col <span class='op'>=</span> <span class='st'>"#656565"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
+    main.title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span>
+      <span class='st'>"Municipalities named under Saints (San, Santa)"</span>,
+      <span class='st'>"\nCastilla y Leon, Spain"</span>
+    <span class='op'>)</span>,
+    main.title.size <span class='op'>=</span> <span class='fl'>.8</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='esp_get_munic-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

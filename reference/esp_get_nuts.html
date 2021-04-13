@@ -219,8 +219,11 @@ When set to <code>TRUE</code> it would force a fresh download of the source
     <tr>
       <th>cache_dir</th>
       <td><p>A path to a cache directory. The directory can also be
-set globally with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.
-See Details on <code>esp_get_nuts()</code>.</p></td>
+set globally with:</p><ul>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
+</ul>
+
+<p>See Details on <code>esp_get_nuts()</code>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -282,12 +285,12 @@ the data using <code>update_cache = TRUE</code>.</p>
 <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_attributions.html'>giscoR::gisco_attributions()</a></code></p>
 <p>While <code>moveCAN</code> is useful for visualization, it would alter the actual
 geographical position of the Canary Islands. When using the output for
-spatial analysis or using tiles (<code><a href='esp_getTiles.html'>esp_getTiles()</a></code>, <code><a href='addProviderEspTiles.html'>addProviderEspTiles()</a></code>)
-this option should be set to <code>FALSE</code> in order to get the actual
-coordinates.</p>
+spatial analysis or using tiles (<code><a href='esp_getTiles.html'>esp_getTiles()</a></code> or
+<code><a href='addProviderEspTiles.html'>addProviderEspTiles()</a></code>)  this option should be set to <code>FALSE</code> in order to
+get the actual coordinates.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><a href='esp_nuts.sf.html'>esp_nuts.sf</a>, <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>, <a href='esp_codelist.html'>esp_codelist</a>,
+    <div class='dont-index'><p><code><a href='esp_nuts.sf.html'>esp_nuts.sf</a></code>, <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>, <code><a href='esp_codelist.html'>esp_codelist</a></code>,
 <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get()</a></code>.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
@@ -301,23 +304,23 @@ coordinates.</p>
 
 <span class='va'>NUTS1</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>nuts_level <span class='op'>=</span> <span class='fl'>1</span>, moveCAN <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>NUTS1</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_nuts-1.png' alt='' width='701' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_nuts-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>NUTS1_alt</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>nuts_level <span class='op'>=</span> <span class='fl'>1</span>, moveCAN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>NUTS1_alt</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_nuts-2.png' alt='' width='701' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_nuts-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>NUTS1_orig</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>nuts_level <span class='op'>=</span> <span class='fl'>1</span>, moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>NUTS1_orig</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_nuts-3.png' alt='' width='701' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_nuts-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>AndOriental</span> <span class='op'>&lt;-</span>
   <span class='fu'>esp_get_nuts</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Almeria"</span>, <span class='st'>"Granada"</span>, <span class='st'>"Jaen"</span>, <span class='st'>"Malaga"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>AndOriental</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_nuts-4.png' alt='' width='701' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_nuts-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>RandomRegions</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ES1"</span>, <span class='st'>"ES300"</span>, <span class='st'>"ES51"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>RandomRegions</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_nuts-5.png' alt='' width='701' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_nuts-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>MixingCodes</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ES4"</span>, <span class='st'>"ES-PV"</span>, <span class='st'>"Valencia"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>MixingCodes</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_nuts-6.png' alt='' width='701' height='433' /></div></pre>
+</div><div class='img'><img src='esp_get_nuts-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
