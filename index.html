@@ -250,7 +250,7 @@
 
 <span class="co"># Set the same resolution for a perfect fit</span>
 
-<span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"20"</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"03"</span>
 
 <span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span>
 <span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span><span class="op">)</span>
@@ -271,7 +271,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">eu_countries</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#FDFBEA"</span>, border.col <span class="op">=</span> <span class="st">"#656565"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">ccaa</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#C12838"</span>, border.col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#C12838"</span>, border.col <span class="op">=</span> <span class="st">"grey80"</span>, border.alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-giscoR-1.png" width="100%"></p>
 </div>
 <div id="a-note-on-caching" class="section level2">
