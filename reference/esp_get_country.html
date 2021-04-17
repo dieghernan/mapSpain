@@ -181,7 +181,46 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters from <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+      <td><p>Arguments passed on to <code><a href='esp_get_nuts.html'>esp_get_nuts</a></code></p><dl>
+    <dt><code>year</code></dt><dd><p>Release year. One of "2003", "2006",`"2010", "2013", "2016" or
+"2021".</p></dd>
+    <dt><code>epsg</code></dt><dd><p>projection of the map: 4-digit <a href='https://epsg.io/'>EPSG code</a>.
+One of:
+<ul>
+<li><p>"4258": ETRS89</p></li>
+<li><p>"4326": WGS84</p></li>
+<li><p>"3035": ETRS89 / ETRS-LAEA</p></li>
+<li><p>"3857": Pseudo-Mercator</p></li>
+</ul></p></dd>
+    <dt><code>cache</code></dt><dd><p>A logical whether to do caching. Default is <code>TRUE</code>.</p></dd>
+    <dt><code>update_cache</code></dt><dd><p>A logical whether to update cache. Default is <code>FALSE</code>.
+When set to <code>TRUE</code> it would force a fresh download of the source
+<code>.geojson</code> file.</p></dd>
+    <dt><code>cache_dir</code></dt><dd><p>A path to a cache directory. The directory can also be
+set globally with:
+<ul>
+<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
+</ul>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></dd>
+    <dt><code>verbose</code></dt><dd><p>Display information. Useful for debugging,
+default is <code>FALSE</code>.</p></dd>
+    <dt><code>resolution</code></dt><dd><p>Resolution of the geospatial data. One of
+<ul>
+<li><p>"60": 1:60million</p></li>
+<li><p>"20": 1:20million</p></li>
+<li><p>"10": 1:10million</p></li>
+<li><p>"03": 1:3million</p></li>
+<li><p>"01": 1:1million</p></li>
+</ul></p></dd>
+    <dt><code>spatialtype</code></dt><dd><p>Type of geometry to be returned:
+<ul>
+<li><p>"RG": Regions - <code>MULTIPOLYGON/POLYGON</code> object.</p></li>
+<li><p>"LB": Labels - <code>POINT</code> object.</p></li>
+</ul></p></dd>
+    <dt><code>moveCAN</code></dt><dd><p>A logical <code>TRUE/FALSE</code> or a vector of coordinates
+<code><a href='https://rdrr.io/r/base/c.html'>c(lat, lon)</a></code>. It places the Canary Islands close to Spain's mainland.
+Initial position can be adjusted using the vector of coordinates.</p></dd>
+  
+</dl></td>
     </tr>
     </table>
 

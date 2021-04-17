@@ -209,7 +209,14 @@ or <code>NULL</code> to get all the provinces. See Details.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Additional parameters from <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+      <td><p>Arguments passed on to <code><a href='esp_get_nuts.html'>esp_get_nuts</a></code></p><dl>
+    <dt><code>spatialtype</code></dt><dd><p>Type of geometry to be returned:
+<ul>
+<li><p>"RG": Regions - <code>MULTIPOLYGON/POLYGON</code> object.</p></li>
+<li><p>"LB": Labels - <code>POINT</code> object.</p></li>
+</ul></p></dd>
+  
+</dl></td>
     </tr>
     <tr>
       <th>year</th>
