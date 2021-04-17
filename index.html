@@ -50,7 +50,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="index.html"><img src="logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1.9001</span>
+      <a class="navbar-link ROS-black" href="index.html"><img src="logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -182,7 +182,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">Can</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_lines.html">tm_lines</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LEFT"</span>, <span class="st">"center"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-static-1.svg" width="100%"></p>
+<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-static-1.png" width="100%"></p>
 <p>You can combine <code>POLYGONS</code> with static tiles</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span>
@@ -193,19 +193,21 @@
 
 <span class="va">census</span><span class="op">$</span><span class="va">municode</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">census</span><span class="op">$</span><span class="va">cpro</span>, <span class="va">census</span><span class="op">$</span><span class="va">cmun</span><span class="op">)</span>
 
-<span class="va">Asturias.sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Asturias"</span><span class="op">)</span>
+<span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Teruel"</span><span class="op">)</span>
+<span class="va">provs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_prov.html">esp_get_prov</a></span><span class="op">(</span><span class="op">)</span>
 
-<span class="va">Asturias.pop</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">Asturias.sf</span>, <span class="va">census</span>, by.x <span class="op">=</span> <span class="st">"LAU_CODE"</span>, by.y <span class="op">=</span> <span class="st">"municode"</span><span class="op">)</span>
+<span class="va">shape_pop</span> <span class="op">&lt;-</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">shape</span>, <span class="va">census</span>, by.x <span class="op">=</span> <span class="st">"LAU_CODE"</span>, by.y <span class="op">=</span> <span class="st">"municode"</span><span class="op">)</span>
 
 <span class="co"># Get tiles</span>
 
-<span class="va">Asturias.pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">Asturias.pop</span>, <span class="fl">3857</span><span class="op">)</span>
+<span class="va">shape_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">shape_pop</span>, <span class="fl">3857</span><span class="op">)</span>
+<span class="va">provs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">provs</span>, <span class="fl">3857</span><span class="op">)</span>
 
 <span class="va">tile</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">Asturias.pop</span>,
+  <span class="fu"><a href="reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">shape_pop</span>,
     type <span class="op">=</span> <span class="st">"IGNBase.Todo"</span>,
-    zoom <span class="op">=</span> <span class="fl">8</span>
+    zoom <span class="op">=</span> <span class="fl">9</span> <span class="co"># Increase to get more quality</span>
   <span class="op">)</span>
 
 <span class="co"># Plot</span>
@@ -214,19 +216,30 @@
 
 <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">tile</span>, raster.downsample <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_raster.html">tm_rgb</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">Asturias.pop</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">shape_pop</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span><span class="st">"porc_women"</span>,
     palette <span class="op">=</span> <span class="st">"-inferno"</span>,
-    title <span class="op">=</span> <span class="st">"% women"</span>,
+    title <span class="op">=</span> <span class="st">""</span>,
     alpha <span class="op">=</span> <span class="fl">0.6</span>,
     legend.format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
       fun <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
         <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html">sprintf</a></span><span class="op">(</span><span class="st">"%1.0f%%"</span>, <span class="fl">100</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span>
-      <span class="op">}</span>
+      <span class="op">}</span>,
+      text.to.columns <span class="op">=</span> <span class="cn">TRUE</span>
     <span class="op">)</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>legend.outside <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-tile-1.svg" width="100%"></p>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">provs</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_borders</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>
+    main.title <span class="op">=</span> <span class="st">"Share of women in Teruel by town (2019)"</span>,
+    main.title.fontface <span class="op">=</span> <span class="st">"bold"</span>,
+    main.title.size <span class="op">=</span> <span class="fl">1.2</span>,
+    legend.text.size <span class="op">=</span> <span class="fl">1</span>,
+    legend.bg.color <span class="op">=</span> <span class="st">"white"</span>,
+    legend.frame <span class="op">=</span> <span class="cn">TRUE</span>,
+    legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"right"</span>, <span class="st">"bottom"</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-tile-1.png" width="100%"></p>
 </div>
 <div id="mapspain-and-giscor" class="section level2">
 <h2 class="hasAnchor">
@@ -259,7 +272,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#FDFBEA"</span>, border.col <span class="op">=</span> <span class="st">"#656565"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">ccaa</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#C12838"</span>, border.col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
-<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-giscoR-1.svg" width="100%"></p>
+<p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/master/img/README-giscoR-1.png" width="100%"></p>
 </div>
 <div id="a-note-on-caching" class="section level2">
 <h2 class="hasAnchor">
