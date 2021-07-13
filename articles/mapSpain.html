@@ -171,7 +171,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_grid.html">tm_graticules</a></span><span class="op">(</span>lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_style</a></span><span class="op">(</span><span class="st">"classic"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>main.title <span class="op">=</span> <span class="st">"Map of Spain"</span><span class="op">)</span></code></pre></div>
-<p><img src="mapSpain_files/figure-html/basic-1.png" width="100%" height="60%"></p>
+<p><img src="basic-1.png" title="plot of chunk basic" alt="plot of chunk basic" width="100%" height="60%"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Plot provinces</span>
@@ -181,7 +181,7 @@
 <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">Andalucia</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"darkgreen"</span>, border.col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_grid.html">tm_graticules</a></span><span class="op">(</span>lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p><img src="mapSpain_files/figure-html/basic-2.png" width="100%" height="60%"></p>
+<p><img src="basic-2.png" title="plot of chunk basic" alt="plot of chunk basic" width="100%" height="60%"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Plot municipalities</span>
@@ -209,7 +209,7 @@
     main.title.size <span class="op">=</span> <span class="fl">0.8</span>,
     main.title.fontface <span class="op">=</span> <span class="st">"bold"</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="mapSpain_files/figure-html/basic-3.png" width="100%" height="60%"></p>
+<p><img src="basic-3.png" title="plot of chunk basic" alt="plot of chunk basic" width="100%" height="60%"></p>
 </div>
 <div id="choropleth-and-label-maps" class="section level2">
 <h2 class="hasAnchor">
@@ -260,7 +260,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">Can</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_lines.html">tm_lines</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"LEFT"</span>, <span class="st">"center"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="mapSpain_files/figure-html/choro-1.png" width="100%" height="60%"></p>
+<p><img src="choro-1.png" title="plot of chunk choro" alt="plot of chunk choro" width="100%" height="60%"></p>
 </div>
 <div id="thematic-maps" class="section level2">
 <h2 class="hasAnchor">
@@ -319,7 +319,7 @@
     legend.text.fontface <span class="op">=</span> <span class="st">"bold"</span>,
     legend.title.fontface <span class="op">=</span> <span class="st">"bold"</span>
   <span class="op">)</span></code></pre></div>
-<p><img src="mapSpain_files/figure-html/thematic-1.png" width="100%" height="60%"></p>
+<p><img src="thematic-1.png" title="plot of chunk thematic" alt="plot of chunk thematic" width="100%" height="60%"></p>
 </div>
 <div id="mapspain-and-giscor" class="section level2">
 <h2 class="hasAnchor">
@@ -331,7 +331,7 @@
 
 <span class="co"># Set the same resolution for a perfect fit</span>
 
-<span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"20"</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"01"</span>
 
 <span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span>
 <span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dieghernan.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span><span class="op">)</span>
@@ -352,7 +352,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#FDFBEA"</span>, border.col <span class="op">=</span> <span class="st">"#656565"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">ccaa</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#C12838"</span>, border.col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span></code></pre></div>
-<p><img src="mapSpain_files/figure-html/giscoR-1.png" width="100%" height="60%"></p>
+<p><img src="giscoR-1.png" title="plot of chunk giscoR" alt="plot of chunk giscoR" width="100%" height="60%"></p>
 </div>
   </div>
 
