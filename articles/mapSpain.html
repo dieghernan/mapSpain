@@ -151,12 +151,20 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org">remotes</a></span><span class="op">)</span>
 <span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"rOpenSpain/mapSpain"</span><span class="op">)</span></code></pre></div>
+<p>Alternatively, you can install <code>mapSpain</code> using the <a href="https://ropenspain.r-universe.dev/ui#builds">r-universe</a>:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Enable this universe</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    ropenspain <span class="op">=</span> <span class="st">'https://ropenspain.r-universe.dev'</span>,
+    CRAN <span class="op">=</span> <span class="st">'https://cloud.r-project.org'</span><span class="op">)</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'mapSpain'</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="basic-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-example" class="anchor"></a>Basic example</h2>
 <p>Some examples of what <code>mapSpain</code>can do:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap">tmap</a></span><span class="op">)</span>
@@ -172,7 +180,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_style</a></span><span class="op">(</span><span class="st">"classic"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>main.title <span class="op">=</span> <span class="st">"Map of Spain"</span><span class="op">)</span></code></pre></div>
 <p><img src="basic-1.png" title="plot of chunk basic" alt="plot of chunk basic" width="100%" height="60%"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Plot provinces</span>
 
@@ -182,7 +190,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"darkgreen"</span>, border.col <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_grid.html">tm_graticules</a></span><span class="op">(</span>lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="basic-2.png" title="plot of chunk basic" alt="plot of chunk basic" width="100%" height="60%"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Plot municipalities</span>
 
@@ -215,7 +223,7 @@
 <h2 class="hasAnchor">
 <a href="#choropleth-and-label-maps" class="anchor"></a>Choropleth and label maps</h2>
 <p>Let’s analyze the distribution of women in each autonomous community with <code>tmap</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="../reference/pobmun19.html">pobmun19</a></span>
 
@@ -266,7 +274,7 @@
 <h2 class="hasAnchor">
 <a href="#thematic-maps" class="anchor"></a>Thematic maps</h2>
 <p>This is an example on how <code>mapSpain</code> can be used to beautiful thematic maps. For plotting purposes we would use the <a href="https://mtennekes.github.io/tmap/"><code>tmap</code></a> package, however any package that handles <code>sf</code> objects (e.g. <code>ggplot2</code>, <code>mapsf</code>, <code>leaflet</code>, etc. could be used).</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># Population density of Spain</span>
 
@@ -325,7 +333,7 @@
 <h2 class="hasAnchor">
 <a href="#mapspain-and-giscor" class="anchor"></a>mapSpain and giscoR</h2>
 <p>If you need to plot Spain along with another countries, consider using <a href="https://dieghernan.github.io/giscoR/"><code>giscoR</code></a> package, that is installed as a dependency when you installed <code>mapSpain</code>. A basic example:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/giscoR/">giscoR</a></span><span class="op">)</span>
 
