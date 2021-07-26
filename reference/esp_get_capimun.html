@@ -285,7 +285,7 @@ actual geographical position of the Canary Islands.</p>
     <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># This code compares centroid of municipalities against esp_get_capimun</span>
 <span class='co'># It also download tiles, make sure you are online</span>
 
@@ -296,10 +296,10 @@ actual geographical position of the Canary Islands.</p>
 
 <span class='co'># Area in km2</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span>, <span class='fl'>2</span><span class='op'>)</span>, <span class='st'>" km2"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "353.42 km2"</div><div class='input'>
+
 <span class='co'># Extract centroid</span>
 <span class='va'>centroid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_unary.html'>st_centroid</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: st_centroid assumes attributes are constant over geometries of x</span></div><div class='input'>
+
 <span class='co'># Compare with capimun</span>
 <span class='va'>capimun</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_capimun</span><span class='op'>(</span>munic <span class='op'>=</span> <span class='st'>"Valladolid"</span>, epsg <span class='op'>=</span> <span class='fl'>3857</span><span class='op'>)</span>
 
@@ -318,11 +318,11 @@ actual geographical position of the Canary Islands.</p>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_symbols.html'>tm_symbols</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"red"</span>, alpha <span class='op'>=</span> <span class='fl'>0.4</span>, shape <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>capimun</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_symbols.html'>tm_symbols</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"blue"</span>, alpha <span class='op'>=</span> <span class='fl'>0.4</span>, shape <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_capimun-1.png' alt='' width='700' height='433' /></div><div class='input'>
+
 
 <span class='co'># Blue dot is located onto the actual city while red dot is located</span>
 <span class='co'># in the centroid of the boundaries</span>
-<span class='co'># }</span>
+<span class='op'>}</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
