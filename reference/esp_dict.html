@@ -247,13 +247,13 @@ values.</p>
 <span class='co'># Mixing levels</span>
 <span class='va'>valsmix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Centro"</span>, <span class='st'>"Andalucia"</span>, <span class='st'>"Seville"</span>, <span class='st'>"Menorca"</span><span class='op'>)</span>
 <span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"nuts"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "ES4"   "ES61"  "ES618" "ES533"</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+</div><div class='output co'>#&gt; [1] "ES4"   "ES61"  "ES618" "ES533"</div><div class='input'><span class='co'># \dontrun{</span>
 
 <span class='co'># Warning</span>
 
 <span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"codauto"</span><span class='op'>)</span>
-<span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span>
-<span class='op'>}</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: No match on codauto found for Centro, Seville, Menorca</span></div><div class='output co'>#&gt; [1] NA   "01" NA   NA  </div><div class='input'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: No match on iso2 found for Centro, Menorca</span></div><div class='output co'>#&gt; [1] NA      "ES-AN" "ES-SE" NA     </div><div class='input'><span class='co'># }</span>
 
 
 <span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
