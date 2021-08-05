@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get railways of Spain — esp_get_railway • mapSpain</title>
+<title>Get sf lines and points with the railways of Spain — esp_get_railway • mapSpain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -60,12 +60,13 @@
 <!-- rOpenSpain -->
 <link href="../ropenspain.css" rel="stylesheet">
 
-<meta property="og:title" content="Get railways of Spain — esp_get_railway" />
-<meta property="og:description" content="Extract nodes and railways of mainland Spain and the Balearic Islands." />
+<meta property="og:title" content="Get sf lines and points with the railways of Spain — esp_get_railway" />
+<meta property="og:description" content="Loads a sf lines or point object representing the nodes and railway
+lines of Spain." />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -104,7 +105,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -165,13 +166,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get railways of Spain</h1>
+    <h1>Get <code>sf</code> lines and points with the railways of Spain</h1>
     <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/master/R/esp_get_railway.R'><code>R/esp_get_railway.R</code></a></small>
     <div class="hidden name"><code>esp_get_railway.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Extract nodes and railways of mainland Spain and the Balearic Islands.</p>
+    <p>Loads a <code>sf</code> lines or point object representing the nodes and railway
+lines of Spain.</p>
     </div>
 
     <pre class="usage"><span class='fu'>esp_get_railway</span><span class='op'>(</span>
@@ -203,51 +205,48 @@ One of:</p><ul>
     </tr>
     <tr>
       <th>cache</th>
-      <td><p>A logical whether to do caching. Default is <code>TRUE</code>.</p></td>
+      <td><p>A logical whether to do caching. Default is <code>TRUE</code>. See
+<strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>update_cache</th>
       <td><p>A logical whether to update cache. Default is <code>FALSE</code>.
-When set to <code>TRUE</code> it would force a fresh download of the source
-<code>.geojson</code> file.</p></td>
+When set to <code>TRUE</code> it would force a fresh download of the source file.</p></td>
     </tr>
     <tr>
       <th>cache_dir</th>
-      <td><p>A path to a cache directory. The directory can also be
-set globally with:</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
-</ul>
-
-<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+      <td><p>A path to a cache directory. See <strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Display information. Useful for debugging,
+      <td><p>Logical, displays information. Useful for debugging,
 default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>spatialtype</th>
       <td><p>Spatial type of the output. Use "line" for extracting
-the railway and "point" for the stations.</p></td>
+the railway as lines and "point" for the stations.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>IGN data via a custom CDN (see
-<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>.</p>
+<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>MULTILINESTRING</code> or <code>POINT</code> object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A <code>sf</code> line or point object.</p>
+    <h2 class="hasAnchor" id="about-caching"><a class="anchor" href="#about-caching"></a>About caching</h2>
 
-    <p>Details on caching can be found on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code></p>
+    <p>You can set your <code>cache_dir</code> with <code><a href='esp_set_cache_dir.html'>esp_set_cache_dir()</a></code>.</p>
+<p>Sometimes cached files may be corrupt. On that case, try re-downloading
+the data setting <code>update_cache = TRUE</code>.</p>
+<p>If you experience any problem on download, try to download the
+corresponding .geojson file by any other method and save it on your
+<code>cache_dir</code>. Use the option <code>verbose = TRUE</code> for debugging the API query.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='esp_get_roads.html'>esp_get_roads()</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
@@ -266,16 +265,16 @@ the railway and "point" for the stations.</p></td>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>provs</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>7.5</span>, <span class='fl'>38</span>, <span class='op'>-</span><span class='fl'>2.5</span>, <span class='fl'>41</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"grey90"</span>, border.col <span class='op'>=</span> <span class='st'>"grey50"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"grey99"</span>, border.col <span class='op'>=</span> <span class='st'>"grey50"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>ccaa</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span><span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>rails</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_lines.html'>tm_lines</a></span><span class='op'>(</span><span class='st'>"tipo"</span>,
-    legend.col.show <span class='op'>=</span> <span class='cn'>FALSE</span>, lwd <span class='op'>=</span> <span class='fl'>2</span>,
-    palette <span class='op'>=</span> <span class='st'>"Dark2"</span>
+    legend.col.show <span class='op'>=</span> <span class='cn'>FALSE</span>, lwd <span class='op'>=</span> <span class='fl'>3</span>,
+    palette <span class='op'>=</span> <span class='st'>"viridis"</span>
   <span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>stations</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_symbols.html'>tm_symbols</a></span><span class='op'>(</span><span class='st'>"red"</span>, size <span class='op'>=</span> <span class='fl'>.3</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_symbols.html'>tm_symbols</a></span><span class='op'>(</span><span class='st'>"red"</span>, size <span class='op'>=</span> <span class='fl'>.3</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span>, shape <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_railway-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>

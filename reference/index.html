@@ -64,7 +64,7 @@
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -103,7 +103,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -179,7 +179,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-political" class="hasAnchor"><a href="#section-political" class="anchor"></a>Political</h2>
-          <p class="section-desc"><p>These functions return sf objects with political boundaries</p></p>
+          <p class="section-desc"><p>These functions return <code>sf</code> objects with political boundaries</p></p>
         </th>
       </tr>
       
@@ -192,55 +192,55 @@
         <td>
           <p><code><a href="esp_get_can_box.html">esp_get_can_box()</a></code> <code><a href="esp_get_can_box.html">esp_get_can_provinces()</a></code> </p>
         </td>
-        <td><p>Get complementary lines when plotting Canary Islands.</p></td>
+        <td><p>Get <code>sf</code> lines and polygons for insetting the Canary Islands</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_capimun.html">esp_get_capimun()</a></code> </p>
         </td>
-        <td><p>Get the location of municipalities of Spain</p></td>
+        <td><p>Get <code>sf</code> points of the municipalities of Spain</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_ccaa.html">esp_get_ccaa()</a></code> <code><a href="esp_get_ccaa.html">esp_get_ccaa_siane()</a></code> </p>
         </td>
-        <td><p>Get Autonomous Communities boundaries of Spain</p></td>
+        <td><p>Get Autonomous Communities of Spain as <code>sf</code> polygons and points</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_country.html">esp_get_country()</a></code> </p>
         </td>
-        <td><p>Get boundaries of Spain</p></td>
+        <td><p>Get the borders of Spain as a <code>sf</code> polygon</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_gridmap.html">esp_get_hex_prov()</a></code> <code><a href="esp_get_gridmap.html">esp_get_hex_ccaa()</a></code> <code><a href="esp_get_gridmap.html">esp_get_grid_prov()</a></code> <code><a href="esp_get_gridmap.html">esp_get_grid_ccaa()</a></code> </p>
         </td>
-        <td><p>Get an hexbin or a map of squares of Spain</p></td>
+        <td><p>Get a <code>sf</code> hexbin or squared polygon of Spain</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_munic.html">esp_get_munic()</a></code> <code><a href="esp_get_munic.html">esp_get_munic_siane()</a></code> </p>
         </td>
-        <td><p>Get municipalities boundaries of Spain</p></td>
+        <td><p>Get municipalities of Spain as <code>sf</code> polygons</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_nuts.html">esp_get_nuts()</a></code> </p>
         </td>
-        <td><p>Get NUTS boundaries of Spain</p></td>
+        <td><p>Get NUTS of Spain as <code>sf</code> polygons and points</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_prov.html">esp_get_prov()</a></code> <code><a href="esp_get_prov.html">esp_get_prov_siane()</a></code> </p>
         </td>
-        <td><p>Get Provinces boundaries of Spain</p></td>
+        <td><p>Get Provinces of Spain as <code>sf</code> polygons and points</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
           <h2 id="section-natural" class="hasAnchor"><a href="#section-natural" class="anchor"></a>Natural</h2>
-          <p class="section-desc"><p>These functions return sf objects with natural features</p></p>
+          <p class="section-desc"><p>These functions return <code>sf</code> objects with natural features</p></p>
         </th>
       </tr>
       
@@ -253,25 +253,25 @@
         <td>
           <p><code><a href="esp_get_hydrobasin.html">esp_get_hydrobasin()</a></code> </p>
         </td>
-        <td><p>Get the drainage basin demarcations of Spain</p></td>
+        <td><p>Get <code>sf</code> polygons of the drainage basin demarcations of Spain</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_hypsobath.html">esp_get_hypsobath()</a></code> </p>
         </td>
-        <td><p>Get hypsometry and bathymetry of Spain</p></td>
+        <td><p>Get <code>sf</code> polygons and lines with the hypsometry and bathymetry of Spain</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_rivers.html">esp_get_rivers()</a></code> </p>
         </td>
-        <td><p>Get rivers, channels, reservoirs and other wetlands of Spain</p></td>
+        <td><p>Get <code>sf</code> polygon and lines of rivers, channels and other wetlands of Spain</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
           <h2 id="section-infrastructures" class="hasAnchor"><a href="#section-infrastructures" class="anchor"></a>Infrastructures</h2>
-          <p class="section-desc"><p>These functions return sf objects with man-made features</p></p>
+          <p class="section-desc"><p>These functions return <code>sf</code> objects with man-made features</p></p>
         </th>
       </tr>
       
@@ -284,13 +284,13 @@
         <td>
           <p><code><a href="esp_get_railway.html">esp_get_railway()</a></code> </p>
         </td>
-        <td><p>Get railways of Spain</p></td>
+        <td><p>Get <code>sf</code> lines and points with the railways of Spain</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_get_roads.html">esp_get_roads()</a></code> </p>
         </td>
-        <td><p>Get the roads of Spain</p></td>
+        <td><p>Get <code>sf</code> lines of the roads of Spain</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -309,13 +309,13 @@
         <td>
           <p><code><a href="addProviderEspTiles.html">addProviderEspTiles()</a></code> <code><a href="addProviderEspTiles.html">providerEspTileOptions()</a></code> </p>
         </td>
-        <td><p>Leaflet plugin - Spanish providers</p></td>
+        <td><p>Include base tiles of Spanish public administrations on a <code>leaflet</code> map</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="esp_getTiles.html">esp_getTiles()</a></code> </p>
         </td>
-        <td><p>Get Tiles from Public Administrations of Spanish.</p></td>
+        <td><p>Get static tiles from public administrations of Spanish.</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -359,7 +359,7 @@
         <td>
           <p><code><a href="esp_munic.sf.html">esp_munic.sf</a></code> </p>
         </td>
-        <td><p>All Municipalities <code>POLYGON</code> object of Spain</p></td>
+        <td><p>All Municipalities <code>POLYGON</code> object of Spain (2019)</p></td>
       </tr><tr>
         
         <td>
@@ -378,6 +378,25 @@
           <p><code><a href="pobmun19.html">pobmun19</a></code> </p>
         </td>
         <td><p>Population by municipality (2019)</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-helpers" class="hasAnchor"><a href="#section-helpers" class="anchor"></a>Helpers</h2>
+          <p class="section-desc"><p>A collection of helper functions</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="esp_set_cache_dir.html">esp_set_cache_dir()</a></code> </p>
+        </td>
+        <td><p>Set your <code>mapSpain</code> cache dir</p></td>
       </tr>
     </tbody><tbody>
       <tr>

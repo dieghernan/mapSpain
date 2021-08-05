@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get municipalities boundaries of Spain — esp_get_munic • mapSpain</title>
+<title>Get municipalities of Spain as sf polygons — esp_get_munic • mapSpain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -60,17 +60,22 @@
 <!-- rOpenSpain -->
 <link href="../ropenspain.css" rel="stylesheet">
 
-<meta property="og:title" content="Get municipalities boundaries of Spain — esp_get_munic" />
-<meta property="og:description" content="Loads a simple feature (sf) object containing the
-municipalities boundaries of Spain.
-esp_get_munic uses GISCO (Eurostat) as source.
-esp_get_munic_siane uses CartoBase ANE as source, provided by Instituto
-Geografico Nacional (IGN), http://www.ign.es/web/ign/portal. Years
-available are 2005 up to today." />
+<meta property="og:title" content="Get municipalities of Spain as sf polygons — esp_get_munic" />
+<meta property="og:description" content="Returns municipalities of Spain as polygons at a specified scale.
+esp_get_munic() uses GISCO (Eurostat) as source. Please use
+giscoR::gisco_attributions()
+
+
+
+esp_get_munic_siane() uses CartoBase ANE as source, provided by
+Instituto Geografico Nacional (IGN), http://www.ign.es/web/ign/portal.
+Years available are 2005 up to today.
+
+" />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -109,7 +114,7 @@ available are 2005 up to today." />
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -170,18 +175,23 @@ available are 2005 up to today." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get municipalities boundaries of Spain</h1>
+    <h1>Get municipalities of Spain as <code>sf</code> polygons</h1>
     <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/master/R/esp_get_munic.R'><code>R/esp_get_munic.R</code></a></small>
     <div class="hidden name"><code>esp_get_munic.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Loads a simple feature (<code>sf</code>) object containing the
-municipalities boundaries of Spain.</p>
-<p><code>esp_get_munic</code> uses GISCO (Eurostat) as source.</p>
-<p><code>esp_get_munic_siane</code> uses CartoBase ANE as source, provided by Instituto
-Geografico Nacional (IGN), <a href='http://www.ign.es/web/ign/portal'>http://www.ign.es/web/ign/portal</a>. Years
-available are 2005 up to today.</p>
+    <p>Returns municipalities of Spain as polygons at a specified scale.</p><ul>
+<li><p><code>esp_get_munic()</code> uses GISCO (Eurostat) as source. Please use
+<code><a href='https://dieghernan.github.io/giscoR/reference/gisco_attributions.html'>giscoR::gisco_attributions()</a></code></p></li>
+</ul>
+
+<ul>
+<li><p><code>esp_get_munic_siane()</code> uses CartoBase ANE as source, provided by
+Instituto Geografico Nacional (IGN), <a href='http://www.ign.es/web/ign/portal'>http://www.ign.es/web/ign/portal</a>.
+Years available are 2005 up to today.</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>esp_get_munic</span><span class='op'>(</span>
@@ -215,7 +225,7 @@ available are 2005 up to today.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>year</th>
-      <td><p>Release year. See Details for years available.</p></td>
+      <td><p>Release year. See <strong>Details</strong> for years available.</p></td>
     </tr>
     <tr>
       <th>epsg</th>
@@ -229,43 +239,39 @@ One of:</p><ul>
     </tr>
     <tr>
       <th>cache</th>
-      <td><p>A logical whether to do caching. Default is <code>TRUE</code>.</p></td>
+      <td><p>A logical whether to do caching. Default is <code>TRUE</code>. See
+<strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>update_cache</th>
       <td><p>A logical whether to update cache. Default is <code>FALSE</code>.
-When set to <code>TRUE</code> it would force a fresh download of the source
-<code>.geojson</code> file.</p></td>
+When set to <code>TRUE</code> it would force a fresh download of the source file.</p></td>
     </tr>
     <tr>
       <th>cache_dir</th>
-      <td><p>A path to a cache directory. The directory can also be
-set globally with:</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
-</ul>
-
-<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+      <td><p>A path to a cache directory. See <strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Display information. Useful for debugging,
+      <td><p>Logical, displays information. Useful for debugging,
 default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>region</th>
       <td><p>A vector of names and/or codes for provinces
-or <code>NULL</code> to get all the municipalities. See Details.</p></td>
+or <code>NULL</code> to get all the municipalities. See <strong>Details</strong>.</p></td>
     </tr>
     <tr>
       <th>munic</th>
-      <td><p>A name or regex expression with the names of the required
-municipalities. <code>NULL</code> would not produce any filtering.</p></td>
+      <td><p>A name or <code><a href='https://rdrr.io/r/base/grep.html'>regex</a></code> expression with the names of the
+required municipalities. <code>NULL</code> would not produce any filtering.</p></td>
     </tr>
     <tr>
       <th>moveCAN</th>
       <td><p>A logical <code>TRUE/FALSE</code> or a vector of coordinates
 <code><a href='https://rdrr.io/r/base/c.html'>c(lat, lon)</a></code>. It places the Canary Islands close to Spain's mainland.
-Initial position can be adjusted using the vector of coordinates.</p></td>
+Initial position can be adjusted using the vector of coordinates. See
+<strong>Displacing the Canary Islands</strong>.</p></td>
     </tr>
     <tr>
       <th>resolution</th>
@@ -283,49 +289,84 @@ the dataset provided by IGN.</p></td>
 
     <p><a href='https://gisco-services.ec.europa.eu/distribution/v2/'>GISCO API</a></p>
 <p>IGN data via a custom CDN (see
-<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>.</p>
+<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>POLYGON</code> object.</p>
+    <p>A <code>sf</code> polygon</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>When using <code>region</code> you can use and mix names and NUTS codes
+    <p>The years available are:</p><ul>
+<li><p><code>esp_get_munic()</code>:  <code>year</code> could be one of "2001", "2004", "2006", "2008",
+"2010", "2013" and any year between 2016 and 2019.
+See <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get_lau()</a></code>, <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get_communes()</a></code>.</p></li>
+<li><p><code>esp_get_munic_siane()</code>: <code>year</code> could be passed as a single year ("YYYY"
+format, as end of year) or as a specific date ("YYYY-MM-DD" format).
+Historical information starts as of 2005.</p></li>
+</ul>
+
+<p>When using <code>region</code> you can use and mix names and NUTS codes
 (levels 1, 2 or 3), ISO codes (corresponding to level 2 or 3) or
 <code>cpro</code>.</p>
 <p>When calling a superior level (Province, Autonomous Community or NUTS1) ,
 all the municipalities of that level would be added.</p>
-<p>On <code>esp_get_munic</code> years available are: 2001, 2004, 2006,
-2008, 2010, 2013 and any year between 2016 and 2019.</p>
-<p>On <code>esp_get_munic_siane</code>, <code>year</code> could be passed as a single
-year ("YYYY" format, as end of year) or as a specific
-date ("YYYY-MM-DD" format). Historical information starts as of 2005.</p>
+    <h2 class="hasAnchor" id="about-caching"><a class="anchor" href="#about-caching"></a>About caching</h2>
+
+    <p>You can set your <code>cache_dir</code> with <code><a href='esp_set_cache_dir.html'>esp_set_cache_dir()</a></code>.</p>
+<p>Sometimes cached files may be corrupt. On that case, try re-downloading
+the data setting <code>update_cache = TRUE</code>.</p>
+<p>If you experience any problem on download, try to download the
+corresponding .geojson file by any other method and save it on your
+<code>cache_dir</code>. Use the option <code>verbose = TRUE</code> for debugging the API query.</p>
+    <h2 class="hasAnchor" id="displacing-the-canary-islands"><a class="anchor" href="#displacing-the-canary-islands"></a>Displacing the Canary Islands</h2>
+
+    <p>While <code>moveCAN</code> is useful for visualization, it would alter the actual
+geographic position of the Canary Islands. When using the output for
+spatial analysis or using tiles (e.g. with <code><a href='esp_getTiles.html'>esp_getTiles()</a></code> or
+<code><a href='addProviderEspTiles.html'>addProviderEspTiles()</a></code>)  this option should be set to <code>FALSE</code> in order to
+get the actual coordinates, instead of the modified ones.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>, <code><a href='esp_munic.sf.html'>esp_munic.sf</a></code>, <code><a href='esp_codelist.html'>esp_codelist</a></code>.</p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
+    <div class='dont-index'><p><code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>, <a href='esp_munic.sf.html'>esp_munic.sf</a>, <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get_lau()</a></code>,
+<a href='esp_codelist.html'>esp_codelist</a>, <code><a href='https://rdrr.io/r/base/regex.html'>base::regex()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='va'>Base</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_munic</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Castilla y Leon"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>SAN</span> <span class='op'>&lt;-</span>
-  <span class='fu'>esp_get_munic</span><span class='op'>(</span>
-    region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Castilla y Leon"</span><span class='op'>)</span>,
-    munic <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"^San "</span>, <span class='st'>"^Santa "</span><span class='op'>)</span>
-  <span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='co'># Get munics</span>
+<span class='va'>Base</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_munic</span><span class='op'>(</span>year <span class='op'>=</span> <span class='st'>"2019"</span>, region <span class='op'>=</span> <span class='st'>"Castilla y Leon"</span><span class='op'>)</span>
 
+<span class='co'># Provs for delimiting</span>
+<span class='va'>provs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_prov.html'>esp_get_prov</a></span><span class='op'>(</span>prov <span class='op'>=</span> <span class='st'>"Castilla y Leon"</span><span class='op'>)</span>
+
+<span class='co'># Load population data</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"pobmun19"</span><span class='op'>)</span>
+
+<span class='co'># Arrange and create breaks</span>
+
+<span class='va'>Base_pop</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/merge.html'>merge</a></span><span class='op'>(</span><span class='va'>Base</span>, <span class='va'>pobmun19</span>,
+  by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cpro"</span>, <span class='st'>"cmun"</span><span class='op'>)</span>,
+  all.x <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+
+<span class='va'>br</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
+  <span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span>, <span class='fl'>200</span>, <span class='fl'>500</span>,
+  <span class='fl'>1000</span>, <span class='fl'>5000</span>, <span class='fl'>50000</span>, <span class='fl'>100000</span>,
+  <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Base_pop</span><span class='op'>$</span><span class='va'>pob19</span><span class='op'>)</span>
+<span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># Plot</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Base</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#FDFBEA"</span>, border.col <span class='op'>=</span> <span class='st'>"#656565"</span>, border.alpha <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>SAN</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#C12838"</span>, border.col <span class='op'>=</span> <span class='st'>"#656565"</span><span class='op'>)</span> <span class='op'>+</span>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Base_pop</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span>
+    col <span class='op'>=</span> <span class='st'>"pob19"</span>, palette <span class='op'>=</span> <span class='st'>"cividis"</span>,
+    breaks <span class='op'>=</span> <span class='va'>br</span>,
+    title <span class='op'>=</span> <span class='st'>"Persons"</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>provs</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"white"</span>, alpha <span class='op'>=</span> <span class='fl'>0.25</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
-    main.title <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span>
-      <span class='st'>"Municipalities named under Saints (San, Santa)"</span>,
-      <span class='st'>"\nCastilla y Leon, Spain"</span>
-    <span class='op'>)</span>,
-    main.title.size <span class='op'>=</span> <span class='fl'>.8</span>
+    legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"right"</span>, <span class='st'>"center"</span><span class='op'>)</span>,
+    main.title <span class='op'>=</span> <span class='st'>"Population in Castilla y Leon (2019)"</span>,
+    frame <span class='op'>=</span> <span class='cn'>FALSE</span>
   <span class='op'>)</span>
 </div><div class='img'><img src='esp_get_munic-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get rivers, channels, reservoirs and other wetlands of Spain — esp_get_rivers • mapSpain</title>
+<title>Get sf polygon and lines of rivers, channels and other wetlands of Spain — esp_get_rivers • mapSpain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -60,13 +60,13 @@
 <!-- rOpenSpain -->
 <link href="../ropenspain.css" rel="stylesheet">
 
-<meta property="og:title" content="Get rivers, channels, reservoirs and other wetlands of Spain — esp_get_rivers" />
-<meta property="og:description" content="Loads a simple feature (sf) object containing lines or
-areas with the required hydrograpic elements of Spain." />
+<meta property="og:title" content="Get sf polygon and lines of rivers, channels and other wetlands of Spain — esp_get_rivers" />
+<meta property="og:description" content="Loads a sf polygon or line object representing rivers, channels,
+reservoirs and other wetlands of Spain" />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -105,7 +105,7 @@ areas with the required hydrograpic elements of Spain." />
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -166,14 +166,14 @@ areas with the required hydrograpic elements of Spain." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get rivers, channels, reservoirs and other wetlands of Spain</h1>
+    <h1>Get <code>sf</code> polygon and lines of rivers, channels and other wetlands of Spain</h1>
     <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/master/R/esp_get_rivers.R'><code>R/esp_get_rivers.R</code></a></small>
     <div class="hidden name"><code>esp_get_rivers.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Loads a simple feature (<code>sf</code>) object containing lines or
-areas with the required hydrograpic elements of Spain.</p>
+    <p>Loads a <code>sf</code> polygon or line object representing rivers, channels,
+reservoirs and other wetlands of Spain</p>
     </div>
 
     <pre class="usage"><span class='fu'>esp_get_rivers</span><span class='op'>(</span>
@@ -202,26 +202,21 @@ One of:</p><ul>
     </tr>
     <tr>
       <th>cache</th>
-      <td><p>A logical whether to do caching. Default is <code>TRUE</code>.</p></td>
+      <td><p>A logical whether to do caching. Default is <code>TRUE</code>. See
+<strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>update_cache</th>
       <td><p>A logical whether to update cache. Default is <code>FALSE</code>.
-When set to <code>TRUE</code> it would force a fresh download of the source
-<code>.geojson</code> file.</p></td>
+When set to <code>TRUE</code> it would force a fresh download of the source file.</p></td>
     </tr>
     <tr>
       <th>cache_dir</th>
-      <td><p>A path to a cache directory. The directory can also be
-set globally with:</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
-</ul>
-
-<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+      <td><p>A path to a cache directory. See <strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Display information. Useful for debugging,
+      <td><p>Logical, displays information. Useful for debugging,
 default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
@@ -231,67 +226,67 @@ or "10".</p></td>
     </tr>
     <tr>
       <th>spatialtype</th>
-      <td><p>Spatial type of the output. Use "area" for <code>POLYGONS</code> or
-"line" for <code>LINESTRING</code>.</p></td>
+      <td><p>Spatial type of the output. Use "area" for polygons or
+"line" for lines.</p></td>
     </tr>
     <tr>
       <th>name</th>
-      <td><p>Optional. A character or regex expresion with the name of the
-element to be extracted. See Details</p></td>
+      <td><p>Optional. A character or  <code><a href='https://rdrr.io/r/base/grep.html'>regex</a></code> expression
+with the name of the element(s) to be extracted.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>IGN data via a custom CDN (see
-<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>.</p>
+<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>POLYGON</code> or <code>LINESTRING</code> object.</p>
+    <p>A <code>sf</code> polygon or line object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Metadata available on
 <a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata/'>https://github.com/rOpenSpain/mapSpain/tree/sianedata/</a>.</p>
-<p><code>name</code> admits regex expressions. See <code><a href='https://rdrr.io/r/base/regex.html'>help("regex", package = "base")</a></code>
-for more information.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># This code would produce a nice plot - It will take a few seconds to run</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-
 <span class='co'># Use of regex</span>
 
 <span class='va'>regex1</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_rivers</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Tajo|Segura"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>regex1</span><span class='op'>$</span><span class='va'>rotulo</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "Río Tajo"                        "Río Segura"                     
 #&gt; [3] "Canal del Transvase Tajo-Segura"</div><div class='input'>
+
 <span class='va'>regex2</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_rivers</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Tajo$| Segura"</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='va'>regex2</span><span class='op'>$</span><span class='va'>rotulo</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "Río Tajo"   "Río Segura"</div><div class='input'>
+<span class='co'># See the diference</span>
+
 <span class='co'># Rivers in Spain</span>
 <span class='va'>shapeEsp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_country.html'>esp_get_country</a></span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
 <span class='va'>MainRivers</span> <span class='op'>&lt;-</span>
   <span class='fu'>esp_get_rivers</span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Tajo$|Ebro$|Ebre$|Duero|Guadiana$|Guadalquivir"</span><span class='op'>)</span>
 
-<span class='va'>opar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>no.readonly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>MainRivers</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"skyblue"</span>, lwd <span class='op'>=</span> <span class='fl'>1.5</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>shapeEsp</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='cn'>NA</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>shapeEsp</span>, bbox <span class='op'>=</span> <span class='va'>MainRivers</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>MainRivers</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_lines.html'>tm_lines</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"skyblue"</span>, lwd <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_rivers-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># All wetlands</span>
 
+<span class='co'># Wetlands in South-West Andalucia</span>
+<span class='va'>and</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_prov.html'>esp_get_prov</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Huelva"</span>, <span class='st'>"Sevilla"</span>, <span class='st'>"Cadiz"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>Wetlands</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_rivers</span><span class='op'>(</span>spatialtype <span class='op'>=</span> <span class='st'>"area"</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>Wetlands</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"skyblue"</span>, border <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
-</div><div class='input'><span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>shapeEsp</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='cn'>NA</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_rivers-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>opar</span><span class='op'>)</span>
-<span class='co'># }</span>
+
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>and</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Wetlands</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"skyblue"</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span>, border.col <span class='op'>=</span> <span class='st'>"skyblue"</span>, lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='img'><img src='esp_get_rivers-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

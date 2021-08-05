@@ -64,7 +64,7 @@
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -103,7 +103,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -173,6 +173,10 @@
 <a href="#mapspain-development-version" class="anchor"></a>mapSpain (development version)<small> Unreleased </small>
 </h1>
 <ul>
+<li>Caching improvements: new function <code><a href="../reference/esp_set_cache_dir.html">esp_set_cache_dir()</a></code> based on <code><a href="https://rappdirs.r-lib.org/reference/user_cache_dir.html">rappdirs::user_cache_dir()</a></code>. Now the cache_dir path is stored and it is not necessary to set it up again on a new session.</li>
+<li>Add a new parameter <code>zoommin</code> on <code><a href="../reference/esp_getTiles.html">esp_getTiles()</a></code>.</li>
+<li>New tests with <code>testthat</code>.</li>
+<li>Update on docs. New examples</li>
 <li>Precompute vignette.</li>
 </ul>
 </div>
@@ -181,18 +185,18 @@
 <a href="#mapspain-023" class="anchor"></a>mapSpain 0.2.3<small> 2021-04-25 </small>
 </h1>
 <ul>
-<li><p>Move minimum version of <code>giscoR</code> to v0.2.4</p></li>
-<li><p>Fix typos on <code><a href="../reference/esp_dict_region_code.html">esp_dict_translate()</a></code> <a href="https://github.com/rOpenSpain/mapSpain/issues/36"><a href='https://github.com/rOpenSpain/mapSpain/issues/36'>#36</a></a></p></li>
-<li><p>Not run examples on tiles, as the server sometimes doesn’t respond.</p></li>
-<li><p>Refactor <code>sysdata.rda</code>.</p></li>
-<li>
-<p>CRAN fixes:</p>
+<li>Move minimum version of <code>giscoR</code> to v0.2.4</li>
+<li>Fix typos on <code><a href="../reference/esp_dict_region_code.html">esp_dict_translate()</a></code> <a href="https://github.com/rOpenSpain/mapSpain/issues/36"><a href='https://github.com/rOpenSpain/mapSpain/issues/36'>#36</a></a>
+</li>
+<li>Not run examples on tiles, as the server sometimes doesn’t respond.</li>
+<li>Refactor <code>sysdata.rda</code>.</li>
+<li>CRAN fixes:
 <ul>
-<li><p>Removed broken link on <code><a href="../reference/addProviderEspTiles.html">addProviderEspTiles()</a></code>.</p></li>
-<li><p>Vignette removed (CRAN warning).</p></li>
+<li>Removed broken link on <code><a href="../reference/addProviderEspTiles.html">addProviderEspTiles()</a></code>.</li>
+<li>Vignette removed (CRAN warning).</li>
 </ul>
 </li>
-<li><p>Now the <code>cache</code> directory is created recursively.</p></li>
+<li>Now the <code>cache</code> directory is created recursively.</li>
 </ul>
 </div>
     <div id="mapspain-022" class="section level1">
@@ -220,10 +224,10 @@
 <a href="#mapspain-020" class="anchor"></a>mapSpain 0.2.0<small> 2021-02-25 </small>
 </h1>
 <ul>
-<li><p>Fix DOI <a href="https://doi.org/10.5281/zenodo.4318024" class="uri">https://doi.org/10.5281/zenodo.4318024</a></p></li>
-<li><p>Documentation ported to roxygen2/markdown.</p></li>
-<li>
-<p>Include CartoBase ANE data <a href="https://github.com/rOpenSpain/mapSpain/tree/sianedata" class="uri">https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>:</p>
+<li>Fix DOI <a href="https://doi.org/10.5281/zenodo.4318024" class="uri">https://doi.org/10.5281/zenodo.4318024</a>
+</li>
+<li>Documentation ported to roxygen2/markdown.</li>
+<li>Include CartoBase ANE data <a href="https://github.com/rOpenSpain/mapSpain/tree/sianedata" class="uri">https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>:
 <ul>
 <li><code><a href="../reference/esp_get_munic.html">mapSpain::esp_get_munic_siane()</a></code></li>
 <li><code><a href="../reference/esp_get_prov.html">mapSpain::esp_get_prov_siane()</a></code></li>
@@ -236,7 +240,7 @@
 <li><code><a href="../reference/esp_get_railway.html">mapSpain::esp_get_railway()</a></code></li>
 </ul>
 </li>
-<li><p>Mute warnings from <code>rgdal</code>.</p></li>
+<li>Mute warnings from <code>rgdal</code>.</li>
 </ul>
 </div>
     <div id="mapspain-012" class="section level1">
@@ -257,7 +261,7 @@
 </h1>
 <ul>
 <li>Fix CRAN submission.</li>
-<li>Added <code><a href="../reference/esp_get_hex_prov.html">mapSpain::esp_get_grid_prov()</a></code> and <code><a href="../reference/esp_get_hex_prov.html">mapSpain::esp_get_grid_ccaa()</a></code>.</li>
+<li>Added <code><a href="../reference/esp_get_gridmap.html">mapSpain::esp_get_grid_prov()</a></code> and <code><a href="../reference/esp_get_gridmap.html">mapSpain::esp_get_grid_ccaa()</a></code>.</li>
 </ul>
 </div>
     <div id="mapspain-010" class="section level1">

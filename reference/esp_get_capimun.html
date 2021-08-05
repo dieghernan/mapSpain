@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the location of municipalities of Spain — esp_get_capimun • mapSpain</title>
+<title>Get sf points of the municipalities of Spain — esp_get_capimun • mapSpain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -60,15 +60,15 @@
 <!-- rOpenSpain -->
 <link href="../ropenspain.css" rel="stylesheet">
 
-<meta property="og:title" content="Get the location of municipalities of Spain — esp_get_capimun" />
-<meta property="og:description" content="Get the location of the political powers for each municipality (possibly
-the center of the municipality).
+<meta property="og:title" content="Get sf points of the municipalities of Spain — esp_get_capimun" />
+<meta property="og:description" content="Get a sf point with the location of the political powers for
+each municipality (possibly the center of the municipality).
 Note that this differs of the centroid of the boundaries of the
-municipallity, returned by esp_get_munic()." />
+municipality, returned by esp_get_munic()." />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -107,7 +107,7 @@ municipallity, returned by esp_get_munic()." />
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -168,16 +168,16 @@ municipallity, returned by esp_get_munic()." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the location of municipalities of Spain</h1>
+    <h1>Get <code>sf</code> points of the municipalities of Spain</h1>
     <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/master/R/esp_get_capimun.R'><code>R/esp_get_capimun.R</code></a></small>
     <div class="hidden name"><code>esp_get_capimun.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Get the location of the political powers for each municipality (possibly
-the center of the municipality).</p>
+    <p>Get a <code>sf</code> point with the location of the political powers for
+each municipality (possibly the center of the municipality).</p>
 <p>Note that this differs of the centroid of the boundaries of the
-municipallity, returned by <code><a href='esp_get_munic.html'>esp_get_munic()</a></code>.</p>
+municipality, returned by <code><a href='esp_get_munic.html'>esp_get_munic()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>esp_get_capimun</span><span class='op'>(</span>
@@ -198,7 +198,7 @@ municipallity, returned by <code><a href='esp_get_munic.html'>esp_get_munic()</a
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>year</th>
-      <td><p>Release year. See Details for years available.</p></td>
+      <td><p>Release year. See <strong>Details</strong> for years available.</p></td>
     </tr>
     <tr>
       <th>epsg</th>
@@ -212,43 +212,39 @@ One of:</p><ul>
     </tr>
     <tr>
       <th>cache</th>
-      <td><p>A logical whether to do caching. Default is <code>TRUE</code>.</p></td>
+      <td><p>A logical whether to do caching. Default is <code>TRUE</code>. See
+<strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>update_cache</th>
       <td><p>A logical whether to update cache. Default is <code>FALSE</code>.
-When set to <code>TRUE</code> it would force a fresh download of the source
-<code>.geojson</code> file.</p></td>
+When set to <code>TRUE</code> it would force a fresh download of the source file.</p></td>
     </tr>
     <tr>
       <th>cache_dir</th>
-      <td><p>A path to a cache directory. The directory can also be
-set globally with:</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
-</ul>
-
-<p>See Details on <code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code>.</p></td>
+      <td><p>A path to a cache directory. See <strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Display information. Useful for debugging,
+      <td><p>Logical, displays information. Useful for debugging,
 default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>region</th>
-      <td><p>Optional. A vector of region names, NUTS or ISO codes
-(see <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>.</p></td>
+      <td><p>A vector of names and/or codes for provinces
+or <code>NULL</code> to get all the municipalities. See <strong>Details</strong>.</p></td>
     </tr>
     <tr>
       <th>munic</th>
-      <td><p>A name or regex expression with the names of the required
-municipalities. <code>NULL</code> would not produce any filtering.</p></td>
+      <td><p>A name or <code><a href='https://rdrr.io/r/base/grep.html'>regex</a></code> expression with the names of the
+required municipalities. <code>NULL</code> would not produce any filtering.</p></td>
     </tr>
     <tr>
       <th>moveCAN</th>
       <td><p>A logical <code>TRUE/FALSE</code> or a vector of coordinates
 <code><a href='https://rdrr.io/r/base/c.html'>c(lat, lon)</a></code>. It places the Canary Islands close to Spain's mainland.
-Initial position can be adjusted using the vector of coordinates.</p></td>
+Initial position can be adjusted using the vector of coordinates. See
+<strong>Displacing the Canary Islands</strong>.</p></td>
     </tr>
     <tr>
       <th>rawcols</th>
@@ -260,52 +256,68 @@ the dataset provided by IGN.</p></td>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>IGN data via a custom CDN (see
-<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>.</p>
+<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>POINT</code> object.</p>
+    <p>A <code>sf</code> point object.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>year</code> could be passed as a single year ("YYYY" format, as end of year) or
-as a specific date ("YYYY-MM-DD" format).
-Historical information starts as of 2005.</p>
+as a specific date ("YYYY-MM-DD" format). Historical information starts as
+of 2005.</p>
 <p>When using <code>region</code> you can use and mix names and NUTS codes (levels 1,
-2 or 3), ISO codes (corresponding to level 2 or 3) or <code>cpro</code>.</p>
+2 or 3), ISO codes (corresponding to level 2 or 3) or "cpro". See
+<a href='esp_codelist.html'>esp_codelist</a></p>
 <p>When calling a superior level (Province, Autonomous Community or NUTS1) ,
 all the municipalities of that level would be added.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+    <h2 class="hasAnchor" id="about-caching"><a class="anchor" href="#about-caching"></a>About caching</h2>
 
-    <p>While <code>moveCAN</code> is useful for visualization, it would alter the
-actual geographical position of the Canary Islands.</p>
+    <p>You can set your <code>cache_dir</code> with <code><a href='esp_set_cache_dir.html'>esp_set_cache_dir()</a></code>.</p>
+<p>Sometimes cached files may be corrupt. On that case, try re-downloading
+the data setting <code>update_cache = TRUE</code>.</p>
+<p>If you experience any problem on download, try to download the
+corresponding .geojson file by any other method and save it on your
+<code>cache_dir</code>. Use the option <code>verbose = TRUE</code> for debugging the API query.</p>
+    <h2 class="hasAnchor" id="displacing-the-canary-islands"><a class="anchor" href="#displacing-the-canary-islands"></a>Displacing the Canary Islands</h2>
+
+    <p>While <code>moveCAN</code> is useful for visualization, it would alter the actual
+geographic position of the Canary Islands. When using the output for
+spatial analysis or using tiles (e.g. with <code><a href='esp_getTiles.html'>esp_getTiles()</a></code> or
+<code><a href='addProviderEspTiles.html'>addProviderEspTiles()</a></code>)  this option should be set to <code>FALSE</code> in order to
+get the actual coordinates, instead of the modified ones.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='esp_get_munic.html'>esp_get_munic()</a></code>, <code><a href='esp_munic.sf.html'>esp_munic.sf</a></code>, <code><a href='esp_codelist.html'>esp_codelist</a></code></p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a>.</p>
+    <div class='dont-index'><p><code><a href='esp_get_munic.html'>esp_get_munic()</a></code>, <a href='esp_munic.sf.html'>esp_munic.sf</a>, <a href='esp_codelist.html'>esp_codelist</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \dontrun{</span>
-<span class='co'># This code compares centroid of municipalities against esp_get_capimun</span>
+<span class='co'># This code compares centroids of municipalities against esp_get_capimun</span>
 <span class='co'># It also download tiles, make sure you are online</span>
 
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-
+</div><div class='output co'>#&gt; <span class='message'>Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1</span></div><div class='input'>
 <span class='co'># Get shape</span>
 <span class='va'>area</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_munic.html'>esp_get_munic_siane</a></span><span class='op'>(</span>munic <span class='op'>=</span> <span class='st'>"Valladolid"</span>, epsg <span class='op'>=</span> <span class='fl'>3857</span><span class='op'>)</span>
 
 <span class='co'># Area in km2</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span>, <span class='fl'>2</span><span class='op'>)</span>, <span class='st'>" km2"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/double.html'>as.double</a></span><span class='op'>(</span><span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_measures.html'>st_area</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>1000000</span>, <span class='fl'>2</span><span class='op'>)</span>, <span class='st'>" km2"</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "353.42 km2"</div><div class='input'>
 <span class='co'># Extract centroid</span>
-<span class='va'>centroid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_unary.html'>st_centroid</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: st_centroid assumes attributes are constant over geometries of x</span></div><div class='input'>
+<span class='va'>centroid</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/geos_unary.html'>st_centroid</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: st_centroid assumes attributes are constant over geometries of x</span></div><div class='input'><span class='va'>centroid</span><span class='op'>$</span><span class='va'>type</span> <span class='op'>&lt;-</span> <span class='st'>"Centroid"</span>
+
 <span class='co'># Compare with capimun</span>
 <span class='va'>capimun</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_capimun</span><span class='op'>(</span>munic <span class='op'>=</span> <span class='st'>"Valladolid"</span>, epsg <span class='op'>=</span> <span class='fl'>3857</span><span class='op'>)</span>
-
+<span class='va'>capimun</span><span class='op'>$</span><span class='va'>type</span> <span class='op'>&lt;-</span> <span class='st'>"Capimun"</span>
 
 <span class='co'># Get a tile to check</span>
-<span class='va'>tile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_getTiles.html'>esp_getTiles</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span>
+<span class='va'>tile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_getTiles.html'>esp_getTiles</a></span><span class='op'>(</span><span class='va'>area</span>, zoommin <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+
+<span class='co'># Join both point geometries</span>
+<span class='va'>points</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span>
+  <span class='va'>centroid</span><span class='op'>[</span>, <span class='st'>"type"</span><span class='op'>]</span>,
+  <span class='va'>capimun</span><span class='op'>[</span>, <span class='st'>"type"</span><span class='op'>]</span>
+<span class='op'>)</span>
 
 <span class='co'># Check on plot</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
@@ -314,15 +326,15 @@ actual geographical position of the Canary Islands.</p>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_raster.html'>tm_rgb</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>area</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"grey40"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>centroid</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_symbols.html'>tm_symbols</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"red"</span>, alpha <span class='op'>=</span> <span class='fl'>0.4</span>, shape <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>capimun</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_symbols.html'>tm_symbols</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"blue"</span>, alpha <span class='op'>=</span> <span class='fl'>0.4</span>, shape <span class='op'>=</span> <span class='fl'>19</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_capimun-1.png' alt='' width='700' height='433' /></div><div class='input'>
-
-<span class='co'># Blue dot is located onto the actual city while red dot is located</span>
-<span class='co'># in the centroid of the boundaries</span>
-<span class='co'># }</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>points</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_symbols.html'>tm_symbols</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"type"</span>, alpha <span class='op'>=</span> <span class='fl'>0.8</span>, pal <span class='op'>=</span> <span class='st'>"RdBu"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
+    main.title <span class='op'>=</span> <span class='st'>"Centroid vs. capimun"</span>,
+    legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>,
+    legend.outside.size <span class='op'>=</span> <span class='fl'>0.3</span>,
+    legend.text.size <span class='op'>=</span> <span class='fl'>1</span>
+  <span class='op'>)</span>
+</div><div class='img'><img src='esp_get_capimun-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

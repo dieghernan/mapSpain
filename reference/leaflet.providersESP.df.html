@@ -69,7 +69,7 @@ v1.2.0." />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -108,7 +108,7 @@ v1.2.0." />
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -188,9 +188,9 @@ providers of Spain</p>
 
     <p>A data frame object with a list of the required parameters for calling
 the service:</p><ul>
-<li><p>provider: Provider name.</p></li>
-<li><p>field: Description of <code>value</code>.</p></li>
-<li><p>value: INE code of each province.</p></li>
+<li><p><strong>provider</strong>: Provider name.</p></li>
+<li><p><strong>field</strong>: Description of <code>value</code>.</p></li>
+<li><p><strong>value</strong>: INE code of each province.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -199,103 +199,103 @@ the service:</p><ul>
 <strong>v1.2.0</strong>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Providers available to be passed to <code>type</code> are:</p><table class='table'>
+    <p>Providers available to be passed to <code>type</code> on <code><a href='esp_getTiles.html'>esp_getTiles()</a></code> are:</p><table class='table'>
 <tr><td>provider</td></tr>
-<tr><td>IDErioja</td></tr>
-<tr><td>IGNBase</td></tr>
-<tr><td>IGNBase.Todo</td></tr>
-<tr><td>IGNBase.Gris</td></tr>
-<tr><td>IGNBase.TodoNoFondo</td></tr>
-<tr><td>IGNBase.Orto</td></tr>
-<tr><td>MDT</td></tr>
-<tr><td>MDT.Elevaciones</td></tr>
-<tr><td>MDT.Relieve</td></tr>
-<tr><td>MDT.CurvasNivel</td></tr>
-<tr><td>PNOA</td></tr>
-<tr><td>PNOA.MaximaActualidad</td></tr>
-<tr><td>PNOA.Mosaico</td></tr>
-<tr><td>OcupacionSuelo</td></tr>
-<tr><td>OcupacionSuelo.Ocupacion</td></tr>
-<tr><td>OcupacionSuelo.Usos</td></tr>
-<tr><td>LiDAR</td></tr>
-<tr><td>MTN</td></tr>
-<tr><td>Geofisica</td></tr>
-<tr><td>Geofisica.Terremotos10dias</td></tr>
-<tr><td>Geofisica.Terremotos30dias</td></tr>
-<tr><td>Geofisica.Terremotos365dias</td></tr>
-<tr><td>Geofisica.VigilanciaVolcanica</td></tr>
-<tr><td>CaminoDeSantiago</td></tr>
-<tr><td>CaminoDeSantiago.CaminoFrances</td></tr>
-<tr><td>CaminoDeSantiago.CaminosTuronensis</td></tr>
-<tr><td>CaminoDeSantiago.CaminosGalicia</td></tr>
-<tr><td>CaminoDeSantiago.CaminosDelNorte</td></tr>
-<tr><td>CaminoDeSantiago.CaminosAndaluces</td></tr>
-<tr><td>CaminoDeSantiago.CaminosCentro</td></tr>
-<tr><td>CaminoDeSantiago.CaminosEste</td></tr>
-<tr><td>CaminoDeSantiago.CaminosCatalanes</td></tr>
-<tr><td>CaminoDeSantiago.CaminosSureste</td></tr>
-<tr><td>CaminoDeSantiago.CaminosInsulares</td></tr>
-<tr><td>CaminoDeSantiago.CaminosPiemonts</td></tr>
-<tr><td>CaminoDeSantiago.CaminosTolosana</td></tr>
-<tr><td>CaminoDeSantiago.CaminosPortugueses</td></tr>
-<tr><td>Catastro</td></tr>
-<tr><td>Catastro.Catastro</td></tr>
-<tr><td>Catastro.Parcela</td></tr>
-<tr><td>Catastro.CadastralParcel</td></tr>
-<tr><td>Catastro.CadastralZoning</td></tr>
-<tr><td>Catastro.Address</td></tr>
-<tr><td>Catastro.Building</td></tr>
-<tr><td>RedTransporte</td></tr>
-<tr><td>RedTransporte.Carreteras</td></tr>
-<tr><td>RedTransporte.Ferroviario</td></tr>
-<tr><td>RedTransporte.Aerodromo</td></tr>
-<tr><td>RedTransporte.AreaServicio</td></tr>
-<tr><td>RedTransporte.EstacionesFerroviario</td></tr>
-<tr><td>RedTransporte.Puertos</td></tr>
-<tr><td>Cartociudad</td></tr>
-<tr><td>Cartociudad.CodigosPostales</td></tr>
-<tr><td>Cartociudad.Direcciones</td></tr>
-<tr><td>NombresGeograficos</td></tr>
-<tr><td>UnidadesAdm</td></tr>
-<tr><td>UnidadesAdm.Limites</td></tr>
-<tr><td>UnidadesAdm.Unidades</td></tr>
-<tr><td>Hidrografia</td></tr>
-<tr><td>Hidrografia.MasaAgua</td></tr>
-<tr><td>Hidrografia.Cuencas</td></tr>
-<tr><td>Hidrografia.Subcuencas</td></tr>
-<tr><td>Hidrografia.POI</td></tr>
-<tr><td>Hidrografia.ManMade</td></tr>
-<tr><td>Hidrografia.LineaCosta</td></tr>
-<tr><td>Hidrografia.Rios</td></tr>
-<tr><td>Hidrografia.Humedales</td></tr>
-<tr><td>Militar</td></tr>
-<tr><td>Militar.CEGET1M</td></tr>
-<tr><td>Militar.CEGETM7814</td></tr>
-<tr><td>Militar.CEGETM7815</td></tr>
-<tr><td>Militar.CEGETM682</td></tr>
-<tr><td>Militar.CECAF1M</td></tr>
-<tr><td>ADIF</td></tr>
-<tr><td>ADIF.Vias</td></tr>
-<tr><td>ADIF.Nodos</td></tr>
-<tr><td>ADIF.Estaciones</td></tr>
-<tr><td>LimitesMaritimos</td></tr>
-<tr><td>LimitesMaritimos.LimitesMaritimos</td></tr>
-<tr><td>LimitesMaritimos.LineasBase</td></tr>
-<tr><td>Copernicus</td></tr>
-<tr><td>Copernicus.LandCover</td></tr>
-<tr><td>Copernicus.Forest</td></tr>
-<tr><td>Copernicus.ForestLeaf</td></tr>
-<tr><td>Copernicus.WaterWet</td></tr>
-<tr><td>Copernicus.SoilSeal</td></tr>
-<tr><td>Copernicus.GrassLand</td></tr>
-<tr><td>Copernicus.Local</td></tr>
-<tr><td>Copernicus.RiparianGreen</td></tr>
-<tr><td>Copernicus.RiparianLandCover</td></tr>
-<tr><td>Copernicus.Natura2k</td></tr>
-<tr><td>Copernicus.UrbanAtlas</td></tr>
-<tr><td>ParquesNaturales</td></tr>
-<tr><td>ParquesNaturales.Limites</td></tr>
-<tr><td>ParquesNaturales.ZonasPerifericas</td></tr>
+<tr><td>'IDErioja'</td></tr>
+<tr><td>'IGNBase'</td></tr>
+<tr><td>'IGNBase.Todo'</td></tr>
+<tr><td>'IGNBase.Gris'</td></tr>
+<tr><td>'IGNBase.TodoNoFondo'</td></tr>
+<tr><td>'IGNBase.Orto'</td></tr>
+<tr><td>'MDT'</td></tr>
+<tr><td>'MDT.Elevaciones'</td></tr>
+<tr><td>'MDT.Relieve'</td></tr>
+<tr><td>'MDT.CurvasNivel'</td></tr>
+<tr><td>'PNOA'</td></tr>
+<tr><td>'PNOA.MaximaActualidad'</td></tr>
+<tr><td>'PNOA.Mosaico'</td></tr>
+<tr><td>'OcupacionSuelo'</td></tr>
+<tr><td>'OcupacionSuelo.Ocupacion'</td></tr>
+<tr><td>'OcupacionSuelo.Usos'</td></tr>
+<tr><td>'LiDAR'</td></tr>
+<tr><td>'MTN'</td></tr>
+<tr><td>'Geofisica'</td></tr>
+<tr><td>'Geofisica.Terremotos10dias'</td></tr>
+<tr><td>'Geofisica.Terremotos30dias'</td></tr>
+<tr><td>'Geofisica.Terremotos365dias'</td></tr>
+<tr><td>'Geofisica.VigilanciaVolcanica'</td></tr>
+<tr><td>'CaminoDeSantiago'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminoFrances'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosTuronensis'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosGalicia'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosDelNorte'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosAndaluces'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosCentro'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosEste'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosCatalanes'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosSureste'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosInsulares'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosPiemonts'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosTolosana'</td></tr>
+<tr><td>'CaminoDeSantiago.CaminosPortugueses'</td></tr>
+<tr><td>'Catastro'</td></tr>
+<tr><td>'Catastro.Catastro'</td></tr>
+<tr><td>'Catastro.Parcela'</td></tr>
+<tr><td>'Catastro.CadastralParcel'</td></tr>
+<tr><td>'Catastro.CadastralZoning'</td></tr>
+<tr><td>'Catastro.Address'</td></tr>
+<tr><td>'Catastro.Building'</td></tr>
+<tr><td>'RedTransporte'</td></tr>
+<tr><td>'RedTransporte.Carreteras'</td></tr>
+<tr><td>'RedTransporte.Ferroviario'</td></tr>
+<tr><td>'RedTransporte.Aerodromo'</td></tr>
+<tr><td>'RedTransporte.AreaServicio'</td></tr>
+<tr><td>'RedTransporte.EstacionesFerroviario'</td></tr>
+<tr><td>'RedTransporte.Puertos'</td></tr>
+<tr><td>'Cartociudad'</td></tr>
+<tr><td>'Cartociudad.CodigosPostales'</td></tr>
+<tr><td>'Cartociudad.Direcciones'</td></tr>
+<tr><td>'NombresGeograficos'</td></tr>
+<tr><td>'UnidadesAdm'</td></tr>
+<tr><td>'UnidadesAdm.Limites'</td></tr>
+<tr><td>'UnidadesAdm.Unidades'</td></tr>
+<tr><td>'Hidrografia'</td></tr>
+<tr><td>'Hidrografia.MasaAgua'</td></tr>
+<tr><td>'Hidrografia.Cuencas'</td></tr>
+<tr><td>'Hidrografia.Subcuencas'</td></tr>
+<tr><td>'Hidrografia.POI'</td></tr>
+<tr><td>'Hidrografia.ManMade'</td></tr>
+<tr><td>'Hidrografia.LineaCosta'</td></tr>
+<tr><td>'Hidrografia.Rios'</td></tr>
+<tr><td>'Hidrografia.Humedales'</td></tr>
+<tr><td>'Militar'</td></tr>
+<tr><td>'Militar.CEGET1M'</td></tr>
+<tr><td>'Militar.CEGETM7814'</td></tr>
+<tr><td>'Militar.CEGETM7815'</td></tr>
+<tr><td>'Militar.CEGETM682'</td></tr>
+<tr><td>'Militar.CECAF1M'</td></tr>
+<tr><td>'ADIF'</td></tr>
+<tr><td>'ADIF.Vias'</td></tr>
+<tr><td>'ADIF.Nodos'</td></tr>
+<tr><td>'ADIF.Estaciones'</td></tr>
+<tr><td>'LimitesMaritimos'</td></tr>
+<tr><td>'LimitesMaritimos.LimitesMaritimos'</td></tr>
+<tr><td>'LimitesMaritimos.LineasBase'</td></tr>
+<tr><td>'Copernicus'</td></tr>
+<tr><td>'Copernicus.LandCover'</td></tr>
+<tr><td>'Copernicus.Forest'</td></tr>
+<tr><td>'Copernicus.ForestLeaf'</td></tr>
+<tr><td>'Copernicus.WaterWet'</td></tr>
+<tr><td>'Copernicus.SoilSeal'</td></tr>
+<tr><td>'Copernicus.GrassLand'</td></tr>
+<tr><td>'Copernicus.Local'</td></tr>
+<tr><td>'Copernicus.RiparianGreen'</td></tr>
+<tr><td>'Copernicus.RiparianLandCover'</td></tr>
+<tr><td>'Copernicus.Natura2k'</td></tr>
+<tr><td>'Copernicus.UrbanAtlas'</td></tr>
+<tr><td>'ParquesNaturales'</td></tr>
+<tr><td>'ParquesNaturales.Limites'</td></tr>
+<tr><td>'ParquesNaturales.ZonasPerifericas'</td></tr>
 <tr><td></td></tr>
 </table>
 
@@ -304,6 +304,26 @@ the service:</p><ul>
 
     <div class='dont-index'><p><code><a href='esp_getTiles.html'>esp_getTiles()</a></code>, <code><a href='addProviderEspTiles.html'>addProviderEspTiles()</a></code>.</p></div>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"leaflet.providersESP.df"</span><span class='op'>)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>leaflet.providersESP.df</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 748 x 3</span>
+#&gt;    provider field              value                                            
+#&gt;    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>              <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>                                            
+#&gt; <span style='color: #BCBCBC;'> 1</span> IDErioja type               WMTS                                             
+#&gt; <span style='color: #BCBCBC;'> 2</span> IDErioja url                https://rts.larioja.org/wmts/mapa_base_rioja?ser~
+#&gt; <span style='color: #BCBCBC;'> 3</span> IDErioja attribution        CC BY 4.0 &lt;a href='https://www.iderioja.org'&gt;www~
+#&gt; <span style='color: #BCBCBC;'> 4</span> IDErioja url_static         https://rts.larioja.org/wmts/mapa_base_rioja?ser~
+#&gt; <span style='color: #BCBCBC;'> 5</span> IDErioja attribution_static CC BY 4.0 www.iderioja.org                       
+#&gt; <span style='color: #BCBCBC;'> 6</span> IGNBase  type               WMTS                                             
+#&gt; <span style='color: #BCBCBC;'> 7</span> IGNBase  url                https://www.ign.es/wmts/ign-base?service=WMTS&amp;re~
+#&gt; <span style='color: #BCBCBC;'> 8</span> IGNBase  attribution        CC BY 4.0 scne.es. Sistema Geogr&amp;aacute;fico Nac~
+#&gt; <span style='color: #BCBCBC;'> 9</span> IGNBase  ext                png                                              
+#&gt; <span style='color: #BCBCBC;'>10</span> IGNBase  url_static         https://www.ign.es/wmts/ign-base?service=WMTS&amp;re~
+#&gt; <span style='color: #949494;'># ... with 738 more rows</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

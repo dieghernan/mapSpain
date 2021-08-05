@@ -65,7 +65,7 @@
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -104,7 +104,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -193,25 +193,26 @@
     <tr>
       <th>lang</th>
       <td><p>Language of translation. Available languages are:</p><ul>
-<li><p>"es": Spanish</p></li>
-<li><p>"en": English</p></li>
-<li><p>"ca": Catalan</p></li>
-<li><p>"ga": Galician</p></li>
-<li><p>"eu": Basque</p></li>
+<li><p><strong>"es"</strong>: Spanish</p></li>
+<li><p><strong>"en"</strong>: English</p></li>
+<li><p><strong>"ca"</strong>: Catalan</p></li>
+<li><p><strong>"ga"</strong>: Galician</p></li>
+<li><p><strong>"eu"</strong>: Basque</p></li>
 </ul></td>
     </tr>
     <tr>
       <th>all</th>
       <td><p>Logical. Should the function return all names or not?
-On <code>FALSE</code> it returns a character vector. See Value</p></td>
+On <code>FALSE</code> it returns a character vector. See Value.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>esp_dict_region_code</code> returns a vector of characters.</p>
-<p><code> esp_dict_translate</code> returns a character vector or a named list with each
-of the possible names of each <code>sourcevar</code> on the required language <code>lang</code>.</p>
+<p><code>esp_dict_translate</code> returns a character vector or a named
+list with each of the possible names of each <code>sourcevar</code> on the required
+language <code>lang</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>If no match is found for any value, the function displays a warning and
@@ -219,9 +220,6 @@ returns <code>NA</code> for those values.</p>
 <p>Note that mixing names of different administrative levels (e.g. "Catalonia"
 and "Barcelona") may return empty values, depending on the <code>destination</code>
 values.</p>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Errioxa"</span>, <span class='st'>"Coruna"</span>, <span class='st'>"Gerona"</span>, <span class='st'>"Madrid"</span><span class='op'>)</span>

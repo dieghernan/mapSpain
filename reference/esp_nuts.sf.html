@@ -66,7 +66,7 @@ GISCO (2016 version)." />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -105,7 +105,7 @@ GISCO (2016 version)." />
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -180,8 +180,8 @@ GISCO (2016 version).</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A <code>POLYGON</code> data frame (resolution: 1:1million, EPSG:4258) object with 86
-rows and fields:</p><ul>
+    <p>A <code>POLYGON</code> data frame (resolution: 1:1million, EPSG:4258) object with
+86 rows and fields:</p><ul>
 <li><p>COAST_TYPE: COAST_TYPE</p></li>
 <li><p>FID: FID</p></li>
 <li><p>NUTS_NAME: NUTS name on local alphabet</p></li>
@@ -203,7 +203,9 @@ rows and fields:</p><ul>
     <div class='dont-index'><p><code><a href='esp_get_nuts.html'>esp_get_nuts()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>nuts</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"esp_nuts.sf"</span><span class='op'>)</span>
+
+<span class='va'>nuts</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span>
 
 <span class='co'># Select NUTS 3</span>
 <span class='va'>nuts3</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span><span class='op'>[</span><span class='va'>esp_nuts.sf</span><span class='op'>$</span><span class='va'>LEVL_CODE</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='op'>]</span>
@@ -214,19 +216,23 @@ rows and fields:</p><ul>
 
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
 
+<span class='co'># Plot Urban Type: See</span>
+<span class='co'># https://ec.europa.eu/eurostat/web/rural-development/methodology</span>
 <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>
     <span class='st'>"URBN_TYPE"</span>,
     style <span class='op'>=</span> <span class='st'>"cat"</span>,
-    title <span class='op'>=</span> <span class='st'>"Urban Type"</span>,
-    palette <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='st'>"Teal"</span><span class='op'>)</span>
+    border.col <span class='op'>=</span> <span class='st'>"black"</span>,
+    border.alpha <span class='op'>=</span> <span class='fl'>0.3</span>,
+    title <span class='op'>=</span> <span class='st'>"Urban topology"</span>,
+    labels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Urban"</span>, <span class='st'>"Intermediate"</span>, <span class='st'>"Rural"</span><span class='op'>)</span>,
+    palette <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grey80"</span>, <span class='st'>"#FFC183"</span>, <span class='st'>"#68AC20"</span><span class='op'>)</span>
   <span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>spain</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span>lines <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
     main.title <span class='op'>=</span> <span class='st'>"NUTS3 levels of Spain"</span>,
-    legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>
+    legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"left"</span>, <span class='st'>"center"</span><span class='op'>)</span>,
+    legend.title.size <span class='op'>=</span> <span class='fl'>0.8</span>
   <span class='op'>)</span>
 </div><div class='img'><img src='esp_nuts.sf-1.png' alt='' width='700' height='433' /></div></pre>
   </div>

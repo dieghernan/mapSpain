@@ -68,7 +68,7 @@ the subdivisions including NUTS1 level, Autonomous Communities
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -107,7 +107,7 @@ the subdivisions including NUTS1 level, Autonomous Communities
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -184,7 +184,8 @@ the subdivisions including NUTS1 level, Autonomous Communities
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>data frame with codes as columns</p><ul>
+    <p>A data frame with 59 rows
+codes as columns</p><ul>
 <li><p><strong>nuts+.code</strong>: NUTS code of each subdivision.</p></li>
 <li><p><strong>nuts+.code</strong>: NUTS name of each subdivision.</p></li>
 <li><p><strong>codauto</strong>: INE code of each autonomous community.</p></li>
@@ -207,20 +208,20 @@ Several languages available.</p></li>
 
     
 <ul>
-<li><p>INE: Instituto Nacional de Estadistica: <a href='https://www.ine.es/'>https://www.ine.es/</a></p></li>
-<li><p>Eurostat (NUTS): <a href='https://ec.europa.eu/eurostat/web/nuts/background'>https://ec.europa.eu/eurostat/web/nuts/background</a></p></li>
-<li><p>ISO: <a href='https://www.iso.org/obp/ui/#iso:code:3166:ES'>https://www.iso.org/obp/ui/#iso:code:3166:ES</a></p></li>
-<li><p>CLDR: <a href='https://unicode-org.github.io/cldr-staging/charts/38/index.html'>https://unicode-org.github.io/cldr-staging/charts/38/index.html</a></p></li>
+<li><p><strong>INE</strong>: Instituto Nacional de Estadistica: <a href='https://www.ine.es/'>https://www.ine.es/</a></p></li>
+<li><p><strong>Eurostat (NUTS)</strong>: <a href='https://ec.europa.eu/eurostat/web/nuts/background'>https://ec.europa.eu/eurostat/web/nuts/background</a></p></li>
+<li><p><strong>ISO</strong>: <a href='https://www.iso.org/obp/ui/#iso:code:3166:ES'>https://www.iso.org/obp/ui/#iso:code:3166:ES</a></p></li>
+<li><p><strong>CLDR</strong>: <a href='https://unicode-org.github.io/cldr-staging/charts/38/index.html'>https://unicode-org.github.io/cldr-staging/charts/38/index.html</a></p></li>
 </ul>
 
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Languages available are:</p><ul>
-<li><p>"en": English</p></li>
-<li><p>"es": Spanish</p></li>
-<li><p>"ca": Catalan</p></li>
-<li><p>"ga": Galician</p></li>
-<li><p>"eu": Basque</p></li>
+<li><p><strong>"en"</strong>: English</p></li>
+<li><p><strong>"es"</strong>: Spanish</p></li>
+<li><p><strong>"ca"</strong>: Catalan</p></li>
+<li><p><strong>"ga"</strong>: Galician</p></li>
+<li><p><strong>"eu"</strong>: Basque</p></li>
 </ul>
 
 <p>Although NUTS2 matches the first subdivision level of Spain
@@ -233,55 +234,57 @@ or Murcia) on this dataset.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"esp_codelist"</span><span class='op'>)</span>
+
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='va'>esp_codelist</span><span class='op'>)</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Rows: 59
 #&gt; Columns: 44
-#&gt; $ nuts1.code         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES1", "ES1", "ES1", "ES1", "ES1", "ES1", "ES2", "E…
-#&gt; $ nuts1.name         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "NOROESTE", "NOROESTE", "NOROESTE", "NOROESTE", "NO…
-#&gt; $ nuts1.name.alt     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Noroeste", "Noroeste", "Noroeste", "Noroeste", "No…
-#&gt; $ nuts1.shortname.es <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Noroeste", "Noroeste", "Noroeste", "Noroeste", "No…
-#&gt; $ codauto            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "03", "06", "12", "12", "12", "12", "02", "02", "02…
-#&gt; $ iso2.ccaa.code     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES-AS", "ES-CB", "ES-GA", "ES-GA", "ES-GA", "ES-GA…
-#&gt; $ nuts2.code         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES12", "ES13", "ES11", "ES11", "ES11", "ES11", "ES…
-#&gt; $ ine.ccaa.name      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias, Principado de", "Cantabria", "Galicia", …
-#&gt; $ iso2.ccaa.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias, Principado de", "Cantabria", "Galicia", …
-#&gt; $ iso2.ccaa.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-#&gt; $ iso2.ccaa.name.gl  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, "Galicia", "Galicia", "Galicia", "Galicia",…
-#&gt; $ iso2.ccaa.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, "Nafarroako For…
-#&gt; $ nuts2.name         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Galicia", "…
-#&gt; $ cldr.ccaa.name.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal…
-#&gt; $ cldr.ccaa.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Galicia", "…
-#&gt; $ cldr.ccaa.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "Galícia", "Galícia", "Gal…
-#&gt; $ cldr.ccaa.name.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Galicia", "…
-#&gt; $ cldr.ccaa.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturiesko Printzerria", "Kantabria", "Galizia", "…
-#&gt; $ ccaa.shortname.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal…
-#&gt; $ ccaa.shortname.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal…
-#&gt; $ ccaa.shortname.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "Galícia", "Galícia", "Gal…
-#&gt; $ ccaa.shortname.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal…
-#&gt; $ ccaa.shortname.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Kantabria", "Galizia", "Galizia", "Gal…
-#&gt; $ cpro               <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "33", "39", "15", "27", "32", "36", "22", "44", "50…
-#&gt; $ iso2.prov.code     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES-O", "ES-S", "ES-C", "ES-LU", "ES-OR", "ES-PO", …
-#&gt; $ nuts.prov.code     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES120", "ES130", "ES111", "ES112", "ES113", "ES114…
-#&gt; $ ine.prov.name      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Coruña, A", "Lugo", "Oure…
-#&gt; $ iso2.prov.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "La Coruña", "Lugo", "Oren…
-#&gt; $ iso2.prov.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-#&gt; $ iso2.prov.name.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, "A Coruña", "Lugo", "Ourense", "Pontevedra"…
-#&gt; $ iso2.prov.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, "Nafarroa", "Ar…
-#&gt; $ cldr.prov.name.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren…
-#&gt; $ cldr.prov.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Provincia d…
-#&gt; $ cldr.prov.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "Província de la Corunya",…
-#&gt; $ cldr.prov.name.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Provincia d…
-#&gt; $ cldr.prov.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturiesko Printzerria", "Kantabria", "Coruñako pr…
-#&gt; $ prov.shortname.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren…
-#&gt; $ prov.shortname.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "La Coruña", "Lugo", "Oren…
-#&gt; $ prov.shortname.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "La Corunya", "Lugo", "Our…
-#&gt; $ prov.shortname.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren…
-#&gt; $ prov.shortname.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Kantabria", "Coruña", "Lugo", "Ourense…
-#&gt; $ nuts3.code         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES120", "ES130", "ES111", "ES112", "ES113", "ES114…
-#&gt; $ nuts3.name         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren…
-#&gt; $ nuts3.shortname.es <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "La Coruña", "Lugo", "Oren…</div></pre>
+#&gt; $ nuts1.code         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES1", "ES1", "ES1", "ES1", "ES1", "ES1", "ES2", "E~
+#&gt; $ nuts1.name         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "NOROESTE", "NOROESTE", "NOROESTE", "NOROESTE", "NO~
+#&gt; $ nuts1.name.alt     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Noroeste", "Noroeste", "Noroeste", "Noroeste", "No~
+#&gt; $ nuts1.shortname.es <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Noroeste", "Noroeste", "Noroeste", "Noroeste", "No~
+#&gt; $ codauto            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "03", "06", "12", "12", "12", "12", "02", "02", "02~
+#&gt; $ iso2.ccaa.code     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES-AS", "ES-CB", "ES-GA", "ES-GA", "ES-GA", "ES-GA~
+#&gt; $ nuts2.code         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES12", "ES13", "ES11", "ES11", "ES11", "ES11", "ES~
+#&gt; $ ine.ccaa.name      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias, Principado de", "Cantabria", "Galicia", ~
+#&gt; $ iso2.ccaa.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias, Principado de", "Cantabria", "Galicia", ~
+#&gt; $ iso2.ccaa.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,~
+#&gt; $ iso2.ccaa.name.gl  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, "Galicia", "Galicia", "Galicia", "Galicia",~
+#&gt; $ iso2.ccaa.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, "Nafarroako For~
+#&gt; $ nuts2.name         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Galicia", "~
+#&gt; $ cldr.ccaa.name.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal~
+#&gt; $ cldr.ccaa.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Galicia", "~
+#&gt; $ cldr.ccaa.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "Galícia", "Galícia", "Gal~
+#&gt; $ cldr.ccaa.name.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Galicia", "~
+#&gt; $ cldr.ccaa.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturiesko Printzerria", "Kantabria", "Galizia", "~
+#&gt; $ ccaa.shortname.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal~
+#&gt; $ ccaa.shortname.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal~
+#&gt; $ ccaa.shortname.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "Galícia", "Galícia", "Gal~
+#&gt; $ ccaa.shortname.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Galicia", "Galicia", "Gal~
+#&gt; $ ccaa.shortname.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Kantabria", "Galizia", "Galizia", "Gal~
+#&gt; $ cpro               <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "33", "39", "15", "27", "32", "36", "22", "44", "50~
+#&gt; $ iso2.prov.code     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES-O", "ES-S", "ES-C", "ES-LU", "ES-OR", "ES-PO", ~
+#&gt; $ nuts.prov.code     <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES120", "ES130", "ES111", "ES112", "ES113", "ES114~
+#&gt; $ ine.prov.name      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "Coruña, A", "Lugo", "Oure~
+#&gt; $ iso2.prov.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "La Coruña", "Lugo", "Oren~
+#&gt; $ iso2.prov.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,~
+#&gt; $ iso2.prov.name.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, "A Coruña", "Lugo", "Ourense", "Pontevedra"~
+#&gt; $ iso2.prov.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> NA, NA, NA, NA, NA, NA, NA, NA, NA, "Nafarroa", "Ar~
+#&gt; $ cldr.prov.name.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren~
+#&gt; $ cldr.prov.name.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Provincia d~
+#&gt; $ cldr.prov.name.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "Província de la Corunya",~
+#&gt; $ cldr.prov.name.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Principado de Asturias", "Cantabria", "Provincia d~
+#&gt; $ cldr.prov.name.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturiesko Printzerria", "Kantabria", "Coruñako pr~
+#&gt; $ prov.shortname.en  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren~
+#&gt; $ prov.shortname.es  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "La Coruña", "Lugo", "Oren~
+#&gt; $ prov.shortname.ca  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Astúries", "Cantàbria", "La Corunya", "Lugo", "Our~
+#&gt; $ prov.shortname.ga  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren~
+#&gt; $ prov.shortname.eu  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Kantabria", "Coruña", "Lugo", "Ourense~
+#&gt; $ nuts3.code         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "ES120", "ES130", "ES111", "ES112", "ES113", "ES114~
+#&gt; $ nuts3.name         <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "A Coruña", "Lugo", "Ouren~
+#&gt; $ nuts3.shortname.es <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> "Asturias", "Cantabria", "La Coruña", "Lugo", "Oren~</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

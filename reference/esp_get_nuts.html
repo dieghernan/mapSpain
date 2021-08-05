@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get NUTS boundaries of Spain — esp_get_nuts • mapSpain</title>
+<title>Get NUTS of Spain as sf polygons and points — esp_get_nuts • mapSpain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -60,12 +60,24 @@
 <!-- rOpenSpain -->
 <link href="../ropenspain.css" rel="stylesheet">
 
-<meta property="og:title" content="Get NUTS boundaries of Spain — esp_get_nuts" />
-<meta property="og:description" content="Loads a simple feature (sf) object containing the NUTS boundaries of Spain." />
+<meta property="og:title" content="Get NUTS of Spain as sf polygons and points — esp_get_nuts" />
+<meta property="og:description" content="Returns
+NUTS regions of Spain
+as polygons and points at a specified scale, as provided by
+GISCO
+(Geographic Information System of the Commission, depending of Eurostat).
+NUTS are provided at three different levels:
+&quot;0&quot;: Country level
+&quot;1&quot;: Groups of autonomous communities
+&quot;2&quot;: Autonomous communities
+&quot;3&quot;: Roughly matches the provinces, but providing specific individual
+objects for each major island
+
+" />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
-<meta name="twitter:site" content="@dhernangomez" />
+<meta name="twitter:site" content="@rOpenSpain" />
 
 
 
@@ -104,7 +116,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9030</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.3.9040</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -165,13 +177,25 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get NUTS boundaries of Spain</h1>
+    <h1>Get NUTS of Spain as <code>sf</code> polygons and points</h1>
     <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/master/R/esp_get_nuts.R'><code>R/esp_get_nuts.R</code></a></small>
     <div class="hidden name"><code>esp_get_nuts.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Loads a simple feature (<code>sf</code>) object containing the NUTS boundaries of Spain.</p>
+    <p>Returns
+<a href='https://en.wikipedia.org/wiki/NUTS_statistical_regions_of_Spain'>NUTS regions of Spain</a>
+as polygons and points at a specified scale, as provided by
+<a href='https://ec.europa.eu/eurostat/web/gisco'>GISCO</a>
+(Geographic Information System of the Commission, depending of Eurostat).</p>
+<p>NUTS are provided at three different levels:</p><ul>
+<li><p><strong>"0"</strong>: Country level</p></li>
+<li><p><strong>"1"</strong>: Groups of autonomous communities</p></li>
+<li><p><strong>"2"</strong>: Autonomous communities</p></li>
+<li><p><strong>"3"</strong>: Roughly matches the provinces, but providing specific individual
+objects for each major island</p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>esp_get_nuts</span><span class='op'>(</span>
@@ -193,8 +217,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>year</th>
-      <td><p>Release year. One of "2003", "2006",`"2010", "2013", "2016" or
-"2021".</p></td>
+      <td><p>Release year of the file. One of "2003", "2006,
+"2010", "2013", "2016" or "2021".</p></td>
     </tr>
     <tr>
       <th>epsg</th>
@@ -208,26 +232,21 @@ One of:</p><ul>
     </tr>
     <tr>
       <th>cache</th>
-      <td><p>A logical whether to do caching. Default is <code>TRUE</code>.</p></td>
+      <td><p>A logical whether to do caching. Default is <code>TRUE</code>. See
+<strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>update_cache</th>
       <td><p>A logical whether to update cache. Default is <code>FALSE</code>.
-When set to <code>TRUE</code> it would force a fresh download of the source
-<code>.geojson</code> file.</p></td>
+When set to <code>TRUE</code> it would force a fresh download of the source file.</p></td>
     </tr>
     <tr>
       <th>cache_dir</th>
-      <td><p>A path to a cache directory. The directory can also be
-set globally with:</p><ul>
-<li><p><code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code>.</p></li>
-</ul>
-
-<p>See Details on <code>esp_get_nuts()</code>.</p></td>
+      <td><p>A path to a cache directory. See <strong>About caching</strong>.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
-      <td><p>Display information. Useful for debugging,
+      <td><p>Logical, displays information. Useful for debugging,
 default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
@@ -243,25 +262,26 @@ default is <code>FALSE</code>.</p></td>
     <tr>
       <th>spatialtype</th>
       <td><p>Type of geometry to be returned:</p><ul>
-<li><p>"RG": Regions - <code>MULTIPOLYGON/POLYGON</code> object.</p></li>
-<li><p>"LB": Labels - <code>POINT</code> object.</p></li>
+<li><p><strong>"LB"</strong>: Labels - <code>POINT</code> object.</p></li>
+<li><p><strong>"RG"</strong>: Regions - <code>MULTIPOLYGON/POLYGON</code> object.</p></li>
 </ul></td>
     </tr>
     <tr>
       <th>region</th>
       <td><p>Optional. A vector of region names, NUTS or ISO codes
-(see <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>.</p></td>
+(see <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>).</p></td>
     </tr>
     <tr>
       <th>nuts_level</th>
       <td><p>NUTS level. One of "0" (Country-level), "1", "2" or "3".
-See <a href='https://ec.europa.eu/eurostat/web/nuts/background'>https://ec.europa.eu/eurostat/web/nuts/background</a>.</p></td>
+See <strong>Description</strong>.</p></td>
     </tr>
     <tr>
       <th>moveCAN</th>
       <td><p>A logical <code>TRUE/FALSE</code> or a vector of coordinates
 <code><a href='https://rdrr.io/r/base/c.html'>c(lat, lon)</a></code>. It places the Canary Islands close to Spain's mainland.
-Initial position can be adjusted using the vector of coordinates.</p></td>
+Initial position can be adjusted using the vector of coordinates. See
+<strong>Displacing the Canary Islands</strong>.</p></td>
     </tr>
     </table>
 
@@ -270,56 +290,98 @@ Initial position can be adjusted using the vector of coordinates.</p></td>
     <p><a href='https://gisco-services.ec.europa.eu/distribution/v2/'>GISCO API</a></p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>POLYGON/POINT</code> object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>cache_dir = NULL</code> (default) uses and creates <code>/mapSpain</code> directory in the
-temporary directory <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code>. The directory can also be set via options
-with <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "path/to/dir")</a></code> or
-<code><a href='https://rdrr.io/r/base/options.html'>options(gisco_cache_dir = "path/to/dir")</a></code> (See <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get_nuts()</a></code>)</p>
-<p>Sometimes cached files may be corrupt. On that case, try redownloading
-the data using <code>update_cache = TRUE</code>.</p>
+    <p>A <code>sf</code> object specified by <code>spatialtype</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Please check the download and usage provisions on
 <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_attributions.html'>giscoR::gisco_attributions()</a></code></p>
-<p>While <code>moveCAN</code> is useful for visualization, it would alter the actual
-geographical position of the Canary Islands. When using the output for
-spatial analysis or using tiles (<code><a href='esp_getTiles.html'>esp_getTiles()</a></code> or
+    <h2 class="hasAnchor" id="about-caching"><a class="anchor" href="#about-caching"></a>About caching</h2>
+
+    <p>You can set your <code>cache_dir</code> with <code><a href='esp_set_cache_dir.html'>esp_set_cache_dir()</a></code>.</p>
+<p>Sometimes cached files may be corrupt. On that case, try re-downloading
+the data setting <code>update_cache = TRUE</code>.</p>
+<p>If you experience any problem on download, try to download the
+corresponding .geojson file by any other method and save it on your
+<code>cache_dir</code>. Use the option <code>verbose = TRUE</code> for debugging the API query.</p>
+    <h2 class="hasAnchor" id="displacing-the-canary-islands"><a class="anchor" href="#displacing-the-canary-islands"></a>Displacing the Canary Islands</h2>
+
+    <p>While <code>moveCAN</code> is useful for visualization, it would alter the actual
+geographic position of the Canary Islands. When using the output for
+spatial analysis or using tiles (e.g. with <code><a href='esp_getTiles.html'>esp_getTiles()</a></code> or
 <code><a href='addProviderEspTiles.html'>addProviderEspTiles()</a></code>)  this option should be set to <code>FALSE</code> in order to
-get the actual coordinates.</p>
+get the actual coordinates, instead of the modified ones.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='esp_nuts.sf.html'>esp_nuts.sf</a></code>, <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>, <code><a href='esp_codelist.html'>esp_codelist</a></code>,
-<code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get_nuts()</a></code>.</p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
-    <p>dieghernan, <a href='https://github.com/dieghernan/'>https://github.com/dieghernan/</a></p>
+    <div class='dont-index'><p><a href='esp_nuts.sf.html'>esp_nuts.sf</a>, <code><a href='esp_get_country.html'>esp_get_country()</a></code>, <code><a href='https://dieghernan.github.io/giscoR/reference/gisco_get.html'>giscoR::gisco_get_nuts()</a></code>,
+<code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>, <a href='esp_codelist.html'>esp_codelist</a>
+.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://r-spatial.github.io/sf/'>sf</a></span><span class='op'>)</span>
-
-<span class='va'>pal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/palettes.html'>hcl.colors</a></span><span class='op'>(</span><span class='fl'>5</span>, palette <span class='op'>=</span> <span class='st'>"Lisbon"</span><span class='op'>)</span>
-
 <span class='va'>NUTS1</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>nuts_level <span class='op'>=</span> <span class='fl'>1</span>, moveCAN <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>NUTS1</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
+
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>NUTS1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://dieghernan.github.io/giscoR/reference/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
+    fontface <span class='op'>=</span> <span class='st'>"italic"</span>,
+    size <span class='op'>=</span> <span class='fl'>0.7</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
+    main.title <span class='op'>=</span> <span class='st'>"NUTS1: Displacing Canary Islands"</span>,
+    main.title.size <span class='op'>=</span> <span class='fl'>0.9</span>,
+    main.title.fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
+    attr.outside <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span>
 </div><div class='img'><img src='esp_get_nuts-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>NUTS1_alt</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>nuts_level <span class='op'>=</span> <span class='fl'>1</span>, moveCAN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>NUTS1_alt</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>NUTS1_alt</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://dieghernan.github.io/giscoR/reference/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
+    fontface <span class='op'>=</span> <span class='st'>"italic"</span>,
+    size <span class='op'>=</span> <span class='fl'>0.7</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
+    main.title <span class='op'>=</span> <span class='st'>"NUTS1: Displacing Canary Islands to the right"</span>,
+    main.title.size <span class='op'>=</span> <span class='fl'>0.9</span>,
+    main.title.fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
+    attr.outside <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span>
 </div><div class='img'><img src='esp_get_nuts-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>NUTS1_orig</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>nuts_level <span class='op'>=</span> <span class='fl'>1</span>, moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>NUTS1_orig</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>NUTS1_orig</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://dieghernan.github.io/giscoR/reference/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
+    fontface <span class='op'>=</span> <span class='st'>"italic"</span>,
+    size <span class='op'>=</span> <span class='fl'>0.7</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
+    main.title <span class='op'>=</span> <span class='st'>"NUTS1: Canary Islands on the true location"</span>,
+    main.title.size <span class='op'>=</span> <span class='fl'>0.9</span>,
+    main.title.fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
+    attr.outside <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span>
 </div><div class='img'><img src='esp_get_nuts-3.png' alt='' width='700' height='433' /></div><div class='input'>
+
 <span class='va'>AndOriental</span> <span class='op'>&lt;-</span>
   <span class='fu'>esp_get_nuts</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Almeria"</span>, <span class='st'>"Granada"</span>, <span class='st'>"Jaen"</span>, <span class='st'>"Malaga"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>AndOriental</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/qtm.html'>qtm</a></span><span class='op'>(</span><span class='va'>AndOriental</span>, main.title <span class='op'>=</span> <span class='st'>"Andalucia Oriental"</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_nuts-4.png' alt='' width='700' height='433' /></div><div class='input'>
+
+
 <span class='va'>RandomRegions</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ES1"</span>, <span class='st'>"ES300"</span>, <span class='st'>"ES51"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>RandomRegions</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/qtm.html'>qtm</a></span><span class='op'>(</span><span class='va'>RandomRegions</span>, main.title <span class='op'>=</span> <span class='st'>"Random regions"</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_nuts-5.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>MixingCodes</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_nuts</span><span class='op'>(</span>region <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ES4"</span>, <span class='st'>"ES-PV"</span>, <span class='st'>"Valencia"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'><a href='https://r-spatial.github.io/sf/reference/plot.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st_geometry.html'>st_geometry</a></span><span class='op'>(</span><span class='va'>MixingCodes</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/qtm.html'>qtm</a></span><span class='op'>(</span><span class='va'>MixingCodes</span>, main.title <span class='op'>=</span> <span class='st'>"Mixing codes"</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_nuts-6.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
