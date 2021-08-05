@@ -350,6 +350,33 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span><span class="op">(</span><span class="st">"#C12838"</span>, border.col <span class="op">=</span> <span class="st">"grey80"</span>, lwd <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></code></pre></div>
 <p><img src="giscoR-1.png" title="plot of chunk giscoR" alt="plot of chunk giscoR" width="100%"></p>
 </div>
+<div id="working-with-tiles" class="section level2">
+<h2 class="hasAnchor">
+<a href="#working-with-tiles" class="anchor"></a>Working with tiles</h2>
+<p><strong>mapSpain</strong> provides a powerful interface for working with imagery. <strong>mapSpain</strong> can download static files as <code>.png</code> or<code>jpeg</code> files (depending on the Web Map Service) and use them along your shapefiles.</p>
+<p><strong>mapSpain</strong> also includes a plugin for <strong>R</strong> <a href="https://rstudio.github.io/leaflet/">leaflet</a> package, that allows you to include several basemaps on your interactive maps.</p>
+<p>The services are implemented via the leaflet plugin <a href="dieghernan.github.io/leaflet-providersESP/">leaflet-providersESP</a>. You can check a display of each provider on the previous link.</p>
+<p><strong>Note that</strong> When working with imagery, it is important to set <code>moveCAN = FALSE</code> on the <code>esp_get_*</code> functions. See <strong>Displacing the Canary Islands</strong> on <code><a href="../reference/esp_get_ccaa.html">help("esp_get_ccaa", package = "mapSpain")</a></code>.</p>
+<p>An example of how you can include tiles and shapes to create a static map:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="co"># Get Amposta - Municipality</span>
+<span class="va">amposta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>munic <span class="op">=</span> <span class="st">"Amposta"</span><span class="op">)</span>
+
+<span class="co"># Base PNOA - Satellite imagery</span>
+<span class="va">PNOA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">amposta</span>,
+  type <span class="op">=</span> <span class="st">"PNOA"</span>,
+  zoom <span class="op">=</span> <span class="fl">11</span>,
+  bbox_expand <span class="op">=</span> <span class="fl">1.5</span>
+<span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">PNOA</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_raster.html">tm_rgb</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="co"># Mix with shape</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">amposta</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span><span class="st">"green3"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+<p><img src="tile-1.png" title="plot of chunk tile" alt="plot of chunk tile" width="100%"></p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
