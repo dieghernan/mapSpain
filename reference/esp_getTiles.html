@@ -211,7 +211,9 @@ various open map servers.</p>
     <tr>
       <th>zoom</th>
       <td><p>Zoom level. If <code>NULL</code>, it is determined automatically. If set,
-it overrides <code>zoommin</code>. Only valid for WMTS tiles.</p></td>
+it overrides <code>zoommin</code>. Only valid for WMTS tiles. On a single point it
+applies a buffer to the point and on <code>zoom = NULL</code> the function set a zoom
+level of 18. See <strong>Details</strong>.</p></td>
     </tr>
     <tr>
       <th>zoommin</th>
