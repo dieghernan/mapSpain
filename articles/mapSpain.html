@@ -361,11 +361,11 @@
 <p>An example of how you can include tiles and shapes to create a static map:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="co"># Get Amposta - Municipality</span>
-<span class="va">amposta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>munic <span class="op">=</span> <span class="st">"Amposta"</span><span class="op">)</span>
+<span class="co"># Get Deltebre - Municipality</span>
+<span class="va">delt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>munic <span class="op">=</span> <span class="st">"Deltebre"</span><span class="op">)</span>
 
 <span class="co"># Base PNOA - Satellite imagery</span>
-<span class="va">PNOA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">amposta</span>,
+<span class="va">PNOA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">delt</span>,
   type <span class="op">=</span> <span class="st">"PNOA"</span>,
   zoom <span class="op">=</span> <span class="fl">11</span>,
   bbox_expand <span class="op">=</span> <span class="fl">1.5</span>
@@ -374,7 +374,7 @@
 <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">PNOA</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_raster.html">tm_rgb</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="co"># Mix with shape</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">amposta</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span><span class="op">(</span><span class="va">delt</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span><span class="op">(</span><span class="st">"green3"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
 <p><img src="tile-1.png" title="plot of chunk tile" alt="plot of chunk tile" width="100%"></p>
 </div>
