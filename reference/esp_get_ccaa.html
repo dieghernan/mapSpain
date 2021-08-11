@@ -323,7 +323,13 @@ get the actual coordinates, instead of the modified ones.</p>
 <code><a href='esp_get_munic.html'>esp_get_munic()</a></code>, <a href='esp_codelist.html'>esp_codelist</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Random CCAA</span>
+    <pre class="examples"><div class='input'><span class='va'>ccaa</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_ccaa</span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/qtm.html'>qtm</a></span><span class='op'>(</span><span class='va'>ccaa</span><span class='op'>)</span>
+</div><div class='img'><img src='esp_get_ccaa-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Random CCAA</span>
 <span class='va'>Random</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_ccaa</span><span class='op'>(</span>ccaa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
   <span class='st'>"Euskadi"</span>,
   <span class='st'>"Catalunya"</span>,
@@ -333,7 +339,6 @@ get the actual coordinates, instead of the modified ones.</p>
   <span class='st'>"01"</span>
 <span class='op'>)</span><span class='op'>)</span>
 
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Random</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"codauto"</span>, legend.show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
@@ -342,7 +347,7 @@ get the actual coordinates, instead of the modified ones.</p>
     auto.placement <span class='op'>=</span> <span class='cn'>TRUE</span>,
     shadow <span class='op'>=</span> <span class='cn'>TRUE</span>
   <span class='op'>)</span>
-</div><div class='img'><img src='esp_get_ccaa-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_ccaa-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># All CCAA of a Zone plus an addition</span>
 
@@ -350,7 +355,7 @@ get the actual coordinates, instead of the modified ones.</p>
   <span class='fu'>esp_get_ccaa</span><span class='op'>(</span>ccaa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"La Rioja"</span>, <span class='st'>"Noroeste"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/qtm.html'>qtm</a></span><span class='op'>(</span><span class='va'>Mix</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_ccaa-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='img'><img src='esp_get_ccaa-3.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Combine with giscoR to get countries</span>
 <span class='co'># \donttest{</span>
 
@@ -372,7 +377,7 @@ get the actual coordinates, instead of the modified ones.</p>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>ccaa</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#FDFBEA"</span>, border.col <span class='op'>=</span> <span class='st'>"#656565"</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>bg.color <span class='op'>=</span> <span class='st'>"#C7E7FB"</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_ccaa-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='img'><img src='esp_get_ccaa-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
