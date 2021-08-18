@@ -44,7 +44,7 @@
    margin: 0;
    padding: 0 3px;
  }
- 
+
  .label-default {
      color: #986dbd;
      background-color: transparent;
@@ -183,4 +183,13 @@
 }
  .algolia-autocomplete .algolia-docsearch-suggestion--category-header {
      color: #986dbd;
+}
+
+.caption {
+    color: #80878b;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 90%;
+    text-align: center;
 }
