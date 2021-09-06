@@ -69,9 +69,10 @@ options:
 Run Sys.setenv(MAPSPAIN_CACHE_DIR = &quot;cache_dir&quot;). You would need to
 run this command on each session (Similar to install = FALSE).
 Set options(mapSpain_cache_dir = &quot;cache_dir&quot;). Similar to the previous
-option.
+option. This is not recommended any more, and it is provided for
+backwards compatibility purposes.
 Write this line on your .Renviron file:
-MAPSPAIN_CACHE_DIR = &quot;cache_dir&quot; (same behavior than
+MAPSPAIN_CACHE_DIR = &quot;value_for_cache_dir&quot; (same behavior than
 install = TRUE). This would store your cache_dir permanently.
 
 " />
@@ -178,7 +179,7 @@ install = TRUE). This would store your cache_dir permanently.
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set your <code>mapSpain</code> cache dir</h1>
+    <h1>Set your <strong>mapSpain</strong> cache dir</h1>
     <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/master/R/esp_cache.R'><code>R/esp_cache.R</code></a></small>
     <div class="hidden name"><code>esp_set_cache_dir.Rd</code></div>
     </div>
@@ -192,18 +193,19 @@ options:</p><ul>
 <li><p>Run <code><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv(MAPSPAIN_CACHE_DIR = "cache_dir")</a></code>. You would need to
 run this command on each session (Similar to <code>install = FALSE</code>).</p></li>
 <li><p>Set <code><a href='https://rdrr.io/r/base/options.html'>options(mapSpain_cache_dir = "cache_dir")</a></code>. Similar to the previous
-option.</p></li>
+option. This is <strong>not recommended any more</strong>, and it is provided for
+backwards compatibility purposes.</p></li>
 <li><p>Write this line on your .Renviron file:
-<code>MAPSPAIN_CACHE_DIR = "cache_dir"</code> (same behavior than
+<code>MAPSPAIN_CACHE_DIR = "value_for_cache_dir"</code> (same behavior than
 <code>install = TRUE</code>). This would store your <code>cache_dir</code> permanently.</p></li>
 </ul>
 
     </div>
 
     <pre class="usage"><span class='fu'>esp_set_cache_dir</span><span class='op'>(</span>
-  cache_dir <span class='op'>=</span> <span class='fu'>rappdirs</span><span class='fu'>::</span><span class='fu'><a href='https://rappdirs.r-lib.org/reference/user_cache_dir.html'>user_cache_dir</a></span><span class='op'>(</span><span class='st'>"mapSpain"</span>, <span class='st'>"R"</span><span class='op'>)</span>,
-  overwrite <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  install <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>cache_dir</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  install <span class='op'>=</span> <span class='cn'>FALSE</span>,
   verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
@@ -212,7 +214,8 @@ option.</p></li>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>cache_dir</th>
-      <td><p>A path to a cache directory.</p></td>
+      <td><p>A path to a cache directory. On missing value the function
+would store the cached files on a temporary dir (See <code><a href='https://rdrr.io/r/base/tempfile.html'>base::tempdir()</a></code>).</p></td>
     </tr>
     <tr>
       <th>overwrite</th>
@@ -222,7 +225,8 @@ option.</p></li>
     <tr>
       <th>install</th>
       <td><p>if <code>TRUE</code>, will install the key in your local machine for
-use in future sessions.  Defaults to <code>FALSE.</code></p></td>
+use in future sessions.  Defaults to <code>FALSE.</code> If <code>cache_dir</code> is <code>FALSE</code>
+this parameter is set to <code>FALSE</code> automatically.</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -233,20 +237,22 @@ default is <code>FALSE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Invisible value</p>
+    <p>An (invisible) character with the path to your <code>cache_dir</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rappdirs.r-lib.org/reference/user_data_dir.html'>rappdirs::user_config_dir()</a></code></p></div>
+    <div class='dont-index'><p><code><a href='https://rappdirs.r-lib.org/reference/user_data_dir.html'>rappdirs::user_config_dir()</a></code></p>
+<p>Other cache utilities: 
+<code><a href='esp_clear_cache.html'>esp_clear_cache</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Don't run this! It would modify your current state</span>
 <span class='co'># \dontrun{</span>
 <span class='fu'>esp_set_cache_dir</span><span class='op'>(</span>verbose <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>mapSpain cache dir is: ~/.cache/mapSpain</span></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='message'>Using a temporary cache dir. Set 'cache_dir' to a value for store permanently</span></div><div class='output co'>#&gt; <span class='message'>mapSpain cache dir is: /tmp/RtmpLkEbcu/mapSpain</span></div><div class='input'><span class='co'># }</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"MAPSPAIN_CACHE_DIR"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~/.cache/mapSpain"</div></pre>
+</div><div class='output co'>#&gt; [1] "/tmp/RtmpLkEbcu/mapSpain"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
