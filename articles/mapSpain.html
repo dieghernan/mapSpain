@@ -135,8 +135,7 @@
 <a href="#caching" class="anchor"></a>Caching</h2>
 <p><strong>mapSpain</strong> provides a dataset and tile caching capability, that could be set as:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="../reference/esp_set_cache_dir.html">esp_set_cache_dir</a></span><span class="op">(</span><span class="st">"./path/to/location"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/esp_set_cache_dir.html">esp_set_cache_dir</a></span><span class="op">(</span><span class="st">"./path/to/location"</span><span class="op">)</span></code></pre></div>
 <p><strong>mapSpain</strong> relies on <a href="https://ropengov.github.io/giscoR/"><strong>giscoR</strong></a> for downloading some files, and both packages are well synchronized. Setting the same caching directory on both would speed up the data load on your session.</p>
 </div>
 <div id="basic-example" class="section level2">
@@ -144,8 +143,7 @@
 <a href="#basic-example" class="anchor"></a>Basic example</h2>
 <p>Some examples of what <strong>mapSpain</strong> can do:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mtennekes/tmap">tmap</a></span><span class="op">)</span>
 
 <span class="va">country</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_country.html">esp_get_country</a></span><span class="op">(</span><span class="op">)</span>
@@ -160,8 +158,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html">tm_layout</a></span><span class="op">(</span>main.title <span class="op">=</span> <span class="st">"Map of Spain"</span><span class="op">)</span></code></pre></div>
 <p><img src="basic-1.png" title="plot of chunk basic" alt="plot of chunk basic" width="100%"></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># Plot provinces</span>
+<code class="sourceCode R"><span class="co"># Plot provinces</span>
 
 <span class="va">Andalucia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_prov.html">esp_get_prov</a></span><span class="op">(</span><span class="st">"Andalucia"</span><span class="op">)</span>
 
@@ -170,8 +167,7 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_grid.html">tm_graticules</a></span><span class="op">(</span>lines <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="basic-2.png" title="plot of chunk basic" alt="plot of chunk basic" width="100%"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># Plot municipalities</span>
+<code class="sourceCode R"><span class="co"># Plot municipalities</span>
 
 <span class="va">Euskadi_CCAA</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="st">"Euskadi"</span><span class="op">)</span>
 <span class="va">Euskadi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Euskadi"</span><span class="op">)</span>
@@ -203,8 +199,7 @@
 <a href="#choropleth-and-label-maps" class="anchor"></a>Choropleth and label maps</h2>
 <p>Let’s analyze the distribution of women in each autonomous community with <code>tmap</code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="../reference/pobmun19.html">pobmun19</a></span>
+<code class="sourceCode R"><span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="../reference/pobmun19.html">pobmun19</a></span>
 
 <span class="co"># Extract CCAA from base dataset</span>
 
@@ -259,8 +254,7 @@
 <a href="#thematic-maps" class="anchor"></a>Thematic maps</h2>
 <p>This is an example on how <strong>mapSpain</strong> can be used to beautiful thematic maps. For plotting purposes we would use the <a href="https://github.com/r-tmap/tmap"><strong>tmap</strong></a> package, however any package that handles <code>sf</code> objects (e.g. <code>ggplot2</code>, <code>mapsf</code>, <code>leaflet</code>, etc. could be used).</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># Population density of Spain</span>
+<code class="sourceCode R"><span class="co"># Population density of Spain</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
 
@@ -317,8 +311,7 @@
 <a href="#mapspain-and-giscor" class="anchor"></a>mapSpain and giscoR</h2>
 <p>If you need to plot Spain along with another countries, consider using <a href="https://ropengov.github.io/giscoR/"><strong>giscoR</strong></a> package, that is installed as a dependency when you installed <strong>mapSpain</strong>. A basic example:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/giscoR/">giscoR</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/giscoR/">giscoR</a></span><span class="op">)</span>
 
 <span class="co"># Set the same resolution for a perfect fit</span>
 
@@ -361,8 +354,7 @@
 <p><strong>Note that</strong> When working with imagery, it is important to set <code>moveCAN = FALSE</code> on the <code>esp_get_*</code> functions. See <strong>Displacing the Canary Islands</strong> on <code><a href="../reference/esp_get_ccaa.html">help("esp_get_ccaa", package = "mapSpain")</a></code>.</p>
 <p>An example of how you can include tiles and shapes to create a static map:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="co"># Get Deltebre - Municipality</span>
+<code class="sourceCode R"><span class="co"># Get Deltebre - Municipality</span>
 <span class="va">delt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>munic <span class="op">=</span> <span class="st">"Deltebre"</span><span class="op">)</span>
 
 <span class="co"># Base PNOA - Satellite imagery</span>
