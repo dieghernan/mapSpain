@@ -294,7 +294,7 @@ Initial position can be adjusted using the vector of coordinates. See
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Please check the download and usage provisions on
-<code><a href='https://rdrr.io/pkg/giscoR/man/gisco_attributions.html'>giscoR::gisco_attributions()</a></code></p>
+<code><a href='https://ropengov.github.io/giscoR/reference/gisco_attributions.html'>giscoR::gisco_attributions()</a></code></p>
     <h2 class="hasAnchor" id="about-caching"><a class="anchor" href="#about-caching"></a>About caching</h2>
 
     <p>You can set your <code>cache_dir</code> with <code><a href='esp_set_cache_dir.html'>esp_set_cache_dir()</a></code>.</p>
@@ -312,7 +312,7 @@ spatial analysis or using tiles (e.g. with <code><a href='esp_getTiles.html'>esp
 get the actual coordinates, instead of the modified ones.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/giscoR/man/gisco_get.html'>giscoR::gisco_get_nuts()</a></code>, <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>.</p>
+    <div class='dont-index'><p><code><a href='https://ropengov.github.io/giscoR/reference/gisco_get_nuts.html'>giscoR::gisco_get_nuts()</a></code>, <code><a href='esp_dict_region_code.html'>esp_dict_region_code()</a></code>.</p>
 <p>Other political: 
 <code><a href='esp_codelist.html'>esp_codelist</a></code>,
 <code><a href='esp_get_can_box.html'>esp_get_can_box</a>()</code>,
@@ -335,7 +335,7 @@ get the actual coordinates, instead of the modified ones.</p>
 <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>NUTS1</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/giscoR/man/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://ropengov.github.io/giscoR/reference/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
     fontface <span class='op'>=</span> <span class='st'>"italic"</span>,
     size <span class='op'>=</span> <span class='fl'>0.7</span>
   <span class='op'>)</span> <span class='op'>+</span>
@@ -351,7 +351,7 @@ get the actual coordinates, instead of the modified ones.</p>
 <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>NUTS1_alt</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/giscoR/man/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://ropengov.github.io/giscoR/reference/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
     fontface <span class='op'>=</span> <span class='st'>"italic"</span>,
     size <span class='op'>=</span> <span class='fl'>0.7</span>
   <span class='op'>)</span> <span class='op'>+</span>
@@ -367,7 +367,7 @@ get the actual coordinates, instead of the modified ones.</p>
 <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>NUTS1_orig</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/giscoR/man/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_credits.html'>tm_credits</a></span><span class='op'>(</span><span class='fu'>giscoR</span><span class='fu'>::</span><span class='fu'><a href='https://ropengov.github.io/giscoR/reference/gisco_attributions.html'>gisco_attributions</a></span><span class='op'>(</span><span class='op'>)</span>,
     fontface <span class='op'>=</span> <span class='st'>"italic"</span>,
     size <span class='op'>=</span> <span class='fl'>0.7</span>
   <span class='op'>)</span> <span class='op'>+</span>

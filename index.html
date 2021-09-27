@@ -259,7 +259,7 @@
 <a href="#mapspain-and-giscor" class="anchor"></a>mapSpain and giscoR</h2>
 <p>If you need to plot Spain along with another countries, consider using <a href="https://ropengov.github.io/giscoR/"><strong>giscoR</strong></a> package, that is installed as a dependency when you installed <strong>mapSpain</strong>. A basic example:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/giscoR/">giscoR</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/giscoR/">giscoR</a></span><span class="op">)</span>
 
 <span class="co"># Set the same resolution for a perfect fit</span>
 
@@ -268,11 +268,11 @@
 <span class="co"># Same crs</span>
 <span class="va">target_crs</span> <span class="op">&lt;-</span> <span class="fl">3035</span>
 
-<span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/giscoR/man/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>
+<span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>
   resolution <span class="op">=</span> <span class="va">res</span>,
   epsg <span class="op">=</span> <span class="va">target_crs</span>
 <span class="op">)</span>
-<span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/giscoR/man/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>
+<span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html">gisco_get_countries</a></span><span class="op">(</span>
   resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span>,
   epsg <span class="op">=</span> <span class="va">target_crs</span>
 <span class="op">)</span>
