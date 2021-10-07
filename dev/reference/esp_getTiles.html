@@ -202,7 +202,7 @@ various open map servers.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An <code>sf</code> object.</p></td>
+      <td><p>An <code>sf</code> or <code>sfc</code> object.</p></td>
     </tr>
     <tr>
       <th>type</th>
@@ -265,11 +265,11 @@ default is <code>FALSE</code>.</p></td>
 
     <p><a href='https://dieghernan.github.io/leaflet-providersESP/'>https://dieghernan.github.io/leaflet-providersESP/</a> leaflet plugin,
 <strong>v1.2.0</strong>.</p>
-<p>For plotting, you can use <code><a href='https://rdrr.io/pkg/raster/man/plotRGB.html'>raster::plotRGB()</a></code>, <code><a href='https://rdrr.io/pkg/tmap/man/tm_raster.html'>tmap::tm_rgb()</a></code>.</p>
+<p>For plotting, you can use <code><a href='https://rdrr.io/pkg/terra/man/plotRGB.html'>terra::plotRGB()</a></code>, <code><a href='https://rdrr.io/pkg/tmap/man/tm_raster.html'>tmap::tm_rgb()</a></code>.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>RasterBrick</code> is returned, with 3 (RGB) or 4 (RGBA) layers, depending on
-the provider. See <code><a href='https://rdrr.io/pkg/raster/man/brick.html'>raster::brick()</a></code>.
+    <p>A <code>SpatRaster</code> is returned, with 3 (RGB) or 4 (RGBA) layers, depending on
+the provider. See <code><a href='https://rdrr.io/pkg/terra/man/rast.html'>terra::rast()</a></code>.
 .</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -303,7 +303,7 @@ corresponding .geojson file by any other method and save it on your
 <code>cache_dir</code>. Use the option <code>verbose = TRUE</code> for debugging the API query.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/raster/man/brick.html'>raster::brick()</a></code>.</p>
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/terra/man/rast.html'>terra::rast()</a></code>.</p>
 <p>Other imagery utilities: 
 <code><a href='addProviderEspTiles.html'>addProviderEspTiles</a>()</code>,
 <code><a href='leaflet.providersESP.df.html'>leaflet.providersESP.df</a></code></p></div>
@@ -325,7 +325,7 @@ corresponding .geojson file by any other method and save it on your
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_raster.html'>tm_rgb</a></span><span class='op'>(</span>interpolate <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Murcia</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_getTiles-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Discarded ellps WGS 84 in Proj4 definition: +proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs +type=crs</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Discarded datum World Geodetic System 1984 in Proj4 definition</span></div><div class='img'><img src='esp_getTiles-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
