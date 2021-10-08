@@ -103,7 +103,7 @@
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -165,21 +165,30 @@
   <div class="col-md-9 contents">
     <div class="page-header">
       <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+      <small>Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/main/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="mapspain-development-version" class="section level1">
+<h1 class="page-header" data-toc-text="development version">
+<a href="#mapspain-development-version" class="anchor"></a>mapSpain (development version)<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fix an error on CRAN related with the cache folder <a href='https://github.com/rOpenSpain/mapSpain/issues/52'>#52</a>:</li>
+</ul>
+</div>
     <div id="mapspain-031" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.1">
 <a href="#mapspain-031" class="anchor"></a>mapSpain 0.3.1<small> 2021-09-10 </small>
 </h1>
 <ul>
-<li>Fix an error on CRAN related with the cache folder <a href="https://github.com/rOpenSpain/mapSpain/issues/52"><a href='https://github.com/rOpenSpain/mapSpain/issues/52'>#52</a></a>:
+<li>
+<p>Fix an error on CRAN related with the cache folder <a href='https://github.com/rOpenSpain/mapSpain/issues/52'>#52</a>:</p>
 <ul>
 <li>Add <code><a href="../reference/esp_clear_cache.html">mapSpain::esp_clear_cache()</a></code>
 </li>
 </ul>
 </li>
-<li>Update docs with <code>@family</code> tag.</li>
+<li><p>Update docs with <code>@family</code> tag.</p></li>
 </ul>
 </div>
     <div id="mapspain-030" class="section level1">
@@ -199,18 +208,18 @@
 <a href="#mapspain-023" class="anchor"></a>mapSpain 0.2.3<small> 2021-04-25 </small>
 </h1>
 <ul>
-<li>Move minimum version of <code>giscoR</code> to v0.2.4</li>
-<li>Fix typos on <code><a href="../reference/esp_dict_region_code.html">esp_dict_translate()</a></code> <a href="https://github.com/rOpenSpain/mapSpain/issues/36"><a href='https://github.com/rOpenSpain/mapSpain/issues/36'>#36</a></a>
-</li>
-<li>Not run examples on tiles, as the server sometimes doesn’t respond.</li>
-<li>Refactor <code>sysdata.rda</code>.</li>
-<li>CRAN fixes:
+<li><p>Move minimum version of <code>giscoR</code> to v0.2.4</p></li>
+<li><p>Fix typos on <code><a href="../reference/esp_dict_region_code.html">esp_dict_translate()</a></code> <a href="https://github.com/rOpenSpain/mapSpain/issues/36"><a href='https://github.com/rOpenSpain/mapSpain/issues/36'>#36</a></a></p></li>
+<li><p>Not run examples on tiles, as the server sometimes doesn’t respond.</p></li>
+<li><p>Refactor <code>sysdata.rda</code>.</p></li>
+<li>
+<p>CRAN fixes:</p>
 <ul>
 <li>Removed broken link on <code><a href="../reference/addProviderEspTiles.html">addProviderEspTiles()</a></code>.</li>
 <li>Vignette removed (CRAN warning).</li>
 </ul>
 </li>
-<li>Now the <code>cache</code> directory is created recursively.</li>
+<li><p>Now the <code>cache</code> directory is created recursively.</p></li>
 </ul>
 </div>
     <div id="mapspain-022" class="section level1">
@@ -238,10 +247,10 @@
 <a href="#mapspain-020" class="anchor"></a>mapSpain 0.2.0<small> 2021-02-25 </small>
 </h1>
 <ul>
-<li>Fix DOI <a href="https://doi.org/10.5281/zenodo.4318024" class="uri">https://doi.org/10.5281/zenodo.4318024</a>
-</li>
-<li>Documentation ported to roxygen2/markdown.</li>
-<li>Include CartoBase ANE data <a href="https://github.com/rOpenSpain/mapSpain/tree/sianedata" class="uri">https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>:
+<li><p>Fix DOI <a href="https://doi.org/10.5281/zenodo.4318024" class="uri">https://doi.org/10.5281/zenodo.4318024</a></p></li>
+<li><p>Documentation ported to roxygen2/markdown.</p></li>
+<li>
+<p>Include CartoBase ANE data <a href="https://github.com/rOpenSpain/mapSpain/tree/sianedata" class="uri">https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>:</p>
 <ul>
 <li><code><a href="../reference/esp_get_munic.html">mapSpain::esp_get_munic_siane()</a></code></li>
 <li><code><a href="../reference/esp_get_prov.html">mapSpain::esp_get_prov_siane()</a></code></li>
@@ -254,7 +263,7 @@
 <li><code><a href="../reference/esp_get_railway.html">mapSpain::esp_get_railway()</a></code></li>
 </ul>
 </li>
-<li>Mute warnings from <code>rgdal</code>.</li>
+<li><p>Mute warnings from <code>rgdal</code>.</p></li>
 </ul>
 </div>
     <div id="mapspain-012" class="section level1">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get sf polygons of the drainage basin demarcations of Spain — esp_get_hydrobasin • mapSpain</title>
+<title>Check access to SIANE data — esp_check_access • mapSpain</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -60,9 +60,9 @@
 <!-- rOpenSpain -->
 <link href="../ropenspain.css" rel="stylesheet">
 
-<meta property="og:title" content="Get sf polygons of the drainage basin demarcations of Spain — esp_get_hydrobasin" />
-<meta property="og:description" content="Loads a sf polygon object containing areas with the required
-hydrographic elements of Spain." />
+<meta property="og:title" content="Check access to SIANE data — esp_check_access" />
+<meta property="og:description" content="Check if R has access to resources at
+https://github.com/rOpenSpain/mapSpain/tree/sianedata." />
 <meta property="og:image" content="https://ropenspain.github.io/mapSpain/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@dhernangomez" />
@@ -166,120 +166,30 @@ hydrographic elements of Spain." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get <code>sf</code> polygons of the drainage basin demarcations of Spain</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/main/R/esp_get_hydrobasin.R'><code>R/esp_get_hydrobasin.R</code></a></small>
-    <div class="hidden name"><code>esp_get_hydrobasin.Rd</code></div>
+    <h1>Check access to SIANE data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rOpenSpain/mapSpain/blob/main/R/esp_check_access.R'><code>R/esp_check_access.R</code></a></small>
+    <div class="hidden name"><code>esp_check_access.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Loads a <code>sf</code> polygon object containing areas with the required
-hydrographic elements of Spain.</p>
+    <p>Check if R has access to resources at
+<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>esp_get_hydrobasin</span><span class='op'>(</span>
-  epsg <span class='op'>=</span> <span class='st'>"4258"</span>,
-  cache <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  update_cache <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  cache_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  resolution <span class='op'>=</span> <span class='st'>"3"</span>,
-  domain <span class='op'>=</span> <span class='st'>"land"</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>esp_check_access</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>epsg</th>
-      <td><p>projection of the map: 4-digit <a href='https://epsg.io/'>EPSG code</a>.
-One of:</p><ul>
-<li><p><code>"4258"</code>: ETRS89</p></li>
-<li><p><code>"4326"</code>: WGS84</p></li>
-<li><p><code>"3035"</code>: ETRS89 / ETRS-LAEA</p></li>
-<li><p><code>"3857"</code>: Pseudo-Mercator</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>cache</th>
-      <td><p>A logical whether to do caching. Default is <code>TRUE</code>. See
-<strong>About caching</strong>.</p></td>
-    </tr>
-    <tr>
-      <th>update_cache</th>
-      <td><p>A logical whether to update cache. Default is <code>FALSE</code>.
-When set to <code>TRUE</code> it would force a fresh download of the source file.</p></td>
-    </tr>
-    <tr>
-      <th>cache_dir</th>
-      <td><p>A path to a cache directory. See <strong>About caching</strong>.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Logical, displays information. Useful for debugging,
-default is <code>FALSE</code>.</p></td>
-    </tr>
-    <tr>
-      <th>resolution</th>
-      <td><p>Resolution of the polygon. Values available are
-<code>"3"</code>, <code>"6.5"</code> or <code>"10"</code>.</p></td>
-    </tr>
-    <tr>
-      <th>domain</th>
-      <td><p>Possible values are <code>"land"</code>, that includes only
-the ground part or the ground or <code>"landsea"</code>, that includes both the ground
-and the related sea waters of the basin</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>IGN data via a custom CDN (see
-<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata'>https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>).</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A <code>sf</code> polygon object.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Metadata available on
-<a href='https://github.com/rOpenSpain/mapSpain/tree/sianedata/'>https://github.com/rOpenSpain/mapSpain/tree/sianedata/</a>.</p>
-    <h2 class="hasAnchor" id="about-caching"><a class="anchor" href="#about-caching"></a>About caching</h2>
-
-    <p>You can set your <code>cache_dir</code> with <code><a href='esp_set_cache_dir.html'>esp_set_cache_dir()</a></code>.</p>
-<p>Sometimes cached files may be corrupt. On that case, try re-downloading
-the data setting <code>update_cache = TRUE</code>.</p>
-<p>If you experience any problem on download, try to download the
-corresponding .geojson file by any other method and save it on your
-<code>cache_dir</code>. Use the option <code>verbose = TRUE</code> for debugging the API query.</p>
+    <p>a logical.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other natural: 
-<code><a href='esp_get_hypsobath.html'>esp_get_hypsobath</a>()</code>,
-<code><a href='esp_get_rivers.html'>esp_get_rivers</a>()</code></p></div>
+    <div class='dont-index'><p><code><a href='https://ropengov.github.io/giscoR/reference/gisco_check_access.html'>giscoR::gisco_check_access()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='va'>all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_prov.html'>esp_get_prov</a></span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='va'>hydroland</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_hydrobasin</span><span class='op'>(</span>domain <span class='op'>=</span> <span class='st'>"land"</span><span class='op'>)</span>
-<span class='va'>hydrolandsea</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_hydrobasin</span><span class='op'>(</span>domain <span class='op'>=</span> <span class='st'>"landsea"</span><span class='op'>)</span>
-
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hydrolandsea</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>9.5</span>, <span class='fl'>35</span>, <span class='fl'>4.5</span>, <span class='fl'>44</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span><span class='st'>"skyblue4"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>all</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"grey90"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hydroland</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"skyblue"</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span>, border.col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_text.html'>tm_text</a></span><span class='op'>(</span>
-    text <span class='op'>=</span> <span class='st'>"rotulo"</span>,
-    remove.overlap <span class='op'>=</span> <span class='cn'>TRUE</span>,
-    size <span class='op'>=</span> <span class='fl'>0.5</span>,
-    fontface <span class='op'>=</span> <span class='st'>"bold"</span>,
-    shadow <span class='op'>=</span> <span class='cn'>TRUE</span>
-  <span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>bg.color <span class='op'>=</span> <span class='st'>"grey95"</span><span class='op'>)</span>
-</div><div class='img'><img src='esp_get_hydrobasin-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><div class='input'>
+<span class='fu'>esp_check_access</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
