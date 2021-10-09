@@ -218,14 +218,15 @@
 <span class="va">tile</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">shape_pop</span>,
     type <span class="op">=</span> <span class="st">"IGNBase.Todo"</span>,
-    zoom <span class="op">=</span> <span class="fl">10</span>
+    zoom <span class="op">=</span> <span class="fl">10</span>,
+    bbox_expand <span class="op">=</span> <span class="fl">.1</span>
   <span class="op">)</span>
 
 <span class="co"># Plot</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 
-<span class="va">lims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_bbox.html">st_bbox</a></span><span class="op">(</span><span class="va">shape</span><span class="op">)</span><span class="op">)</span>
+<span class="va">lims</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/terra/man/ext.html">ext</a></span><span class="op">(</span><span class="va">tile</span><span class="op">)</span><span class="op">@</span><span class="va">ptr</span><span class="op">$</span><span class="va">vector</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/remove_missing.html">remove_missing</a></span><span class="op">(</span><span class="va">shape_pop</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="reference/layer_spatraster.html">layer_spatraster</a></span><span class="op">(</span><span class="va">tile</span><span class="op">)</span> <span class="op">+</span>
@@ -240,8 +241,9 @@
     guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">""</span>, <span class="op">)</span>
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>
-    xlim <span class="op">=</span> <span class="va">lims</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span>,
-    ylim <span class="op">=</span> <span class="va">lims</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span>
+    xlim <span class="op">=</span> <span class="va">lims</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">]</span>,
+    ylim <span class="op">=</span> <span class="va">lims</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span>,
+    expand <span class="op">=</span> <span class="cn">FALSE</span>
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"Share of women in Segovia by town (2019)"</span>,
