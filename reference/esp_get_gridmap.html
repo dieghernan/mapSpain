@@ -215,21 +215,6 @@ represented equally dismissing the bias.</p>
 provided (in this case , all the provinces of Andalucia).</p>
 <p>Results are provided in <strong>EPSG:4258</strong>, use <code><a href='https://r-spatial.github.io/sf/reference/st_transform.html'>sf::st_transform()</a></code>
 to change the projection.</p>
-    <h2 class="hasAnchor" id="about-caching"><a class="anchor" href="#about-caching"></a>About caching</h2>
-
-    <p>You can set your <code>cache_dir</code> with <code><a href='esp_set_cache_dir.html'>esp_set_cache_dir()</a></code>.</p>
-<p>Sometimes cached files may be corrupt. On that case, try re-downloading
-the data setting <code>update_cache = TRUE</code>.</p>
-<p>If you experience any problem on download, try to download the
-corresponding .geojson file by any other method and save it on your
-<code>cache_dir</code>. Use the option <code>verbose = TRUE</code> for debugging the API query.</p>
-    <h2 class="hasAnchor" id="displacing-the-canary-islands"><a class="anchor" href="#displacing-the-canary-islands"></a>Displacing the Canary Islands</h2>
-
-    <p>While <code>moveCAN</code> is useful for visualization, it would alter the actual
-geographic position of the Canary Islands. When using the output for
-spatial analysis or using tiles (e.g. with <code><a href='esp_getTiles.html'>esp_getTiles()</a></code> or
-<code><a href='addProviderEspTiles.html'>addProviderEspTiles()</a></code>)  this option should be set to <code>FALSE</code> in order to
-get the actual coordinates, instead of the modified ones.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>Other political: 
