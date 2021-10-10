@@ -263,31 +263,31 @@ get the actual coordinates, instead of the modified ones.</p>
 <span class='va'>Line</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_can_provinces</span><span class='op'>(</span><span class='op'>)</span>
 
 <span class='co'># Plot</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
-
-
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Provs</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Box</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_lines.html'>tm_lines</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Line</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_lines.html'>tm_lines</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>Provs</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Box</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Line</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_can_box-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># Displacing Canary</span>
 
-<span class='va'>Provs_D</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_prov.html'>esp_get_prov</a></span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># By same factor</span>
 
-<span class='va'>Box_D</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_can_box</span><span class='op'>(</span>style <span class='op'>=</span> <span class='st'>"left"</span>, moveCAN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>displace</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>0</span><span class='op'>)</span>
 
-<span class='va'>Line_D</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_can_provinces</span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>15</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>Provs_D</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_prov.html'>esp_get_prov</a></span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='va'>displace</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Provs_D</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Box_D</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_lines.html'>tm_lines</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Line_D</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_lines.html'>tm_lines</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>Box_D</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_can_box</span><span class='op'>(</span>style <span class='op'>=</span> <span class='st'>"left"</span>, moveCAN <span class='op'>=</span> <span class='va'>displace</span><span class='op'>)</span>
+
+<span class='va'>Line_D</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_can_provinces</span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='va'>displace</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>Provs_D</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Box_D</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>Line_D</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_can_box-2.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Example with poly option</span>
@@ -320,18 +320,17 @@ get the actual coordinates, instead of the modified ones.</p>
 
 <span class='co'># Plot</span>
 
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>Countries</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>10</span>, <span class='fl'>34.6</span>, <span class='fl'>4.3</span>, <span class='fl'>44</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"#DFDFDF"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>CANbox</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span>col <span class='op'>=</span> <span class='st'>"#C7E7FB"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>CANbox</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_borders</a></span><span class='op'>(</span>lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>CCAA</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_polygons</a></span><span class='op'>(</span><span class='st'>"#FDFBEA"</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_grid.html'>tm_graticules</a></span><span class='op'>(</span>lines <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
-    bg.color <span class='op'>=</span> <span class='st'>"#C7E7FB"</span>,
-    frame.double.line <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>Countries</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#DFDFDF"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>CANbox</span>, fill <span class='op'>=</span> <span class='st'>"#C7E7FB"</span>, lwd <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>CCAA</span>, fill <span class='op'>=</span> <span class='st'>"#FDFBEA"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>
+    xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>10</span>, <span class='fl'>4.3</span><span class='op'>)</span>,
+    ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>34.6</span>, <span class='fl'>44</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
+    panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#C7E7FB"</span><span class='op'>)</span>,
+    panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>
   <span class='op'>)</span>
 </div><div class='img'><img src='esp_get_can_box-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
