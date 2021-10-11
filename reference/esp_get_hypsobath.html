@@ -270,7 +270,7 @@ corresponding .geojson file by any other method and save it on your
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
 <span class='co'># This code would produce a nice plot - It will take a few seconds to run</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/mtennekes/tmap'>tmap</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
 <span class='va'>hypsobath</span> <span class='op'>&lt;-</span> <span class='fu'>esp_get_hypsobath</span><span class='op'>(</span><span class='op'>)</span>
 
@@ -311,33 +311,43 @@ corresponding .geojson file by any other method and save it on your
 <span class='va'>br_bath</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>levels</span><span class='op'>[</span><span class='va'>levels</span> <span class='op'>&lt;</span> <span class='fl'>0</span><span class='op'>]</span><span class='op'>)</span>
 <span class='va'>br_terrain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>levels</span><span class='op'>)</span> <span class='op'>-</span> <span class='va'>br_bath</span>
 
-<span class='fu'>bath_tints</span><span class='op'>(</span><span class='va'>br_bath</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "#71ABD8" "#7EB5E0" "#8DC1EA" "#9BCDF3" "#ACDBFB" "#BFE7FF" "#D8F2FE"</div><div class='input'>
 <span class='va'>pal</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'>bath_tints</span><span class='op'>(</span><span class='op'>(</span><span class='va'>br_bath</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'>hyps_tints</span><span class='op'>(</span><span class='op'>(</span><span class='va'>br_terrain</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
 
 <span class='co'># Plot Canary Islands</span>
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hypsobath</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>18.6</span>, <span class='fl'>27</span>, <span class='op'>-</span><span class='fl'>13</span>, <span class='fl'>29.5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span><span class='st'>"val_inf"</span>,
-    style <span class='op'>=</span> <span class='st'>"cat"</span>,
-    palette <span class='op'>=</span> <span class='va'>pal</span>,
-    title <span class='op'>=</span> <span class='st'>"Elevation"</span>,
-    legend.reverse <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>hypsobath</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>val_inf</span><span class='op'>)</span><span class='op'>)</span>,
+    color <span class='op'>=</span> <span class='cn'>NA</span>
   <span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>
-    legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span>
-  <span class='op'>)</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>
+    xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>18.6</span>, <span class='op'>-</span><span class='fl'>13</span><span class='op'>)</span>,
+    ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>27</span>, <span class='fl'>29.5</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guides.html'>guides</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guide_legend.html'>guide_legend</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Elevation"</span>,
+    direction <span class='op'>=</span> <span class='st'>"horizontal"</span>,
+    label.position <span class='op'>=</span> <span class='st'>"bottom"</span>,
+    title.position <span class='op'>=</span> <span class='st'>"top"</span>,
+    nrow <span class='op'>=</span> <span class='fl'>1</span>
+  <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"bottom"</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_hypsobath-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'># Plot Mainland</span>
-<span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_shape.html'>tm_shape</a></span><span class='op'>(</span><span class='va'>hypsobath</span>, bbox <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>9.5</span>, <span class='fl'>35.8</span>, <span class='fl'>4.4</span>, <span class='fl'>44</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_polygons.html'>tm_fill</a></span><span class='op'>(</span><span class='st'>"val_inf"</span>,
-    style <span class='op'>=</span> <span class='st'>"cat"</span>,
-    palette <span class='op'>=</span> <span class='va'>pal</span>,
-    title <span class='op'>=</span> <span class='st'>"Elevation"</span>,
-    legend.reverse <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>hypsobath</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>val_inf</span><span class='op'>)</span><span class='op'>)</span>,
+    color <span class='op'>=</span> <span class='cn'>NA</span>
   <span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tmap/man/tm_layout.html'>tm_layout</a></span><span class='op'>(</span>legend.outside <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>coord_sf</a></span><span class='op'>(</span>
+    xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>9.5</span>, <span class='fl'>4.4</span><span class='op'>)</span>,
+    ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>35.8</span>, <span class='fl'>44</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='va'>pal</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guides.html'>guides</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/guide_legend.html'>guide_legend</a></span><span class='op'>(</span>
+    title <span class='op'>=</span> <span class='st'>"Elevation"</span>,
+    keyheight <span class='op'>=</span> <span class='fl'>.8</span>
+  <span class='op'>)</span><span class='op'>)</span>
 </div><div class='img'><img src='esp_get_hypsobath-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
