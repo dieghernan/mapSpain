@@ -114,7 +114,7 @@ Years available are 2005 up to today.
       <i class="fa fa-align-justify"></i>
       </button>
       <span class="navbar-brand" id="ROS-navbar-brand">
-      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
+      <a class="navbar-link ROS-black" href="../index.html"><img src="../logo.png" alt="mapSpain-logo" id="ROS-navbar-logo">mapSpain</a> <span class="version label label-default hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0</span>
       </span>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -263,8 +263,8 @@ or <code>NULL</code> to get all the municipalities. See <strong>Details</strong>
     </tr>
     <tr>
       <th>munic</th>
-      <td><p>A name or <code><a href='https://rdrr.io/r/base/grep.html'>regex</a></code> expression with the names of the
-required municipalities. <code>NULL</code> would not produce any filtering.</p></td>
+      <td><p>A name or <code><a href='https://rdrr.io/r/base/grep.html'>regex</a></code> expression with the names of
+the required municipalities. <code>NULL</code> would not produce any filtering.</p></td>
     </tr>
     <tr>
       <th>moveCAN</th>
@@ -360,8 +360,10 @@ get the actual coordinates, instead of the modified ones.</p>
 <span class='va'>br</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
   <span class='fl'>0</span>, <span class='fl'>50</span>, <span class='fl'>100</span>, <span class='fl'>200</span>, <span class='fl'>500</span>,
   <span class='fl'>1000</span>, <span class='fl'>5000</span>, <span class='fl'>50000</span>, <span class='fl'>100000</span>,
-  <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>Base_pop</span><span class='op'>$</span><span class='va'>pob19</span><span class='op'>)</span>
+  <span class='cn'>Inf</span>
 <span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>Base_pop</span><span class='op'>$</span><span class='va'>cuts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cut.html'>cut</a></span><span class='op'>(</span><span class='va'>Base_pop</span><span class='op'>$</span><span class='va'>pob19</span>, <span class='va'>br</span>, dig.lab <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>
 
 <span class='co'># Plot</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
@@ -377,7 +379,7 @@ get the actual coordinates, instead of the modified ones.</p>
     fill <span class='op'>=</span> <span class='st'>"Persons"</span>
   <span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in FUN(X[[i]], ...): object 'cuts' not found</span></div><div class='img'><img src='esp_get_munic-1.png' alt='' width='700' height='433' /></div></pre>
+</div><div class='img'><img src='esp_get_munic-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
