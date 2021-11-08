@@ -134,6 +134,9 @@
     <li>
       <a href="../articles/articles/x01_regioncodes.html">Annex: Codes and names of the Spanish regions</a>
     </li>
+    <li>
+      <a href="../articles/articles/x02_mapasesp.html">mapSpain: Mapas de España en R [Spanish]</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -228,79 +231,98 @@ values.</p>
 <code><a href='esp_codelist.html'>esp_codelist</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Errioxa"</span>, <span class='st'>"Coruna"</span>, <span class='st'>"Gerona"</span>, <span class='st'>"Madrid"</span><span class='op'>)</span>
-
-<span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>No conversion - origin equal to destination</span></div><div class='output co'>#&gt; [1] "Errioxa" "Coruna"  "Gerona"  "Madrid" </div><div class='input'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span>, destination <span class='op'>=</span> <span class='st'>"nuts"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "ES23"  "ES111" "ES512" "ES30" </div><div class='input'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span>, destination <span class='op'>=</span> <span class='st'>"cpro"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "26" "15" "17" "28"</div><div class='input'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span>, destination <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "ES-RI" "ES-C"  "ES-GI" "ES-MD"</div><div class='input'>
-<span class='co'># From ISO2 to another codes</span>
-
-<span class='va'>iso2vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ES-M"</span>, <span class='st'>"ES-S"</span>, <span class='st'>"ES-SG"</span><span class='op'>)</span>
-<span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>iso2vals</span>, origin <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Madrid"    "Cantabria" "Segovia"  </div><div class='input'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>iso2vals</span>,
-  origin <span class='op'>=</span> <span class='st'>"iso2"</span>,
-  destination <span class='op'>=</span> <span class='st'>"nuts"</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "ES300" "ES130" "ES416"</div><div class='input'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>iso2vals</span>,
-  origin <span class='op'>=</span> <span class='st'>"iso2"</span>,
-  destination <span class='op'>=</span> <span class='st'>"cpro"</span>
-<span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "28" "39" "40"</div><div class='input'>
-<span class='co'># Mixing levels</span>
-<span class='va'>valsmix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Centro"</span>, <span class='st'>"Andalucia"</span>, <span class='st'>"Seville"</span>, <span class='st'>"Menorca"</span><span class='op'>)</span>
-<span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"nuts"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "ES4"   "ES61"  "ES618" "ES533"</div><div class='input'><span class='co'># \dontrun{</span>
-
-<span class='co'># Warning</span>
-
-<span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"codauto"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: No match on codauto found for Centro, Seville, Menorca</span></div><div class='output co'>#&gt; [1] NA   "01" NA   NA  </div><div class='input'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: No match on iso2 found for Centro, Menorca</span></div><div class='output co'>#&gt; [1] NA      "ES-AN" "ES-SE" NA     </div><div class='input'><span class='co'># }</span>
-
-
-<span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>
-  <span class='st'>"La Rioja"</span>, <span class='st'>"Sevilla"</span>, <span class='st'>"Madrid"</span>,
-  <span class='st'>"Jaen"</span>, <span class='st'>"Orense"</span>, <span class='st'>"Baleares"</span>
-<span class='op'>)</span>
-<span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "La Rioja"         "Seville"          "Madrid"           "Jaén"            
-#&gt; [5] "Ourense"          "Balearic Islands"</div><div class='input'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"es"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "La Rioja" "Sevilla"  "Madrid"   "Jaén"     "Orense"   "Baleares"</div><div class='input'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"ca"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "La Rioja"      "Sevilla"       "Madrid"        "Jaén"         
-#&gt; [5] "Ourense"       "Illes Balears"</div><div class='input'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"eu"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "Errioxa"         "Sevilla"         "Madril"          "Jaén"           
-#&gt; [5] "Ourense"         "Balear Uharteak"</div><div class='input'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"ga"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "A Rioxa"        "Sevilla"        "Madrid"         "Xaén"          
-#&gt; [5] "Ourense"        "Illas Baleares"</div><div class='input'>
-<span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"ga"</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $`La Rioja`
-#&gt; [1] "A Rioxa" "a rioxa" "A RIOXA"
-#&gt; 
-#&gt; $Sevilla
-#&gt; [1] "Sevilla"              "sevilla"              "SEVILLA"             
-#&gt; [4] "Provincia de Sevilla" "provincia de sevilla" "PROVINCIA DE SEVILLA"
-#&gt; 
-#&gt; $Madrid
-#&gt; [1] "Madrid"               "madrid"               "MADRID"              
-#&gt; [4] "Comunidade de Madrid" "comunidade de madrid" "COMUNIDADE DE MADRID"
-#&gt; 
-#&gt; $Jaen
-#&gt;  [1] "Xaén"              "Xaen"              "xaén"             
-#&gt;  [4] "xaen"              "XAÉN"              "XAEN"             
-#&gt;  [7] "Provincia de Xaén" "Provincia de Xaen" "provincia de xaén"
-#&gt; [10] "provincia de xaen" "PROVINCIA DE XAÉN" "PROVINCIA DE XAEN"
-#&gt; 
-#&gt; $Orense
-#&gt; [1] "Ourense"              "ourense"              "OURENSE"             
-#&gt; [4] "Provincia de Ourense" "provincia de ourense" "PROVINCIA DE OURENSE"
-#&gt; 
-#&gt; $Baleares
-#&gt; [1] "Illas Baleares"                 "illas baleares"                
-#&gt; [3] "ILLAS BALEARES"                 "Illas Baleares - Illes Balears"
-#&gt; [5] "illas baleares - illes balears" "ILLAS BALEARES - ILLES BALEARS"
-#&gt; </div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Errioxa"</span>, <span class='st'>"Coruna"</span>, <span class='st'>"Gerona"</span>, <span class='st'>"Madrid"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> No conversion - origin equal to destination</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Errioxa" "Coruna"  "Gerona"  "Madrid" </span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span>, destination <span class='op'>=</span> <span class='st'>"nuts"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ES23"  "ES111" "ES512" "ES30" </span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span>, destination <span class='op'>=</span> <span class='st'>"cpro"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "26" "15" "17" "28"</span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>vals</span>, destination <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ES-RI" "ES-C"  "ES-GI" "ES-MD"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># From ISO2 to another codes</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>iso2vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ES-M"</span>, <span class='st'>"ES-S"</span>, <span class='st'>"ES-SG"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>iso2vals</span>, origin <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Madrid"    "Cantabria" "Segovia"  </span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>iso2vals</span>,</span>
+<span class='r-in'>  origin <span class='op'>=</span> <span class='st'>"iso2"</span>,</span>
+<span class='r-in'>  destination <span class='op'>=</span> <span class='st'>"nuts"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ES300" "ES130" "ES416"</span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>iso2vals</span>,</span>
+<span class='r-in'>  origin <span class='op'>=</span> <span class='st'>"iso2"</span>,</span>
+<span class='r-in'>  destination <span class='op'>=</span> <span class='st'>"cpro"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "28" "39" "40"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Mixing levels</span></span>
+<span class='r-in'><span class='va'>valsmix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Centro"</span>, <span class='st'>"Andalucia"</span>, <span class='st'>"Seville"</span>, <span class='st'>"Menorca"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"nuts"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "ES4"   "ES61"  "ES618" "ES533"</span>
+<span class='r-in'><span class='co'># \dontrun{</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Warning</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"codauto"</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>No match on codauto found for Centro, Seville, Menorca</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] NA   "01" NA   NA  </span>
+<span class='r-in'><span class='fu'>esp_dict_region_code</span><span class='op'>(</span><span class='va'>valsmix</span>, destination <span class='op'>=</span> <span class='st'>"iso2"</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>No match on iso2 found for Centro, Menorca</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] NA      "ES-AN" "ES-SE" NA     </span>
+<span class='r-in'><span class='co'># }</span></span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>vals</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='st'>"La Rioja"</span>, <span class='st'>"Sevilla"</span>, <span class='st'>"Madrid"</span>,</span>
+<span class='r-in'>  <span class='st'>"Jaen"</span>, <span class='st'>"Orense"</span>, <span class='st'>"Baleares"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "La Rioja"         "Seville"          "Madrid"           "Jaén"            </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [5] "Ourense"          "Balearic Islands"</span>
+<span class='r-in'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"es"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "La Rioja" "Sevilla"  "Madrid"   "Jaén"     "Orense"   "Baleares"</span>
+<span class='r-in'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"ca"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "La Rioja"      "Sevilla"       "Madrid"        "Jaén"         </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [5] "Ourense"       "Illes Balears"</span>
+<span class='r-in'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"eu"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Errioxa"         "Sevilla"         "Madril"          "Jaén"           </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [5] "Ourense"         "Balear Uharteak"</span>
+<span class='r-in'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"ga"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "A Rioxa"        "Sevilla"        "Madrid"         "Xaén"          </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [5] "Ourense"        "Illas Baleares"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'>esp_dict_translate</span><span class='op'>(</span><span class='va'>vals</span>, lang <span class='op'>=</span> <span class='st'>"ga"</span>, all <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $`La Rioja`</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "A Rioxa" "a rioxa" "A RIOXA"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $Sevilla</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Sevilla"              "sevilla"              "SEVILLA"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [4] "Provincia de Sevilla" "provincia de sevilla" "PROVINCIA DE SEVILLA"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $Madrid</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Madrid"               "madrid"               "MADRID"              </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [4] "Comunidade de Madrid" "comunidade de madrid" "COMUNIDADE DE MADRID"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $Jaen</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] "Xaén"              "Xaen"              "xaén"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [4] "xaen"              "XAÉN"              "XAEN"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7] "Provincia de Xaén" "Provincia de Xaen" "provincia de xaén"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [10] "provincia de xaen" "PROVINCIA DE XAÉN" "PROVINCIA DE XAEN"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $Orense</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Ourense"              "ourense"              "OURENSE"             </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [4] "Provincia de Ourense" "provincia de ourense" "PROVINCIA DE OURENSE"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $Baleares</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "Illas Baleares"                 "illas baleares"                </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [3] "ILLAS BALEARES"                 "Illas Baleares - Illes Balears"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [5] "illas baleares - illes balears" "ILLAS BALEARES - ILLES BALEARS"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

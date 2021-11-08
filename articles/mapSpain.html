@@ -80,6 +80,9 @@
     <li>
       <a href="../articles/articles/x01_regioncodes.html">Annex: Codes and names of the Spanish regions</a>
     </li>
+    <li>
+      <a href="../articles/articles/x02_mapasesp.html">mapSpain: Mapas de España en R [Spanish]</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -217,11 +220,11 @@
 <span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="../reference/esp_codelist.html">esp_codelist</a></span>
 
 <span class="va">census</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">census</span>, <span class="va">codelist</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"codauto"</span><span class="op">)</span><span class="op">]</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/sp/man/merge.html">merge</a></span><span class="op">(</span><span class="va">census</span>, <span class="va">codelist</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"codauto"</span><span class="op">)</span><span class="op">]</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Summarize by CCAA</span>
 <span class="va">census_ccaa</span> <span class="op">&lt;-</span>
-  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/aggregate.sf.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">pob19</span>, <span class="va">men</span>, <span class="va">women</span><span class="op">)</span> <span class="op">~</span> <span class="va">codauto</span>, data <span class="op">=</span> <span class="va">census</span>, <span class="va">sum</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/sp/man/aggregate.html">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">pob19</span>, <span class="va">men</span>, <span class="va">women</span><span class="op">)</span> <span class="op">~</span> <span class="va">codauto</span>, data <span class="op">=</span> <span class="va">census</span>, <span class="va">sum</span><span class="op">)</span>
 
 <span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women</span> <span class="op">&lt;-</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">women</span> <span class="op">/</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">pob19</span>
 <span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women_lab</span> <span class="op">&lt;-</span>
@@ -230,7 +233,7 @@
 <span class="co"># Merge into spatial data</span>
 
 <span class="va">CCAA_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">CCAA_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">CCAA_sf</span>, <span class="va">census_ccaa</span><span class="op">)</span>
+<span class="va">CCAA_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sp/man/merge.html">merge</a></span><span class="op">(</span><span class="va">CCAA_sf</span>, <span class="va">census_ccaa</span><span class="op">)</span>
 <span class="va">Can</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_can_box.html">esp_get_can_box</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">CCAA_sf</span><span class="op">)</span> <span class="op">+</span>
@@ -273,7 +276,7 @@
 <span class="va">municarea</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html">as.double</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_area</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">munic</span>, <span class="fl">3035</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fl">1000000</span><span class="op">)</span>
 <span class="va">munic</span><span class="op">$</span><span class="va">area</span> <span class="op">&lt;-</span> <span class="va">municarea</span>
 
-<span class="va">munic.pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">munic</span>, <span class="va">pop</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"cmun"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">munic.pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/sp/man/merge.html">merge</a></span><span class="op">(</span><span class="va">munic</span>, <span class="va">pop</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"cmun"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">munic.pop</span><span class="op">$</span><span class="va">dens</span> <span class="op">&lt;-</span> <span class="va">munic.pop</span><span class="op">$</span><span class="va">pob19</span> <span class="op">/</span> <span class="va">munic.pop</span><span class="op">$</span><span class="va">area</span>
 
 <span class="va">br</span> <span class="op">&lt;-</span>

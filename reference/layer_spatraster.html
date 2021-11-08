@@ -145,6 +145,9 @@ rasterVis
     <li>
       <a href="../articles/articles/x01_regioncodes.html">Annex: Codes and names of the Spanish regions</a>
     </li>
+    <li>
+      <a href="../articles/articles/x02_mapasesp.html">mapSpain: Mapas de España en R [Spanish]</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -221,7 +224,7 @@ rasterVis
 
     <p>This function requires both <strong>ggspatial</strong> and <strong>raster</strong> packages.</p>
 <p>You can install both running
-<code><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages("ggspatial", dependencies = TRUE)</a></code></p>
+<code>install.packages("ggspatial", dependencies = TRUE)</code></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://paleolimbot.github.io/ggspatial/reference/layer_spatial.Raster.html'>ggspatial::layer_spatial.Raster()</a></code>, <code><a href='https://rdrr.io/pkg/raster/man/stack.html'>raster::stack()</a></code>.</p>
@@ -231,25 +234,28 @@ rasterVis
 <code><a href='leaflet.providersESP.df.html'>leaflet.providersESP.df</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='co'># Get a SpatRaster</span>
-
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_ccaa.html'>esp_get_ccaa</a></span><span class='op'>(</span><span class='st'>"Galicia"</span><span class='op'>)</span>
-
-<span class='va'>tile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_getTiles.html'>esp_getTiles</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"PNOA"</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>tile</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "SpatRaster"
-#&gt; attr(,"package")
-#&gt; [1] "terra"</div><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>layer_spatraster</span><span class='op'>(</span><span class='va'>tile</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"yellow"</span>, fill <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Discarded datum Unknown based on GRS80 ellipsoid in Proj4 definition</span></div><div class='img'><img src='layer_spatraster-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># \donttest{</span></span>
+<span class='r-in'><span class='co'># Get a SpatRaster</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_ccaa.html'>esp_get_ccaa</a></span><span class='op'>(</span><span class='st'>"Galicia"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>tile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_getTiles.html'>esp_getTiles</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"PNOA"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>tile</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "SpatRaster"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> attr(,"package")</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "terra"</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'>layer_spatraster</span><span class='op'>(</span><span class='va'>tile</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"yellow"</span>, fill <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-wrn co'><span class='r-pr'>#&gt;</span> <span class='warning'>Warning: </span>Discarded datum Unknown based on GRS80 ellipsoid in Proj4 definition</span>
+<span class='r-plt img'><img src='layer_spatraster-1.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='co'># }</span></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

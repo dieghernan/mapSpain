@@ -135,6 +135,9 @@ GISCO (2016 version)." />
     <li>
       <a href="../articles/articles/x01_regioncodes.html">Annex: Codes and names of the Spanish regions</a>
     </li>
+    <li>
+      <a href="../articles/articles/x02_mapasesp.html">mapSpain: Mapas de España en R [Spanish]</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -209,39 +212,41 @@ GISCO (2016 version).</p>
 <code><a href='esp_get_nuts.html'>esp_get_nuts</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"esp_nuts.sf"</span><span class='op'>)</span>
-
-<span class='va'>nuts</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span>
-
-<span class='co'># Select NUTS 3</span>
-<span class='va'>nuts3</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span><span class='op'>[</span><span class='va'>esp_nuts.sf</span><span class='op'>$</span><span class='va'>LEVL_CODE</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='op'>]</span>
-
-<span class='co'># Combine with full shape</span>
-
-<span class='va'>spain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_country.html'>esp_get_country</a></span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-
-<span class='co'># Plot Urban Type: See</span>
-<span class='co'># https://ec.europa.eu/eurostat/web/rural-development/methodology</span>
-
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-
-<span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE_cat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE_cat</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "1" "2" "3"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE_cat</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Urban"</span>, <span class='st'>"Intermediate"</span>, <span class='st'>"Rural"</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>URBN_TYPE_cat</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>.1</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grey80"</span>, <span class='st'>"#FFC183"</span>, <span class='st'>"#68AC20"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>
-    title <span class='op'>=</span> <span class='st'>"NUTS3 levels of Spain"</span>,
-    fill <span class='op'>=</span> <span class='st'>"Urban topology"</span>
-  <span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>
-    legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.8</span>, <span class='fl'>.2</span><span class='op'>)</span>
-  <span class='op'>)</span>
-</div><div class='img'><img src='esp_nuts.sf-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"esp_nuts.sf"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>nuts</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Select NUTS 3</span></span>
+<span class='r-in'><span class='va'>nuts3</span> <span class='op'>&lt;-</span> <span class='va'>esp_nuts.sf</span><span class='op'>[</span><span class='va'>esp_nuts.sf</span><span class='op'>$</span><span class='va'>LEVL_CODE</span> <span class='op'>==</span> <span class='fl'>3</span>, <span class='op'>]</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Combine with full shape</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>spain</span> <span class='op'>&lt;-</span> <span class='fu'><a href='esp_get_country.html'>esp_get_country</a></span><span class='op'>(</span>moveCAN <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Plot Urban Type: See</span></span>
+<span class='r-in'><span class='co'># https://ec.europa.eu/eurostat/web/rural-development/methodology</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE_cat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE_cat</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "1" "2" "3"</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>$</span><span class='va'>URBN_TYPE_cat</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Urban"</span>, <span class='st'>"Intermediate"</span>, <span class='st'>"Rural"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>nuts3</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggsf.html'>geom_sf</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='va'>URBN_TYPE_cat</span><span class='op'>)</span>, lwd <span class='op'>=</span> <span class='fl'>.1</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"grey80"</span>, <span class='st'>"#FFC183"</span>, <span class='st'>"#68AC20"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span class='r-in'>    title <span class='op'>=</span> <span class='st'>"NUTS3 levels of Spain"</span>,</span>
+<span class='r-in'>    fill <span class='op'>=</span> <span class='st'>"Urban topology"</span></span>
+<span class='r-in'>  <span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_linedraw</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
+<span class='r-in'>    legend.position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>.8</span>, <span class='fl'>.2</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='op'>)</span></span>
+<span class='r-plt img'><img src='esp_nuts.sf-1.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
