@@ -1,12 +1,12 @@
 pandoc: 2.7.3
 pkgdown: 1.9000.9000.9000
-pkgdown_sha: 2672e30ef45d7b3d71e3c11801d89ae7d6567bbf
+pkgdown_sha: 27877baa6bf903ba5245f200960f450708966e91
 articles:
   working_imagery: articles/working_imagery.html
   x01_regioncodes: articles/x01_regioncodes.html
   x02_mapasesp: articles/x02_mapasesp.html
   mapSpain: mapSpain.html
-last_built: 2021-11-13T07:45Z
+last_built: 2021-11-13T09:22Z
 urls:
   reference: https://ropenspain.github.io/mapSpain/reference
   article: https://ropenspain.github.io/mapSpain/articles
