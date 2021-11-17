@@ -1,37 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ropenspain.github.io/mapSpain/404.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/articles/articles/working_imagery.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/articles/articles/x01_regioncodes.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/articles/articles/x02_mapasesp.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/articles/mapSpain.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/authors.html</loc>
-  </url>
-  <url>
     <loc>https://ropenspain.github.io/mapSpain/index.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/news/index.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/addProviderEspTiles.html</loc>
@@ -100,9 +70,6 @@
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_set_cache_dir.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/mapSpain/reference/index.html</loc>
-  </url>
-  <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/layer_spatraster.html</loc>
   </url>
   <url>
@@ -113,5 +80,14 @@
   </url>
   <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/pobmun19.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/mapSpain/articles/articles/working_imagery.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/mapSpain/articles/articles/x01_regioncodes.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/mapSpain/articles/mapSpain.html</loc>
   </url>
 </urlset>
