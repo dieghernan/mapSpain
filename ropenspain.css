@@ -85,6 +85,9 @@
      display: none;
 }
 /* Id for specific items */
+ #homelogoxs {
+     height: 24px;
+ }
  #ROS-search {
      margin-right: 10px;
 }
