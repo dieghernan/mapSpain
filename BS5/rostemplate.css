@@ -1,0 +1,208 @@
+/* Section: Syntax highlighter */
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+  background-color: transparent;
+}
+
+pre {
+  color: #505050;
+}
+
+pre a {
+  color: inherit;
+  font-weight: inherit
+}
+
+
+/* Keyword */
+
+pre code span.kw {
+  font-weight: bold
+}
+
+
+/* String */
+
+pre code span.st,
+pre code span.an,
+pre code span.ch,
+pre code span.cn {
+  color: #800080;
+}
+
+pre code span.cn {
+  font-weight: bold
+}
+
+
+/* Function */
+
+pre code span.fu {
+  color: #008b45;
+  font-weight: bold
+}
+
+
+/* Float */
+
+pre code span.fl {
+  color: #B452CD;
+}
+
+
+/* comment */
+
+pre code span.co {
+  color: #888888;
+}
+
+
+/* Section: Navbar */
+
+.navbar-light .navbar-brand {
+  font-weight: 300;
+}
+
+.navbar-light .navbar-brand:hover,
+.navbar-light .navbar-brand:focus {
+  color: #555555;
+}
+
+.navbar-light .nav-item {
+  text-transform: uppercase;
+  text-decoration: underline;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+  background-color: #986dbd;
+  color: white;
+}
+
+.navbar-light .navbar-nav .active>.nav-link:hover,
+.navbar-light .navbar-nav .active>.nav-link:focus {
+  background-color: #cab3dd;
+}
+
+.navbar-light .navbar-nav .nav-item>.nav-link:hover,
+.navbar-light .navbar-nav .nav-item>.nav-link:focus {
+  background-color: #cab3dd;
+}
+
+.navbar small {
+  font-size: 0.75rem;
+  padding-top: 0.65rem;
+  padding-right: 1rem;
+}
+
+.navbar small.text-muted {
+  color: #986dbd !important;
+}
+
+.navbar-light .navbar-nav .nav-item>.nav-link:hover {
+  background-color: #cab3dd;
+}
+
+
+/* Section: Misc */
+
+#toc>.nav a.nav-link.active {
+  color: white;
+  background-color: #986dbd;
+}
+
+.logo {
+  display: none;
+}
+
+
+/* Section: specific ros elements and classes */
+
+#ROS-navbar-logo {
+  margin-top: -4px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+.ROSh1 {
+  background: url('texture-bw.png') center center repeat;
+  padding: 20px 0;
+  color: #333333;
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.ROSh1 img {
+  display: none;
+}
+
+#homelogoxs {
+  height: 24px;
+  display: inline;
+}
+
+#ROS-heading-breadcrumbs {
+  padding-top: 10px;
+  padding-bottom: 1px;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+#ROS-partof {
+  font-weight: 300;
+  color: black;
+}
+
+.ROS-light {
+  font-weight: 300;
+}
+
+
+/* Section: Footer */
+
+
+/* Position hack to get full width footer even though pkgdown puts it inside a container * See: https://css-tricks.com/full-width-containers-limited-width-parents/ */
+
+#footer {
+  background: #555555;
+  padding: 50px 0;
+  color: #999999;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+#footer h1,
+#footer h2,
+#footer h3,
+#footer h4,
+#footer h5,
+#footer h6 {
+  color: #eeeeee;
+}
+
+#footer h4 {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#copyright {
+  margin: 0;
+  background: #333;
+  color: #ccc;
+  padding: 50px 0;
+  font-size: 12px;
+  line-height: 28px;
+}
