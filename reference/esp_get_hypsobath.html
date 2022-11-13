@@ -191,7 +191,7 @@ corresponding .geojson file by any other method and save it on your
 <span class="r-in"><span><span class="co"># Error on the data provided - There is an empty shape</span></span></span>
 <span class="r-in"><span><span class="co"># Remove:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">hypsobath</span> <span class="op">&lt;-</span> <span class="va">hypsobath</span><span class="op">[</span><span class="op">!</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sf/man/geos_query.html" class="external-link">st_is_empty</a></span><span class="op">(</span><span class="va">hypsobath</span><span class="op">)</span>, <span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">hypsobath</span> <span class="op">&lt;-</span> <span class="va">hypsobath</span><span class="op">[</span><span class="op">!</span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_query.html" class="external-link">st_is_empty</a></span><span class="op">(</span><span class="va">hypsobath</span><span class="op">)</span>, <span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Tints from Wikipedia</span></span></span>
 <span class="r-in"><span><span class="co"># https://en.wikipedia.org/wiki/Wikipedia:WikiProject_Maps/Conventions/Topographic_maps</span></span></span>
