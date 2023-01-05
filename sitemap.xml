@@ -112,6 +112,9 @@
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_get_simplified.html</loc>
   </url>
   <url>
+    <loc>https://ropenspain.github.io/mapSpain/reference/esp_make_provider.html</loc>
+  </url>
+  <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_munic.sf.html</loc>
   </url>
   <url>
@@ -119,6 +122,9 @@
   </url>
   <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_set_cache_dir.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/mapSpain/reference/esp_tiles_providers.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/index.html</loc>
