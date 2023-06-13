@@ -206,3 +206,13 @@ pre code span.co {
   font-size: 12px;
   line-height: 28px;
 }
+
+/* ---Caption figure--- */
+.caption,.figure {
+	color: #6c757d;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.5rem;
+	font-size: 85%;
+}
+
