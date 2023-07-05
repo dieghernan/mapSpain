@@ -29,6 +29,7 @@ test_that("tiles online", {
   # Skip test as tiles sometimes are not available
   skip_on_cran()
   skip_if_offline()
+  skip("Skip tile")
 
   save_png <- function(code, width = 200, height = 200) {
     path <- tempfile(fileext = ".png")
