@@ -14,7 +14,7 @@
 
     <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
   <a class="navbar-brand me-2" href="../index.html">
-    <img src="../logo.png" alt="mapSpain logo" height="32" class="d-inline-block me-1">mapSpain</a>
+    <img src="../logo.png" alt="mapSpain logo" height="40" class="d-inline-block me-1">mapSpain</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.7.0.9000</small>
 
@@ -71,12 +71,17 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="mapspain-development-version">mapSpain (development version)<a class="anchor" aria-label="anchor" href="#mapspain-development-version"></a></h2>
 <ul><li>Improve download of NUTS data from <strong>giscoR</strong>.</li>
+<li>Upgrade <code>esp_tiles_providers</code> to <a href="https://dieghernan.github.io/leaflet-providersESP/" class="external-link uri">https://dieghernan.github.io/leaflet-providersESP/</a> v1.3.3. New providers included:
+<ul><li><code>IDErioja.Base</code></li>
+<li><code>IDErioja.Relieve</code></li>
+<li><code>IDErioja.Claro</code></li>
+<li><code>IDErioja.Oscuro</code></li>
+</ul></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.7.0" id="mapspain-070">mapSpain 0.7.0<a class="anchor" aria-label="anchor" href="#mapspain-070"></a></h2><p class="text-muted">CRAN release: 2022-12-22</p>
-<ul><li><p>Upgrade <code>leaflet.providersESP.df</code> to <a href="https://dieghernan.github.io/leaflet-providersESP/" class="external-link uri">https://dieghernan.github.io/leaflet-providersESP/</a> v1.3.2.</p></li>
-<li>
-<p>Changes on how to package manages tiles providers:</p>
+<ul><li>Upgrade <code>leaflet.providersESP.df</code> to <a href="https://dieghernan.github.io/leaflet-providersESP/" class="external-link uri">https://dieghernan.github.io/leaflet-providersESP/</a> v1.3.2.</li>
+<li>Changes on how to package manages tiles providers:
 <ul><li>
 <code>leaflet.providersESP.df</code> is superseded in favor of <code>esp_tiles_providers</code>.</li>
 <li>You can use a custom url with the <code>type</code> argument in <code><a href="../reference/esp_getTiles.html">esp_getTiles()</a></code> <a href="https://github.com/rOpenSpain/mapSpain/issues/88" class="external-link">#88</a> .</li>
@@ -85,14 +90,13 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.2" id="mapspain-062">mapSpain 0.6.2<a class="anchor" aria-label="anchor" href="#mapspain-062"></a></h2><p class="text-muted">CRAN release: 2022-08-13</p>
-<ul><li><p>Now <code>moveCAN</code> is a explicit parameter in the relevant functions.</p></li>
-<li><p>Deprecate <code>layer_spatraster().</code> Use <code><a href="https://dieghernan.github.io/tidyterra/reference/geom_spatraster_rgb.html" class="external-link">tidyterra::geom_spatraster_rgb()</a></code> instead.</p></li>
-<li><p>Fix geometries on <code><a href="../reference/esp_get_gridmap.html">esp_get_hex_prov()</a></code> and <code><a href="../reference/esp_get_gridmap.html">esp_get_hex_ccaa()</a></code>.</p></li>
-<li><p>Add new function to get comarcas from INE: <code><a href="../reference/esp_get_comarca.html">esp_get_comarca()</a></code>.</p></li>
-<li>
-<p>Add new functions to get simplified maps from INE:</p>
-<ul><li><p><code><a href="../reference/esp_get_simplified.html">esp_get_simpl_prov()</a></code></p></li>
-<li><p><code><a href="../reference/esp_get_simplified.html">esp_get_simpl_ccaa()</a></code></p></li>
+<ul><li>Now <code>moveCAN</code> is a explicit parameter in the relevant functions.</li>
+<li>Deprecate <code>layer_spatraster().</code> Use <code><a href="https://dieghernan.github.io/tidyterra/reference/geom_spatraster_rgb.html" class="external-link">tidyterra::geom_spatraster_rgb()</a></code> instead.</li>
+<li>Fix geometries on <code><a href="../reference/esp_get_gridmap.html">esp_get_hex_prov()</a></code> and <code><a href="../reference/esp_get_gridmap.html">esp_get_hex_ccaa()</a></code>.</li>
+<li>Add new function to get comarcas from INE: <code><a href="../reference/esp_get_comarca.html">esp_get_comarca()</a></code>.</li>
+<li>Add new functions to get simplified maps from INE:
+<ul><li><code><a href="../reference/esp_get_simplified.html">esp_get_simpl_prov()</a></code></li>
+<li><code><a href="../reference/esp_get_simplified.html">esp_get_simpl_ccaa()</a></code></li>
 </ul></li>
 </ul></div>
     <div class="section level2">
@@ -101,21 +105,19 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.6.0" id="mapspain-060">mapSpain 0.6.0<a class="anchor" aria-label="anchor" href="#mapspain-060"></a></h2><p class="text-muted">CRAN release: 2022-02-18</p>
-<ul><li>
-<p>Upgrade <code>leaflet.providersESP.df</code> to <a href="https://dieghernan.github.io/leaflet-providersESP/" class="external-link uri">https://dieghernan.github.io/leaflet-providersESP/</a> v1.3.0. New providers:</p>
+<ul><li>Upgrade <code>leaflet.providersESP.df</code> to <a href="https://dieghernan.github.io/leaflet-providersESP/" class="external-link uri">https://dieghernan.github.io/leaflet-providersESP/</a> v1.3.0. New providers:
 <ul><li><code>Catastro.BuildingPart</code></li>
 <li><code>Catastro.AdministrativeBoundary</code></li>
 <li><code>Catastro.AdministrativeUnit</code></li>
 </ul></li>
-<li><p>Add new param <code>options</code> to <code><a href="../reference/esp_getTiles.html">esp_getTiles()</a></code>.</p></li>
-<li><p>Improve regex search on municipalities: Now the casing of the word is ignored.</p></li>
+<li>Add new param <code>options</code> to <code><a href="../reference/esp_getTiles.html">esp_getTiles()</a></code>.</li>
+<li>Improve regex search on municipalities: Now the casing of the word is ignored.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.5.0" id="mapspain-050">mapSpain 0.5.0<a class="anchor" aria-label="anchor" href="#mapspain-050"></a></h2><p class="text-muted">CRAN release: 2022-01-25</p>
-<ul><li><p>Rebuild coding database to avoid errors due to encoding.</p></li>
-<li><p>Fix translations on Galician.</p></li>
-<li>
-<p>New grid functions (<a href="https://github.com/rOpenSpain/mapSpain/issues/61" class="external-link">#61</a>):</p>
+<ul><li>Rebuild coding database to avoid errors due to encoding.</li>
+<li>Fix translations on Galician.</li>
+<li>New grid functions (<a href="https://github.com/rOpenSpain/mapSpain/issues/61" class="external-link">#61</a>):
 <ul><li><code><a href="../reference/esp_get_grid_MTN.html">esp_get_grid_MTN()</a></code></li>
 <li><code><a href="../reference/esp_get_grid_BDN.html">esp_get_grid_BDN()</a></code></li>
 <li><code><a href="../reference/esp_get_grid_EEA.html">esp_get_grid_EEA()</a></code></li>
@@ -149,16 +151,15 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.3" id="mapspain-023">mapSpain 0.2.3<a class="anchor" aria-label="anchor" href="#mapspain-023"></a></h2><p class="text-muted">CRAN release: 2021-04-25</p>
-<ul><li><p>Move minimum version of <code>giscoR</code> to v0.2.4</p></li>
-<li><p>Fix typos on <code><a href="../reference/esp_dict.html">esp_dict_translate()</a></code> <a href="https://github.com/rOpenSpain/mapSpain/issues/36" class="external-link">#36</a>.</p></li>
-<li><p>Not run examples on tiles, as the server sometimes doesn’t respond.</p></li>
-<li><p>Refactor <code>sysdata.rda</code>.</p></li>
-<li>
-<p>CRAN fixes:</p>
+<ul><li>Move minimum version of <code>giscoR</code> to v0.2.4</li>
+<li>Fix typos on <code><a href="../reference/esp_dict.html">esp_dict_translate()</a></code> <a href="https://github.com/rOpenSpain/mapSpain/issues/36" class="external-link">#36</a>.</li>
+<li>Not run examples on tiles, as the server sometimes doesn’t respond.</li>
+<li>Refactor <code>sysdata.rda</code>.</li>
+<li>CRAN fixes:
 <ul><li>Removed broken link on <code><a href="../reference/addProviderEspTiles.html">addProviderEspTiles()</a></code>.</li>
 <li>Vignette removed (CRAN warning).</li>
 </ul></li>
-<li><p>Now the <code>cache</code> directory is created recursively.</p></li>
+<li>Now the <code>cache</code> directory is created recursively.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.2" id="mapspain-022">mapSpain 0.2.2<a class="anchor" aria-label="anchor" href="#mapspain-022"></a></h2><p class="text-muted">CRAN release: 2021-04-17</p>
@@ -174,10 +175,10 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="mapspain-020">mapSpain 0.2.0<a class="anchor" aria-label="anchor" href="#mapspain-020"></a></h2><p class="text-muted">CRAN release: 2021-02-25</p>
-<ul><li><p>Fix DOI <a href="https://doi.org/10.5281/zenodo.4318024" class="external-link uri">https://doi.org/10.5281/zenodo.4318024</a></p></li>
-<li><p>Documentation ported to roxygen2/markdown.</p></li>
-<li>
-<p>Include CartoBase ANE data <a href="https://github.com/rOpenSpain/mapSpain/tree/sianedata" class="external-link uri">https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>:</p>
+<ul><li>Fix DOI <a href="https://doi.org/10.5281/zenodo.4318024" class="external-link uri">https://doi.org/10.5281/zenodo.4318024</a>
+</li>
+<li>Documentation ported to roxygen2/markdown.</li>
+<li>Include CartoBase ANE data <a href="https://github.com/rOpenSpain/mapSpain/tree/sianedata" class="external-link uri">https://github.com/rOpenSpain/mapSpain/tree/sianedata</a>:
 <ul><li><code><a href="../reference/esp_get_munic.html">mapSpain::esp_get_munic_siane()</a></code></li>
 <li><code><a href="../reference/esp_get_prov.html">mapSpain::esp_get_prov_siane()</a></code></li>
 <li><code><a href="../reference/esp_get_ccaa.html">mapSpain::esp_get_ccaa_siane()</a></code></li>
@@ -188,7 +189,7 @@
 <li><code><a href="../reference/esp_get_roads.html">mapSpain::esp_get_roads()</a></code></li>
 <li><code><a href="../reference/esp_get_railway.html">mapSpain::esp_get_railway()</a></code></li>
 </ul></li>
-<li><p>Mute warnings from <code>rgdal</code>.</p></li>
+<li>Mute warnings from <code>rgdal</code>.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.2" id="mapspain-012">mapSpain 0.1.2<a class="anchor" aria-label="anchor" href="#mapspain-012"></a></h2><p class="text-muted">CRAN release: 2021-01-05</p>
