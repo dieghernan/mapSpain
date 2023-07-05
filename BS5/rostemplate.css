@@ -128,11 +128,6 @@ pre code span.wa /* Warning        */ {border: 1px solid #FF0000}
      display: none;
 }
 /* Section: specific ros elements and classes */
- #ROS-navbar-logo {
-     margin-top: -10px;
-     height: 32px;
-     margin-right: 10px;
-}
  .ROSh1 {
      background: url('texture-bw.png') center center repeat;
      padding: 20px 0;
