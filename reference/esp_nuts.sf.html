@@ -79,33 +79,33 @@ GISCO (2016 version).</p>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <code>POLYGON</code> data frame (resolution: 1:1million, EPSG:4258) object with
-86 rows and fields:</p><dl><dt>COAST_TYPE</dt>
-<dd><p>COAST_TYPE</p></dd>
+    <p>A <code>sf</code> object (resolution: 1:1million, EPSG:4258) with
+86 rows and columns:</p><dl><dt>LEVL_CODE</dt>
+<dd><p>NUTS level code (0,1,2,3)</p></dd>
 
-<dt>FID</dt>
-<dd><p>FID</p></dd>
+<dt>NUTS_ID</dt>
+<dd><p>NUTS identifier</p></dd>
+
+<dt>URBN_TYPE</dt>
+<dd><p>Urban Type, see Details</p></dd>
+
+<dt>CNTR_CODE</dt>
+<dd><p>Eurostat Country code <code>ES</code></p></dd>
+
+<dt>NAME_LATN</dt>
+<dd><p>NUTS name on Latin characters</p></dd>
 
 <dt>NUTS_NAME</dt>
 <dd><p>NUTS name on local alphabet</p></dd>
 
 <dt>MOUNT_TYPE</dt>
-<dd><p>MOUNT_TYPE</p></dd>
+<dd><p>Mount Type, see Details</p></dd>
 
-<dt>NAME_LATN</dt>
-<dd><p>Name on Latin characters</p></dd>
+<dt>COAST_TYPE</dt>
+<dd><p>Coast Type, see Details</p></dd>
 
-<dt>CNTR_CODE</dt>
-<dd><p>Eurostat Country code</p></dd>
-
-<dt>URBN_TYPE</dt>
-<dd><p>URBN_TYPE</p></dd>
-
-<dt>NUTS_ID</dt>
-<dd><p>NUTS identifier</p></dd>
-
-<dt>LEVL_CODE</dt>
-<dd><p>NUTS level code (0,1,2,3)</p></dd>
+<dt>FID</dt>
+<dd><p>FID</p></dd>
 
 <dt>geometry</dt>
 <dd><p>geometry field</p></dd>
@@ -117,6 +117,26 @@ GISCO (2016 version).</p>
     <p><a href="https://gisco-services.ec.europa.eu/distribution/v2/nuts/" class="external-link">https://gisco-services.ec.europa.eu/distribution/v2/nuts/</a>, file
 <code>NUTS_RG_20M_2016_4326.geojson</code>.</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p><strong>MOUNT_TYPE</strong>: Mountain typology:</p><ul><li><p>1: More than 50 % of the surface is covered by topographic mountain areas.</p></li>
+<li><p>2: More than 50 % of the regional population lives in topographic
+mountain areas.</p></li>
+<li><p>3: More than 50 % of the surface is covered by topographic mountain areas
+and where more than 50 % of the regional population lives in these
+mountain areas.</p></li>
+<li><p>4: Non-mountain region / other regions.</p></li>
+<li><p>0: No classification provided</p></li>
+</ul><p><strong>URBN_TYPE</strong>: Urban-rural typology:</p><ul><li><p>1: Predominantly urban region.</p></li>
+<li><p>2: Intermediate region.</p></li>
+<li><p>3: Predominantly rural region.</p></li>
+<li><p>0: No classification provided</p></li>
+</ul><p><strong>COAST_TYPE</strong>: Coastal typology:</p><ul><li><p>1: Coastal (on coast).</p></li>
+<li><p>2: Coastal (less than 50% of population living within 50 km. of the
+coastline).</p></li>
+<li><p>3: Non-coastal region.</p></li>
+<li><p>0: No classification provided</p></li>
+</ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other datasets: 
