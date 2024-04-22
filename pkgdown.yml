@@ -1,13 +1,13 @@
-pandoc: 2.19.2
-pkgdown: 2.0.7
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
+  imagery: imagery.html
+  mapSpain: mapSpain.html
   working_imagery: working_imagery.html
   x01_regioncodes: x01_regioncodes.html
   x02_mapasesp: x02_mapasesp.html
-  imagery: imagery.html
-  mapSpain: mapSpain.html
-last_built: 2023-09-10T20:07Z
+last_built: 2024-04-22T20:02Z
 urls:
   reference: https://ropenspain.github.io/mapSpain/reference
   article: https://ropenspain.github.io/mapSpain/articles
