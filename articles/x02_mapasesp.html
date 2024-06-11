@@ -47,7 +47,7 @@
   <a class="navbar-brand me-2" href="../index.html">
     <img src="../apple-touch-icon-180x180.png" alt="mapSpain logo" height="40" class="d-inline-block me-1">mapSpain</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -138,15 +138,18 @@ espaciales).</p>
 <p>Las <strong>fuentes de información</strong> empleadas en
 <strong>mapSpain</strong> son:</p>
 <ul>
-<li><p><a href="https://ec.europa.eu/eurostat/web/gisco" class="external-link">GISCO</a>
-(Eurostat) via el paquete <a href="https://ropengov.github.io/giscoR/" class="external-link"><strong>giscoR</strong></a>.</p></li>
-<li><p><a href="https://www.ign.es/" class="external-link">Instituto Geografico Nacional</a>
-(IGN)</p></li>
-<li><p>Distintos organismos públicos de España que proporcionan
-servicios de teselas WMTS/WMS (<a href="https://www.idee.es/web/idee/segun-tipo-de-servicio" class="external-link uri">https://www.idee.es/web/idee/segun-tipo-de-servicio</a>).</p></li>
+<li>
+<a href="https://ec.europa.eu/eurostat/web/gisco" class="external-link">GISCO</a>
+(Eurostat) via el paquete <a href="https://ropengov.github.io/giscoR/" class="external-link"><strong>giscoR</strong></a>.</li>
+<li>
+<a href="https://www.ign.es/" class="external-link">Instituto Geografico Nacional</a>
+(IGN)</li>
+<li>Distintos organismos públicos de España que proporcionan servicios
+de teselas WMTS/WMS (<a href="https://www.idee.es/web/idee/segun-tipo-de-servicio" class="external-link uri">https://www.idee.es/web/idee/segun-tipo-de-servicio</a>).</li>
 </ul>
-<p>Los objetos resultantes se proporcionan en formato <code>sf</code> o
-<code>SpatRaster</code>(<code>terra</code>).</p>
+<p>Los objetos resultantes se proporcionan en formato <code>sf</code>
+(librería <strong>sf)</strong> o <code>SpatRaster</code>(librería
+<strong>terra</strong>).</p>
 <p>Página web: <a href="https://ropenspain.github.io/mapSpain/" class="uri">https://ropenspain.github.io/mapSpain/</a></p>
 </div>
 <div class="section level3">
@@ -164,12 +167,13 @@ servicios de teselas WMTS/WMS (<a href="https://www.idee.es/web/idee/segun-tipo-
 <p>Usando el <a href="https://ropenspain.r-universe.dev/ui#builds" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Enable this universe</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  ropenspain <span class="op">=</span> <span class="st">"https://ropenspain.r-universe.dev"</span>,</span>
-<span>  CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span></span>
-<span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mapSpain"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"mapSpain"</span>,</span>
+<span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"https://ropenspain.r-universe.dev"</span>,</span>
+<span>    <span class="st">"https://cloud.r-project.org"</span></span>
+<span>  <span class="op">)</span>,</span>
+<span>  dependencies <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="remotes">Remotes<a class="anchor" aria-label="anchor" href="#remotes"></a>
@@ -187,20 +191,13 @@ servicios de teselas WMTS/WMS (<a href="https://www.idee.es/web/idee/segun-tipo-
 <span></span>
 <span><span class="va">galicia</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic_siane</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Galicia"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="co"># Homogeinizo labels</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
-<span>    Provincia <span class="op">=</span> <span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">ine.prov.name</span>, <span class="st">"es"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Provincia <span class="op">=</span> <span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">ine.prov.name</span>, <span class="st">"es"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">galicia</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Provincia</span><span class="op">)</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"grey70"</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">Provincia</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Provincias de Galicia"</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="external-link">scale_fill_discrete</a></span><span class="op">(</span></span>
-<span>    type <span class="op">=</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"Blues"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="external-link">scale_fill_discrete</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">4</span>, <span class="st">"Blues"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="x02_mapasesp_files/figure-html/intro-1.png" width="100%"></p>
 <p>Si exploramos el dataset:</p>
@@ -208,8 +205,7 @@ servicios de teselas WMTS/WMS (<a href="https://www.idee.es/web/idee/segun-tipo-
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://glin.github.io/reactable/" class="external-link">reactable</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://glin.github.io/reactable/reference/reactable.html" class="external-link">reactable</a></span><span class="op">(</span><span class="va">galicia</span>,</span>
-<span>  searchable <span class="op">=</span> <span class="cn">TRUE</span>, striped <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  filterable <span class="op">=</span> <span class="cn">TRUE</span>, height <span class="op">=</span> <span class="fl">350</span>,</span>
+<span>  searchable <span class="op">=</span> <span class="cn">TRUE</span>, striped <span class="op">=</span> <span class="cn">TRUE</span>, filterable <span class="op">=</span> <span class="cn">TRUE</span>, height <span class="op">=</span> <span class="fl">350</span>,</span>
 <span>  elementId <span class="op">=</span> <span class="st">"munis-galicia"</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <div id="munis-galicia" class="reactable html-widget" style="width:auto;height:350px;"></div>
@@ -219,51 +215,70 @@ servicios de teselas WMTS/WMS (<a href="https://www.idee.es/web/idee/segun-tipo-
 <h3 id="comparando-mapspain-con-otras-alternativas">Comparando mapSpain con otras alternativas<a class="anchor" aria-label="anchor" href="#comparando-mapspain-con-otras-alternativas"></a>
 </h3>
 <p>Comparamos ahora <strong>mapSpain</strong> con otro paquete que
-proporciona objetos <code>sf</code> de distintos paises:</p>
+proporciona objetos <code>sf</code> o <code>SpatVector</code> de
+distintos paises:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># rnaturalearth</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/" class="external-link">rnaturalearth</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span> <span class="co"># manipulación de datos espaciales</span></span>
 <span></span>
-<span><span class="va">esp_rnat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">ne_countries</a></span><span class="op">(</span><span class="st">"large"</span>, country <span class="op">=</span> <span class="st">"Spain"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span>
+<span><span class="co"># rnaturalearth</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/" class="external-link">rnaturalearth</a></span><span class="op">)</span></span>
+<span><span class="va">esp_rnat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">ne_countries</a></span><span class="op">(</span><span class="st">"large"</span>, country <span class="op">=</span> <span class="st">"Spain"</span>, returnclass <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3857</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># mapSpain</span></span>
+<span><span class="va">esp_mapspain</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_country.html">esp_get_country</a></span><span class="op">(</span>epsg <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3857</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">esp_mapspain</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_country.html">esp_get_country</a></span><span class="op">(</span>epsg <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
+<span><span class="co"># geodata (GADM)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">geodata</span><span class="op">)</span></span>
+<span><span class="va">esp_geodata</span> <span class="op">&lt;-</span> <span class="fu">geodata</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geodata/man/gadm.html" class="external-link">gadm</a></span><span class="op">(</span><span class="st">"ES"</span>, path <span class="op">=</span> <span class="st">"."</span>, level <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># Convertimos de SpatVector a objecto sf</span></span>
+<span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3857</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># geoboundaries</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wmgeolab/rgeoboundaries" class="external-link">rgeoboundaries</a></span><span class="op">)</span></span>
+<span><span class="va">esp_rgeob</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/rgeoboundaries/man/geoboundaries.html" class="external-link">gb_adm0</a></span><span class="op">(</span><span class="st">"ESP"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3857</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Imagen Ria Ferrol</span></span>
-<span><span class="va">tile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>munic <span class="op">=</span> <span class="st">"Ferrol"</span>, epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span>,</span>
-<span>  <span class="st">"IGNBase.Gris"</span>,</span>
-<span>  bbox_expand <span class="op">=</span> <span class="fl">0.5</span>, zoommin <span class="op">=</span> <span class="fl">1</span></span>
-<span><span class="op">)</span></span>
+<span><span class="va">tile</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic_siane</a></span><span class="op">(</span>munic <span class="op">=</span> <span class="st">"Ferrol"</span>, epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="st">"IGNBase.Gris"</span>, bbox_expand <span class="op">=</span> <span class="fl">0.5</span>, zoommin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Prepara el plot</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dieghernan.github.io/tidyterra/" class="external-link">tidyterra</a></span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="va">esp_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">esp_rnat</span>, <span class="va">esp_mapspain</span><span class="op">)</span></span>
+<span><span class="va">esp_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">esp_rnat</span>, <span class="va">esp_mapspain</span>, <span class="va">esp_geodata</span>, <span class="va">esp_rgeob</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">esp_all</span><span class="op">$</span><span class="va">source</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"rnaturalearth"</span>, <span class="st">"mapSpain"</span><span class="op">)</span></span>
+<span><span class="va">esp_all</span><span class="op">$</span><span class="va">source</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://forcats.tidyverse.org/reference/as_factor.html" class="external-link">as_factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"rnaturalearth"</span>, <span class="st">"mapSpain"</span>, <span class="st">"geodata (GADM)"</span>,</span>
+<span>  <span class="st">"rgeoboundaries"</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">esp_all</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://dieghernan.github.io/tidyterra/reference/geom_spatraster_rgb.html" class="external-link">geom_spatraster_rgb</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">tile</span>, maxcell <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">source</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">source</span>, linetype <span class="op">=</span> <span class="va">source</span><span class="op">)</span>,</span>
 <span>    fill <span class="op">=</span> <span class="cn">NA</span>, show.legend <span class="op">=</span> <span class="st">"line"</span>,</span>
-<span>    linewidth <span class="op">=</span> <span class="fl">1.2</span></span>
+<span>    linewidth <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fl">0.7</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span></span>
-<span>    crs <span class="op">=</span> <span class="fl">4326</span>,</span>
-<span>    xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8.384421</span>, <span class="op">-</span><span class="fl">8.154413</span><span class="op">)</span>,</span>
-<span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43.43201</span>, <span class="fl">43.59545</span><span class="op">)</span>,</span>
+<span>    crs <span class="op">=</span> <span class="fl">4326</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">8.384421</span>, <span class="op">-</span><span class="fl">8.154413</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">43.43201</span>, <span class="fl">43.59545</span><span class="op">)</span>,</span>
 <span>    expand <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_color_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"black"</span>, <span class="st">"blue"</span>, <span class="st">"orange"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_linetype_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"solid"</span>, <span class="st">"dotted"</span>, <span class="st">"dashed"</span>, <span class="st">"twodash"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Ría de Ferrol"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="x02_mapasesp_files/figure-html/compara-1.png" width="100%"></p>
 <ul>
-<li><p><strong>rnaturalearth</strong>: No capta bien el
-contorno.</p></li>
-<li><p><strong>mapSpain</strong>: Resultados satisfactorios.</p></li>
+<li>
+<strong>rnaturalearth</strong>: No capta bien el contorno.</li>
+<li>
+<strong>mapSpain</strong>: Resultados satisfactorios.</li>
+<li>
+<strong>GADM</strong> (libería <strong>geodata</strong>) y
+<strong>rgeoboundaries</strong>: Resultados muy precisos.</li>
 </ul>
 </div>
 <div class="section level3">
@@ -307,8 +322,8 @@ el parámetro <code>install = TRUE</code></p>
 trabajar con textos y códigos:</p>
 <ul>
 <li>
-<p><code><a href="../reference/esp_dict.html">esp_dict_region_code()</a></code> convierte textos en códigos
-de CCAA y provincias. Esquemas de codificación soportados:</p>
+<code><a href="../reference/esp_dict.html">esp_dict_region_code()</a></code> convierte textos en códigos de
+CCAA y provincias. Esquemas de codificación soportados:
 <ul>
 <li>ISO2</li>
 <li>NUTS</li>
@@ -316,8 +331,8 @@ de CCAA y provincias. Esquemas de codificación soportados:</p>
 </ul>
 </li>
 <li>
-<p><code><a href="../reference/esp_dict.html">esp_dict_translate()</a></code> traduce textos a diferentes
-idiomas:</p>
+<code><a href="../reference/esp_dict.html">esp_dict_translate()</a></code> traduce textos a diferentes
+idiomas:
 <ul>
 <li>Castellano</li>
 <li>Inglés</li>
@@ -338,60 +353,62 @@ etc).</p>
 <code class="sourceCode R"><span><span class="va">vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Errioxa"</span>, <span class="st">"Coruna"</span>, <span class="st">"Gerona"</span>, <span class="st">"Madrid"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">vals</span>, destination <span class="op">=</span> <span class="st">"nuts"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ES23"  "ES111" "ES512" "ES30"</span></span>
-<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">vals</span>, destination <span class="op">=</span> <span class="st">"cpro"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "26" "15" "17" "28"</span></span>
-<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">vals</span>, destination <span class="op">=</span> <span class="st">"iso2"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ES-RI" "ES-C"  "ES-GI" "ES-MD"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "ES23"  "ES111" "ES512" "ES30"</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">vals</span>, destination <span class="op">=</span> <span class="st">"cpro"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "26" "15" "17" "28"</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">vals</span>, destination <span class="op">=</span> <span class="st">"iso2"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ES-RI" "ES-C"  "ES-GI" "ES-MD"</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Desde ISO a otros códigos</span></span>
 <span></span>
 <span><span class="va">iso2vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ES-M"</span>, <span class="st">"ES-S"</span>, <span class="st">"ES-SG"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">iso2vals</span>, origin <span class="op">=</span> <span class="st">"iso2"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Madrid"    "Cantabria" "Segovia"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "Madrid"    "Cantabria" "Segovia"</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="va">iso2vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ES-GA"</span>, <span class="st">"ES-CT"</span>, <span class="st">"ES-PV"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">iso2vals</span>,</span>
-<span>  origin <span class="op">=</span> <span class="st">"iso2"</span>,</span>
-<span>  destination <span class="op">=</span> <span class="st">"nuts"</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ES11" "ES51" "ES21"</span></span>
-<span></span>
+<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">iso2vals</span>, origin <span class="op">=</span> <span class="st">"iso2"</span>, destination <span class="op">=</span> <span class="st">"nuts"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ES11" "ES51" "ES21"</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="co"># Soporta diferentes niveles</span></span>
 <span><span class="va">valsmix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Centro"</span>, <span class="st">"Andalucia"</span>, <span class="st">"Seville"</span>, <span class="st">"Menorca"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">valsmix</span>, destination <span class="op">=</span> <span class="st">"nuts"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "ES4"   "ES61"  "ES618" "ES533"</span></span>
-<span></span>
-<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Murcia"</span>, <span class="st">"Las Palmas"</span>, <span class="st">"Aragón"</span><span class="op">)</span>,</span>
-<span>  destination <span class="op">=</span> <span class="st">"iso2"</span></span>
-<span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "ES4"   "ES61"  "ES618" "ES533"</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Murcia"</span>, <span class="st">"Las Palmas"</span>, <span class="st">"Aragón"</span><span class="op">)</span>, destination <span class="op">=</span> <span class="st">"iso2"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "ES-MC" "ES-GC" "ES-AR"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="esp_dict_translate">
 <code>esp_dict_translate()</code><a class="anchor" aria-label="anchor" href="#esp_dict_translate"></a>
 </h4>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"La Rioja"</span>, <span class="st">"Sevilla"</span>, <span class="st">"Madrid"</span>,</span>
-<span>  <span class="st">"Jaen"</span>, <span class="st">"Orense"</span>, <span class="st">"Baleares"</span></span>
-<span><span class="op">)</span></span>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"La Rioja"</span>, <span class="st">"Sevilla"</span>, <span class="st">"Madrid"</span>, <span class="st">"Jaen"</span>, <span class="st">"Orense"</span>, <span class="st">"Baleares"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"en"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "La Rioja"         "Seville"          "Madrid"           "Jaén"            </span></span>
-<span><span class="co">#&gt; [5] "Ourense"          "Balearic Islands"</span></span>
-<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"es"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "La Rioja" "Sevilla"  "Madrid"   "Jaén"     "Orense"   "Baleares"</span></span>
-<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"ca"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [5] "Ourense"          "Balearic Islands"</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"es"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "La Rioja" "Sevilla"  "Madrid"   "Jaén"     "Orense"   "Baleares"</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"ca"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "La Rioja"      "Sevilla"       "Madrid"        "Jaén"         </span></span>
-<span><span class="co">#&gt; [5] "Ourense"       "Illes Balears"</span></span>
-<span></span>
+<span><span class="co">#&gt; [5] "Ourense"       "Illes Balears"</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"eu"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Errioxa"         "Sevilla"         "Madril"          "Jaén"           </span></span>
-<span><span class="co">#&gt; [5] "Ourense"         "Balear Uharteak"</span></span>
-<span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"ga"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [5] "Ourense"         "Balear Uharteak"</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">vals</span>, lang <span class="op">=</span> <span class="st">"ga"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "A Rioxa"        "Sevilla"        "Madrid"         "Xaén"          </span></span>
 <span><span class="co">#&gt; [5] "Ourense"        "Illas Baleares"</span></span></code></pre></div>
 </div>
@@ -417,7 +434,7 @@ obtener límites políticos a diferentes niveles:</p>
 <code>esp_get_xxxx_siane()</code> (fuente: IGN).</p>
 <p>La información se proporciona en diferentes proyecciones y niveles de
 resolución.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">esp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_country.html">esp_get_country</a></span><span class="op">(</span>moveCAN <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">esp</span><span class="op">)</span> <span class="op">+</span></span>
@@ -433,7 +450,7 @@ se puede desactivar usando <code>moveCAN = FALSE</code>(ver anterior
 ejemplo).</p>
 <p>Proporcionamos funciones adicionales que permiten representar lineas
 alrededor de la inserción del mapa (<a href="https://ropenspain.github.io/mapSpain/reference/esp_get_can_box.html#examples">ejemplos</a>).</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">esp_can</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_country.html">esp_get_country</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">can_prov</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_can_box.html">esp_get_can_provinces</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">can_box</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_can_box.html">esp_get_can_box</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -450,19 +467,20 @@ desean realizar analisis espaciales, se debe usar
 <div class="section level3">
 <h3 id="nuts">NUTS<a class="anchor" aria-label="anchor" href="#nuts"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">nuts1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_nuts.html">esp_get_nuts</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="fl">20</span>, epsg <span class="op">=</span> <span class="fl">3035</span>, nuts_level <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">nuts1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"NUTS1: Baja Resolución"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="x02_mapasesp_files/figure-html/nuts-1.png" width="100%"></p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Baleares NUTS3</span></span>
 <span><span class="va">nuts3_baleares</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ES531"</span>, <span class="st">"ES532"</span>, <span class="st">"ES533"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="../reference/esp_dict.html">esp_dict_region_code</a></span><span class="op">(</span><span class="va">nuts3_baleares</span>, <span class="st">"nuts"</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">", "</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Eivissa y Formentera, Mallorca, Menorca"</span></span>
-<span></span>
+<span><span class="co">#&gt; [1] "Eivissa y Formentera, Mallorca, Menorca"</span></span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
 <span><span class="va">nuts3_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_nuts.html">esp_get_nuts</a></span><span class="op">(</span>region <span class="op">=</span> <span class="va">nuts3_baleares</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">nuts3_sf</span><span class="op">)</span> <span class="op">+</span></span>
@@ -475,17 +493,14 @@ desean realizar analisis espaciales, se debe usar
 <div class="section level3">
 <h3 id="ccaa">CCAA<a class="anchor" aria-label="anchor" href="#ccaa"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span>ccaa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Catalunya"</span>,</span>
-<span>  <span class="st">"Comunidad Valenciana"</span>,</span>
-<span>  <span class="st">"Aragón"</span>,</span>
+<span>  <span class="st">"Catalunya"</span>, <span class="st">"Comunidad Valenciana"</span>, <span class="st">"Aragón"</span>,</span>
 <span>  <span class="st">"Baleares"</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="va">ccaa</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
-<span>  ccaa_cat <span class="op">=</span> <span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">ccaa</span><span class="op">$</span><span class="va">ine.ccaa.name</span>, <span class="st">"ca"</span><span class="op">)</span></span>
-<span><span class="op">)</span></span>
+<span><span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="va">ccaa</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ccaa_cat <span class="op">=</span> <span class="fu"><a href="../reference/esp_dict.html">esp_dict_translate</a></span><span class="op">(</span><span class="va">ine.ccaa.name</span>, <span class="st">"ca"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">ccaa</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">ccaa_cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
@@ -499,16 +514,14 @@ desean realizar analisis espaciales, se debe usar
 </h3>
 <p>Si pasamos una entidad de orden superior (e.g. Andalucia) obtenemos
 todas las provincias de esa entidad.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">provs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_prov.html">esp_get_prov_siane</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  <span class="st">"Andalucía"</span>, <span class="st">"Ciudad Real"</span>,</span>
-<span>  <span class="st">"Murcia"</span>, <span class="st">"Ceuta"</span>, <span class="st">"Melilla"</span></span>
+<span>  <span class="st">"Andalucía"</span>, <span class="st">"Ciudad Real"</span>, <span class="st">"Murcia"</span>, <span class="st">"Ceuta"</span>,</span>
+<span>  <span class="st">"Melilla"</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">provs</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">prov.shortname.es</span><span class="op">)</span>,</span>
-<span>    alpha <span class="op">=</span> <span class="fl">0.9</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">prov.shortname.es</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_colour_discrete.html" class="external-link">scale_fill_discrete</a></span><span class="op">(</span>type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">12</span>, <span class="st">"Cividis"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"Provincias"</span><span class="op">)</span></span></code></pre></div>
@@ -517,7 +530,7 @@ todas las provincias de esa entidad.</p>
 <div class="section level3">
 <h3 id="municipios">Municipios<a class="anchor" aria-label="anchor" href="#municipios"></a>
 </h3>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">munic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Segovia"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="co"># Datos de ejemplo: Población INE</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="../reference/pobmun19.html">pobmun19</a></span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"cmun"</span><span class="op">)</span><span class="op">)</span></span>
@@ -526,13 +539,11 @@ todas las provincias de esa entidad.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">pob19</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.9</span>, color <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_fill_gradientn</a></span><span class="op">(</span></span>
 <span>    colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">100</span>, <span class="st">"Inferno"</span><span class="op">)</span>,</span>
-<span>    n.breaks <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>    labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">label_comma</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    n.breaks <span class="op">=</span> <span class="fl">10</span>, labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_number.html" class="external-link">label_comma</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span></span>
-<span>    fill <span class="op">=</span> <span class="st">"Habitantes"</span>,</span>
-<span>    title <span class="op">=</span> <span class="st">"Población en Segovia"</span>,</span>
+<span>    fill <span class="op">=</span> <span class="st">"Habitantes"</span>, title <span class="op">=</span> <span class="st">"Población en Segovia"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="st">"Datos INE (2019)"</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
@@ -548,7 +559,7 @@ todas las provincias de esa entidad.</p>
 <h3 id="hexbin-maps">Hexbin maps<a class="anchor" aria-label="anchor" href="#hexbin-maps"></a>
 </h3>
 <p>Disponibles como cuadrados y hexágonos, para provincias y CCAA.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cuad</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_gridmap.html">esp_get_hex_ccaa</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">hex</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_gridmap.html">esp_get_grid_prov</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -581,7 +592,7 @@ mapas dinámicos, a través del paquete <code>leaflet</code>.</p>
 </h3>
 <p>Tenemos varias opciones que podemos emplear para componer mapas
 base:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">madrid_munis</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic_siane</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Madrid"</span>, epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span><span class="va">base_pnoa</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">madrid_munis</span>, <span class="st">"IGNBase.Todo"</span>,</span>
 <span>  bbox_expand <span class="op">=</span> <span class="fl">0.1</span>,</span>
@@ -599,8 +610,9 @@ base:</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Municipios en Madrid"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="x02_mapasesp_files/figure-html/imagesestaticos-1.png" width="100%"></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
+<span></span>
 <span><span class="co"># Usando la opción mask</span></span>
 <span><span class="va">madrid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_munic.html">esp_get_munic_siane</a></span><span class="op">(</span>munic <span class="op">=</span> <span class="st">"^Madrid$"</span>, epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span></span>
@@ -622,7 +634,7 @@ base:</p>
 <h3 id="mapas-dinámicos-usando-mapspain">Mapas dinámicos usando mapSpain<a class="anchor" aria-label="anchor" href="#mapas-din%C3%A1micos-usando-mapspain"></a>
 </h3>
 <p>Estas capas se pueden usar también como fondo en mapas estáticos</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stations</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/esp_get_railway.html">esp_get_railway</a></span><span class="op">(</span>spatialtype <span class="op">=</span> <span class="st">"point"</span>, epsg <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/" class="external-link">leaflet</a></span><span class="op">)</span></span>
@@ -632,7 +644,7 @@ base:</p>
 <span>  width <span class="op">=</span> <span class="st">"100%"</span>,</span>
 <span>  height <span class="op">=</span> <span class="st">"60vh"</span></span>
 <span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/addProviderEspTiles.html">addProviderEspTiles</a></span><span class="op">(</span><span class="st">"IGNBase.Gris"</span>, group <span class="op">=</span> <span class="st">"Base"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/addProviderEspTiles.html">addProviderEspTiles</a></span><span class="op">(</span><span class="st">"IDErioja.Claro"</span>, group <span class="op">=</span> <span class="st">"Base"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/addProviderEspTiles.html">addProviderEspTiles</a></span><span class="op">(</span><span class="st">"MTN"</span>, group <span class="op">=</span> <span class="st">"MTN"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/addProviderEspTiles.html">addProviderEspTiles</a></span><span class="op">(</span><span class="st">"RedTransporte.Ferroviario"</span>,</span>
 <span>    group <span class="op">=</span> <span class="st">"Lineas Ferroviarias"</span></span>
@@ -651,7 +663,7 @@ base:</p>
 <span>    options <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/addLayersControl.html" class="external-link">layersControlOptions</a></span><span class="op">(</span>collapsed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <div id="railway" style="width:100%;height:60vh;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="railway">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://www.ign.es/wmts/ign-base?service=WMTS&request=GetTile&version=1.0.0&format=image/jpeg&layer=IGNBase-gris&style=default&tilematrixset=GoogleMapsCompatible&tilematrix={z}&tilerow={y}&tilecol={x}",null,"Base",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"minzoom":0,"maxzoom":18,"tilesize":256,"errortileurl":"","nowrap":false,"zoomoffset":0,"zoomreverse":false,"zindex":1,"detectretina":false,"attribution":"CC BY 4.0 scne.es. Sistema Geogr&aacute;fico Nacional <a href='http://www.ign.es'>IGN<\/a>"}]},{"method":"addTiles","args":["https://ign.es/wmts/mapa-raster?service=WMTS&request=GetTile&version=1.0.0&format=image/jpeg&layer=MTN&style=default&tilematrixset=GoogleMapsCompatible&tilematrix={z}&tilerow={y}&tilecol={x}",null,"MTN",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"minzoom":"4","maxzoom":18,"tilesize":256,"errortileurl":"","nowrap":false,"zoomoffset":0,"zoomreverse":false,"zindex":1,"detectretina":false,"attribution":"<a href='http://www.ign.es/'>Infraestructura de Datos Espaciales de Espa&ntilde;a (IDEE)<\/a>"}]},{"method":"addWMSTiles","args":["https://servicios.idee.es/wms-inspire/transportes",null,"Lineas Ferroviarias",{"styles":"","format":"image/png","transparent":"true","version":"1.1.1","errortileurl":"","nowrap":false,"detectretina":false,"attribution":"Sistema Geogr&aacute;fico Nacional <a href='http://www.scne.es'>SCNE<\/a>","layers":"TN.RailTransportNetwork.RailwayLink"}]},{"method":"addMarkers","args":[[42.3681757,42.2344825,43.35037519999999,43.4884313,42.8253168,39.5765104,39.5678668,39.7212199,43.2731665,39.7858268,39.7673633,42.8626639,43.2571787,42.24647739999999,42.2543243,43.31318429999999,42.6803454,43.2184226,43.0115629,42.44547199999999,42.8435368,42.33789139999999,43.5684294,43.3548274,43.458212,43.37119059999999,43.4123149,43.3539172,42.805588,42.5958904,42.5441784,41.5771605,42.51984929999999,38.9699522,38.9772961,38.9939971,38.9763083,38.8378309,41.9825733,39.17430270000001,38.89507100000001,42.1335355,41.5113524,41.45058429999999,41.3512459,41.3071935,41.55808069999999,40.6631816,40.2423422,41.23969779999999,41.15528279999999,39.6735551,39.6227378,39.4261805,39.4562643,39.5329917,39.48806800000001,41.7529547,41.368557,41.9200898,39.3899031,39.3653674,41.92825930000001,37.6557044,37.6036696,37.41011710000001,37.3853197,37.1832065,36.5424328,36.5193508,36.1291044,38.348935,42.4307774,42.6004088,42.458834,42.19834600000001,42.0083901,42.4621167,40.9626037,41.64877680000001,41.5624968,41.67219199999999,40.5466903,38.421228,38.32175449999999,41.1185686,41.6171292,41.6459313,41.7216123,39.0024412,40.4734398,39.9660993,37.1761598,36.8381056,40.9336307,36.69619,36.7115175,40.6484566,40.6455478,40.06483960000001,40.3419712,40.3288958,40.2409933,40.0286755,40.03426259999999,39.99108820000001,39.8626377,38.8628355,37.2600299,38.6999035,38.6900503,38.919118,38.9977339,38.2706756,37.97425149999999,37.8942674,37.7799395,43.54064229999999,40.4495958,40.5149078,40.6265975,40.74507859999999,40.82344349999999,41.3018837,42.0451674,42.051412,42.072877,42.2771811,42.3497348,42.8384514,43.1520749,43.26890770000001,43.29993839999999,43.1207679,43.30722819999999,43.3608246,43.4883296,43.3459153,42.8350651,43.3101338,43.2073115,43.006697,42.9041035,43.3189049,42.1643645,41.79060320000001,41.74200209999999,41.7215351,41.5180996,41.974738,42.7553496,42.397481,42.43724679999999,41.7546145,42.29797809999999,41.8240127,41.8274716,41.4698576,41.5872559,41.5765515,41.18611930000001,41.1878669,41.1015211,40.9365372,40.0462057,39.5906731,39.588641,39.078859,39.540697,38.775232,38.6224862,37.6497157,37.2085002,37.4335666,37.04749279999999,37.0908659,37.60745900000001,37.1901656,39.9439835,40.0347452,39.93210510000001,39.917617,39.9550121,40.5883778,38.9253191,39.173001,38.04285599999999,38.6564365,37.9975856,37.93770870000001,37.8247088,38.6891168,41.1446093,41.3270732,37.9973645,43.4123524,43.4535399,40.6054873,40.2484913,41.1921055,40.40460059999999,41.19393540000001,43.56372940000001,41.3974942,41.4237269,38.9900276,37.9671558,37.33025909999999,41.9638912,40.050392,39.4667555,39.44066349999999,36.6801039,43.3079398],[-3.6775396,-8.7130949,-1.7863264,-8.230400900000001,-1.6611195,2.6535346,3.2082201,2.9117682,-8.226929800000001,2.6986589,3.0251552,-8.549608499999998,-2.9239755,0.9616724,2.953117900000001,-1.9813905,-2.9525043,-2.7379608,-7.5462639,-8.618571600000001,-2.6748809,-7.8595468,-5.9168562,-8.4069342,-3.819986100000001,-5.846106700000001,-2.728769,-4.0519457,-5.626534100000001,-5.582349300000001,-6.597682600000001,1.6316422,-7.5098187,-5.801709899999999,-3.9088541,-0.520411,-0.180389,0.0998183,2.8207093,-0.2589582,-6.9741481,-0.409695,-5.7510272,2.2498144,-1.6388896,-4.9145534,2.1052241,-4.684980099999999,-3.702737700000001,-0.0375038,1.1184333,-0.2727265,-0.5896671999999998,-7.236524699999999,-6.385495299999999,-0.5706673999999999,-0.3352738000000001,-2.4686542,2.172080499999999,-4.493122099999999,-3.2051596,-0.4140082,2.2472671,-5.532775600000001,-0.9760407999999998,-1.5826742,-5.9781565,-3.606996100000001,-4.623338599999999,-6.284040399999999,-5.465220599999999,-0.4854443,1.9245828,-8.749295499999999,-2.4493717,2.1900603,-4.539500799999999,-6.0479038,-5.653057699999999,-0.8868244000000001,2.0116299,-3.6926947,-3.6355361,-6.407220400000001,-6.7733003,1.2583184,0.6455299,-4.7174545,1.827778,-3.3766021,-3.681581,-4.8376788,-5.788387999999999,-2.450015899999999,-4.1137489,-6.120107499999999,-4.4315883,-3.761991399999999,-3.182166399999999,-2.1376566,-1.1154903,-3.869283399999999,-3.769341499999999,-6.0934135,-3.619956199999999,-0.04494170000000001,-4.0110909,-1.0991649,-6.9503605,-0.4753782,-4.1154222,-6.341749899999999,-1.8545797,-0.6983522999999999,-1.1280881,-4.7758977,-3.790932299999999,-5.6670115,-3.5029882,-3.8779756,-4.011065099999999,-4.0560934,-3.962123199999999,-4.7125425,-6.637803000000001,-8.6497183,-8.6226059,-8.602903700000001,-8.587387399999997,-5.527700099999999,-5.839171299999999,-5.6242353,-5.688971399999999,-5.5702573,-5.837368499999998,-5.967374899999999,-6.1075265,-4.012372399999999,-4.191383399999999,-3.0379234,-3.1002707,-3.0162852,-2.191687,-1.9189592,-1.6695235,-1.173232,-1.1697446,-1.017712,-0.6325126,-0.5367567,-0.506953,2.1548602,3.1447006,2.662821399999999,2.1542702,1.8847278,1.7640086,1.9500386,2.5471753,2.2871227,1.4656342,1.5246195,0.6770402,0.8402191999999999,0.05066869999999999,-0.4573655999999999,-0.3307041,-0.5119188,-1.1788565,-0.9581374999999998,-0.8948389999999999,-0.7992689000000001,-2.918660399999999,-3.309021699999999,-4.7227909,-4.722396300000001,-5.731636900000001,-6.867648799999999,-6.0874086,-3.899011999999999,-3.8749754,-3.857682399999999,-3.732252800000001,-3.1234492,-1.6254378,-3.2317537,-3.6059045,-3.4439995,-3.8134791,-4.770539599999999,-4.9655713,-5.306092,-2.49891,-1.7912794,-1.0081727,-5.7049212,-5.8174408,-6.825882499999999,-3.835757,1.2721719,-3.6891884,-0.3229227,-5.714411499999999,2.182637,2.2174861,-0.1560105,-1.2068241,-4.811448699999999,-4.428262099999999,-2.171596499999999,-0.3913177,-0.364429,-4.4914926,-2.9931095],null,null,"Estaciones",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<strong>Burgos<\/strong>","<strong>Vigo<\/strong>","<strong>Irun<\/strong>","<strong>Ferrol<\/strong>","<strong>Pamplona/Iruña<\/strong>","<strong>Palma<\/strong>","<strong>Manacor<\/strong>","<strong>Inca<\/strong>","<strong>Betanzos<\/strong>","<strong>Sóller<\/strong>","<strong>Sa Pobla<\/strong>","<strong>Santiago de Compostela<\/strong>","<strong>Bilbao<\/strong>","<strong>La Pobla de Segur<\/strong>","<strong>Figueres<\/strong>","<strong>Donostia/San Sebastián<\/strong>","<strong>Miranda de Ebro<\/strong>","<strong>Amorebieta<\/strong>","<strong>Lugo<\/strong>","<strong>Pontevedra<\/strong>","<strong>Vitoria-Gasteiz<\/strong>","<strong>Ourense<\/strong>","<strong>Avilés<\/strong>","<strong>A Coruña<\/strong>","<strong>Santander<\/strong>","<strong>Oviedo<\/strong>","<strong>Bermeo<\/strong>","<strong>Torrelavega<\/strong>","<strong>La Robla<\/strong>","<strong>León<\/strong>","<strong>Ponferrada<\/strong>","<strong>Igualada<\/strong>","<strong>Monforte de Lemos<\/strong>","<strong>Villanueva de la Serena<\/strong>","<strong>Ciudad Real<\/strong>","<strong>Xàtiva<\/strong>","<strong>Gandia<\/strong>","<strong>Dénia<\/strong>","<strong>Girona<\/strong>","<strong>Cullera<\/strong>","<strong>Badajoz<\/strong>","<strong>Huesca<\/strong>","<strong>Zamora<\/strong>","<strong>Badalona<\/strong>","<strong>Calatayud<\/strong>","<strong>Medina del Campo<\/strong>","<strong>Sabadell<\/strong>","<strong>Ávila<\/strong>","<strong>Pinto<\/strong>","<strong>Caspe<\/strong>","<strong>Reus<\/strong>","<strong>Sagunto/Sagunt<\/strong>","<strong>Llíria<\/strong>","<strong>Valencia de Alcántara<\/strong>","<strong>Cáceres<\/strong>","<strong>Riba-roja de Túria<\/strong>","<strong>Valencia<\/strong>","<strong>Soria<\/strong>","<strong>Barcelona<\/strong>","<strong>Venta de Baños<\/strong>","<strong>Alcázar de San Juan<\/strong>","<strong>Silla<\/strong>","<strong>Vic<\/strong>","<strong>Lora del Río<\/strong>","<strong>Cartagena<\/strong>","<strong>Águilas<\/strong>","<strong>Sevilla<\/strong>","<strong>Granada<\/strong>","<strong>Fuengirola<\/strong>","<strong>Cádiz<\/strong>","<strong>Algeciras<\/strong>","<strong>Alicante/Alacant<\/strong>","<strong>Puigcerdà<\/strong>","<strong>Vilagarcía de Arousa<\/strong>","<strong>Logroño<\/strong>","<strong>Ripoll<\/strong>","<strong>Palencia<\/strong>","<strong>Astorga<\/strong>","<strong>Salamanca<\/strong>","<strong>Zaragoza<\/strong>","<strong>Terrassa<\/strong>","<strong>Aranda de Duero<\/strong>","<strong>Alcobendas-S.S. de los Reyes<\/strong>","<strong>Zafra<\/strong>","<strong>Jerez de los Caballeros<\/strong>","<strong>Tarragona<\/strong>","<strong>Lleida<\/strong>","<strong>Valladolid<\/strong>","<strong>Manresa<\/strong>","<strong>Manzanares<\/strong>","<strong>Madrid-Chamartín<\/strong>","<strong>Talavera de la Reina<\/strong>","<strong>Utrera<\/strong>","<strong>Almería<\/strong>","<strong>Segovia<\/strong>","<strong>Jerez de la Frontera<\/strong>","<strong>Málaga<\/strong>","<strong>Colmenar Viejo<\/strong>","<strong>Guadalajara<\/strong>","<strong>Cuenca<\/strong>","<strong>Teruel<\/strong>","<strong>Móstoles-El Soto<\/strong>","<strong>Parla<\/strong>","<strong>Plasencia<\/strong>","<strong>Aranjuez<\/strong>","<strong>Castellón de la Plana/Castelló de la Plana<\/strong>","<strong>Toledo<\/strong>","<strong>Almansa<\/strong>","<strong>Huelva<\/strong>","<strong>Alcoy/Alcoi<\/strong>","<strong>Puertollano<\/strong>","<strong>Mérida<\/strong>","<strong>Albacete<\/strong>","<strong>Elche/Elx<\/strong>","<strong>Murcia-del Carmen<\/strong>","<strong>Córdoba<\/strong>","<strong>Jaén<\/strong>","<strong>Gijón/Xixón<\/strong>","<strong>San Fernando de Henares<\/strong>","<strong>Pinar de las Rozas<\/strong>","<strong>Villalba<\/strong>","<strong>Cercedilla<\/strong>","<strong>Los Cotos<\/strong>","<strong>Olmedo-Alta Velocidad<\/strong>","<strong>Puebla de Sanabria<\/strong>","<strong>Tui<\/strong>","<strong>Guillarei<\/strong>","<strong>Redondela<\/strong>","<strong>Arcade<\/strong>","<strong>Matallana<\/strong>","<strong>La Pola de Lena<\/strong>","<strong>Laviana<\/strong>","<strong>El Entrego<\/strong>","<strong>Collanzo<\/strong>","<strong>Soto del Rey<\/strong>","<strong>Trubia<\/strong>","<strong>Pravia<\/strong>","<strong>Sierrapando<\/strong>","<strong>Mataporquera<\/strong>","<strong>Muskiz<\/strong>","<strong>Aranguren<\/strong>","<strong>Orduña<\/strong>","<strong>Altsasu/Alsasua<\/strong>","<strong>Pasaia<\/strong>","<strong>Castejón<\/strong>","<strong>Cabañas de Ebro<\/strong>","<strong>Grisén<\/strong>","<strong>Casetas<\/strong>","<strong>Fuentes de Ebro<\/strong>","<strong>Tardienta<\/strong>","<strong>Canfranc<\/strong>","<strong>Núria<\/strong>","<strong>Portbou<\/strong>","<strong>Massanes<\/strong>","<strong>Ribes de Freser<\/strong>","<strong>Sallent<\/strong>","<strong>Súria<\/strong>","<strong>Castellbisbal<\/strong>","<strong>Arenys de Mar<\/strong>","<strong>Granollers<\/strong>","<strong>Roda de Barà<\/strong>","<strong>Sant Vicenç de Calders<\/strong>","<strong>Móra la Nova<\/strong>","<strong>Vandellós<\/strong>","<strong>Benicasim/Benicàssim<\/strong>","<strong>Bétera<\/strong>","<strong>Rafelbunyol<\/strong>","<strong>Villanueva de Castellón<\/strong>","<strong>Utiel-Requena<\/strong>","<strong>La Encina<\/strong>","<strong>Villena- Alta Velocidad<\/strong>","<strong>Los Nietos<\/strong>","<strong>Huéneja-Dólar<\/strong>","<strong>Moreda<\/strong>","<strong>Bobadilla<\/strong>","<strong>Antequera-Santa Ana<\/strong>","<strong>Los Rosales<\/strong>","<strong>Huelva-Puerto<\/strong>","<strong>Monfragüe<\/strong>","<strong>Villaluenga-Yuncler<\/strong>","<strong>La Sagra<\/strong>","<strong>Algodor<\/strong>","<strong>Castillejo-Añover<\/strong>","<strong>Guadalajara-Yebes<\/strong>","<strong>Chinchilla de Monte-Aragón<\/strong>","<strong>Cinco Casas<\/strong>","<strong>Linares-Baeza<\/strong>","<strong>Santa Cruz de Mudela<\/strong>","<strong>Espelúy<\/strong>","<strong>Mirabueno<\/strong>","<strong>Almodóvar del Río<\/strong>","<strong>Almorchón<\/strong>","<strong>Torralba<\/strong>","<strong>Ateca<\/strong>","<strong>El Reguerón<\/strong>","<strong>El Berrón<\/strong>","<strong>Villabona de Asturias<\/strong>","<strong>Fuentes de Oñoro<\/strong>","<strong>Humanes<\/strong>","<strong>Camp de Tarragona<\/strong>","<strong>Madrid-Puerta de Atocha<\/strong>","<strong>Samper de Calanda<\/strong>","<strong>Puerto de Gijón/Xixón<\/strong>","<strong>Barcelona-Sants<\/strong>","<strong>Barcelona-França<\/strong>","<strong>Gandia-Port<\/strong>","<strong>Murcia-Mercancias<\/strong>","<strong>Puente Genil-Herrera<\/strong>","<strong>Magaz<\/strong>","<strong>Cuenca-Fernando Zóbel<\/strong>","<strong>Valencia-San Isidre<\/strong>","<strong>Valencia-Joaquín Sorolla<\/strong>","<strong>Los Prados<\/strong>","<strong>Santurtzi<\/strong>"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["Base","MTN"],["Lineas Ferroviarias","Estaciones"],{"collapsed":false,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[36.1291044,43.5684294],"lng":[-8.749295499999999,3.2082201]}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="railway">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://rts.larioja.org/mapa-base/rioja_claro/{z}/{x}/{y}.png",null,"Base",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"minzoom":0,"maxzoom":18,"tilesize":256,"errortileurl":"","nowrap":false,"zoomoffset":0,"zoomreverse":false,"zindex":1,"detectretina":false,"attribution":"CC BY 4.0 <a href='https://www.iderioja.org'>www.iderioja.org<\/a>"}]},{"method":"addTiles","args":["https://ign.es/wmts/mapa-raster?service=WMTS&request=GetTile&version=1.0.0&format=image/jpeg&layer=MTN&style=default&tilematrixset=GoogleMapsCompatible&tilematrix={z}&tilerow={y}&tilecol={x}",null,"MTN",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"minzoom":"4","maxzoom":18,"tilesize":256,"errortileurl":"","nowrap":false,"zoomoffset":0,"zoomreverse":false,"zindex":1,"detectretina":false,"attribution":"<a href='http://www.ign.es/'>Infraestructura de Datos Espaciales de Espa&ntilde;a (IDEE)<\/a>"}]},{"method":"addWMSTiles","args":["https://servicios.idee.es/wms-inspire/transportes",null,"Lineas Ferroviarias",{"styles":"","format":"image/png","transparent":"true","version":"1.1.1","errortileurl":"","nowrap":false,"detectretina":false,"attribution":"Sistema Geogr&aacute;fico Nacional <a href='http://www.scne.es'>SCNE<\/a>","layers":"TN.RailTransportNetwork.RailwayLink"}]},{"method":"addMarkers","args":[[42.3681757,42.2344825,43.35037519999999,43.4884313,42.8253168,39.5765104,39.5678668,39.7212199,43.2731665,39.7858268,39.7673633,42.8626639,43.2571787,42.24647739999999,42.2543243,43.31318429999999,42.6803454,43.2184226,43.0115629,42.44547199999999,42.8435368,42.33789139999999,43.5684294,43.3548274,43.458212,43.37119059999999,43.4123149,43.3539172,42.805588,42.5958904,42.5441784,41.5771605,42.51984929999999,38.9699522,38.9772961,38.9939971,38.9763083,38.8378309,41.9825733,39.17430270000001,38.89507100000001,42.1335355,41.5113524,41.45058429999999,41.3512459,41.3071935,41.55808069999999,40.6631816,40.2423422,41.23969779999999,41.15528279999999,39.6735551,39.6227378,39.4261805,39.4562643,39.5329917,39.48806800000001,41.7529547,41.368557,41.9200898,39.3899031,39.3653674,41.92825930000001,37.6557044,37.6036696,37.41011710000001,37.3853197,37.1832065,36.5424328,36.5193508,36.1291044,38.348935,42.4307774,42.6004088,42.458834,42.19834600000001,42.0083901,42.4621167,40.9626037,41.64877680000001,41.5624968,41.67219199999999,40.5466903,38.421228,38.32175449999999,41.1185686,41.6171292,41.6459313,41.7216123,39.0024412,40.4734398,39.9660993,37.1761598,36.8381056,40.9336307,36.69619,36.7115175,40.6484566,40.6455478,40.06483960000001,40.3419712,40.3288958,40.2409933,40.0286755,40.03426259999999,39.99108820000001,39.8626377,38.8628355,37.2600299,38.6999035,38.6900503,38.919118,38.9977339,38.2706756,37.97425149999999,37.8942674,37.7799395,43.54064229999999,40.4495958,40.5149078,40.6265975,40.74507859999999,40.82344349999999,41.3018837,42.0451674,42.051412,42.072877,42.2771811,42.3497348,42.8384514,43.1520749,43.26890770000001,43.29993839999999,43.1207679,43.30722819999999,43.3608246,43.4883296,43.3459153,42.8350651,43.3101338,43.2073115,43.006697,42.9041035,43.3189049,42.1643645,41.79060320000001,41.74200209999999,41.7215351,41.5180996,41.974738,42.7553496,42.397481,42.43724679999999,41.7546145,42.29797809999999,41.8240127,41.8274716,41.4698576,41.5872559,41.5765515,41.18611930000001,41.1878669,41.1015211,40.9365372,40.0462057,39.5906731,39.588641,39.078859,39.540697,38.775232,38.6224862,37.6497157,37.2085002,37.4335666,37.04749279999999,37.0908659,37.60745900000001,37.1901656,39.9439835,40.0347452,39.93210510000001,39.917617,39.9550121,40.5883778,38.9253191,39.173001,38.04285599999999,38.6564365,37.9975856,37.93770870000001,37.8247088,38.6891168,41.1446093,41.3270732,37.9973645,43.4123524,43.4535399,40.6054873,40.2484913,41.1921055,40.40460059999999,41.19393540000001,43.56372940000001,41.3974942,41.4237269,38.9900276,37.9671558,37.33025909999999,41.9638912,40.050392,39.4667555,39.44066349999999,36.6801039,43.3079398],[-3.6775396,-8.7130949,-1.7863264,-8.230400900000001,-1.6611195,2.6535346,3.2082201,2.9117682,-8.226929800000001,2.6986589,3.0251552,-8.549608499999998,-2.9239755,0.9616724,2.953117900000001,-1.9813905,-2.9525043,-2.7379608,-7.5462639,-8.618571600000001,-2.6748809,-7.8595468,-5.9168562,-8.4069342,-3.819986100000001,-5.846106700000001,-2.728769,-4.0519457,-5.626534100000001,-5.582349300000001,-6.597682600000001,1.6316422,-7.5098187,-5.801709899999999,-3.9088541,-0.520411,-0.180389,0.0998183,2.8207093,-0.2589582,-6.9741481,-0.409695,-5.7510272,2.2498144,-1.6388896,-4.9145534,2.1052241,-4.684980099999999,-3.702737700000001,-0.0375038,1.1184333,-0.2727265,-0.5896671999999998,-7.236524699999999,-6.385495299999999,-0.5706673999999999,-0.3352738000000001,-2.4686542,2.172080499999999,-4.493122099999999,-3.2051596,-0.4140082,2.2472671,-5.532775600000001,-0.9760407999999998,-1.5826742,-5.9781565,-3.606996100000001,-4.623338599999999,-6.284040399999999,-5.465220599999999,-0.4854443,1.9245828,-8.749295499999999,-2.4493717,2.1900603,-4.539500799999999,-6.0479038,-5.653057699999999,-0.8868244000000001,2.0116299,-3.6926947,-3.6355361,-6.407220400000001,-6.7733003,1.2583184,0.6455299,-4.7174545,1.827778,-3.3766021,-3.681581,-4.8376788,-5.788387999999999,-2.450015899999999,-4.1137489,-6.120107499999999,-4.4315883,-3.761991399999999,-3.182166399999999,-2.1376566,-1.1154903,-3.869283399999999,-3.769341499999999,-6.0934135,-3.619956199999999,-0.04494170000000001,-4.0110909,-1.0991649,-6.9503605,-0.4753782,-4.1154222,-6.341749899999999,-1.8545797,-0.6983522999999999,-1.1280881,-4.7758977,-3.790932299999999,-5.6670115,-3.5029882,-3.8779756,-4.011065099999999,-4.0560934,-3.962123199999999,-4.7125425,-6.637803000000001,-8.6497183,-8.6226059,-8.602903700000001,-8.587387399999997,-5.527700099999999,-5.839171299999999,-5.6242353,-5.688971399999999,-5.5702573,-5.837368499999998,-5.967374899999999,-6.1075265,-4.012372399999999,-4.191383399999999,-3.0379234,-3.1002707,-3.0162852,-2.191687,-1.9189592,-1.6695235,-1.173232,-1.1697446,-1.017712,-0.6325126,-0.5367567,-0.506953,2.1548602,3.1447006,2.662821399999999,2.1542702,1.8847278,1.7640086,1.9500386,2.5471753,2.2871227,1.4656342,1.5246195,0.6770402,0.8402191999999999,0.05066869999999999,-0.4573655999999999,-0.3307041,-0.5119188,-1.1788565,-0.9581374999999998,-0.8948389999999999,-0.7992689000000001,-2.918660399999999,-3.309021699999999,-4.7227909,-4.722396300000001,-5.731636900000001,-6.867648799999999,-6.0874086,-3.899011999999999,-3.8749754,-3.857682399999999,-3.732252800000001,-3.1234492,-1.6254378,-3.2317537,-3.6059045,-3.4439995,-3.8134791,-4.770539599999999,-4.9655713,-5.306092,-2.49891,-1.7912794,-1.0081727,-5.7049212,-5.8174408,-6.825882499999999,-3.835757,1.2721719,-3.6891884,-0.3229227,-5.714411499999999,2.182637,2.2174861,-0.1560105,-1.2068241,-4.811448699999999,-4.428262099999999,-2.171596499999999,-0.3913177,-0.364429,-4.4914926,-2.9931095],null,null,"Estaciones",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<strong>Burgos<\/strong>","<strong>Vigo<\/strong>","<strong>Irun<\/strong>","<strong>Ferrol<\/strong>","<strong>Pamplona/Iruña<\/strong>","<strong>Palma<\/strong>","<strong>Manacor<\/strong>","<strong>Inca<\/strong>","<strong>Betanzos<\/strong>","<strong>Sóller<\/strong>","<strong>Sa Pobla<\/strong>","<strong>Santiago de Compostela<\/strong>","<strong>Bilbao<\/strong>","<strong>La Pobla de Segur<\/strong>","<strong>Figueres<\/strong>","<strong>Donostia/San Sebastián<\/strong>","<strong>Miranda de Ebro<\/strong>","<strong>Amorebieta<\/strong>","<strong>Lugo<\/strong>","<strong>Pontevedra<\/strong>","<strong>Vitoria-Gasteiz<\/strong>","<strong>Ourense<\/strong>","<strong>Avilés<\/strong>","<strong>A Coruña<\/strong>","<strong>Santander<\/strong>","<strong>Oviedo<\/strong>","<strong>Bermeo<\/strong>","<strong>Torrelavega<\/strong>","<strong>La Robla<\/strong>","<strong>León<\/strong>","<strong>Ponferrada<\/strong>","<strong>Igualada<\/strong>","<strong>Monforte de Lemos<\/strong>","<strong>Villanueva de la Serena<\/strong>","<strong>Ciudad Real<\/strong>","<strong>Xàtiva<\/strong>","<strong>Gandia<\/strong>","<strong>Dénia<\/strong>","<strong>Girona<\/strong>","<strong>Cullera<\/strong>","<strong>Badajoz<\/strong>","<strong>Huesca<\/strong>","<strong>Zamora<\/strong>","<strong>Badalona<\/strong>","<strong>Calatayud<\/strong>","<strong>Medina del Campo<\/strong>","<strong>Sabadell<\/strong>","<strong>Ávila<\/strong>","<strong>Pinto<\/strong>","<strong>Caspe<\/strong>","<strong>Reus<\/strong>","<strong>Sagunto/Sagunt<\/strong>","<strong>Llíria<\/strong>","<strong>Valencia de Alcántara<\/strong>","<strong>Cáceres<\/strong>","<strong>Riba-roja de Túria<\/strong>","<strong>Valencia<\/strong>","<strong>Soria<\/strong>","<strong>Barcelona<\/strong>","<strong>Venta de Baños<\/strong>","<strong>Alcázar de San Juan<\/strong>","<strong>Silla<\/strong>","<strong>Vic<\/strong>","<strong>Lora del Río<\/strong>","<strong>Cartagena<\/strong>","<strong>Águilas<\/strong>","<strong>Sevilla<\/strong>","<strong>Granada<\/strong>","<strong>Fuengirola<\/strong>","<strong>Cádiz<\/strong>","<strong>Algeciras<\/strong>","<strong>Alicante/Alacant<\/strong>","<strong>Puigcerdà<\/strong>","<strong>Vilagarcía de Arousa<\/strong>","<strong>Logroño<\/strong>","<strong>Ripoll<\/strong>","<strong>Palencia<\/strong>","<strong>Astorga<\/strong>","<strong>Salamanca<\/strong>","<strong>Zaragoza<\/strong>","<strong>Terrassa<\/strong>","<strong>Aranda de Duero<\/strong>","<strong>Alcobendas-S.S. de los Reyes<\/strong>","<strong>Zafra<\/strong>","<strong>Jerez de los Caballeros<\/strong>","<strong>Tarragona<\/strong>","<strong>Lleida<\/strong>","<strong>Valladolid<\/strong>","<strong>Manresa<\/strong>","<strong>Manzanares<\/strong>","<strong>Madrid-Chamartín<\/strong>","<strong>Talavera de la Reina<\/strong>","<strong>Utrera<\/strong>","<strong>Almería<\/strong>","<strong>Segovia<\/strong>","<strong>Jerez de la Frontera<\/strong>","<strong>Málaga<\/strong>","<strong>Colmenar Viejo<\/strong>","<strong>Guadalajara<\/strong>","<strong>Cuenca<\/strong>","<strong>Teruel<\/strong>","<strong>Móstoles-El Soto<\/strong>","<strong>Parla<\/strong>","<strong>Plasencia<\/strong>","<strong>Aranjuez<\/strong>","<strong>Castellón de la Plana/Castelló de la Plana<\/strong>","<strong>Toledo<\/strong>","<strong>Almansa<\/strong>","<strong>Huelva<\/strong>","<strong>Alcoy/Alcoi<\/strong>","<strong>Puertollano<\/strong>","<strong>Mérida<\/strong>","<strong>Albacete<\/strong>","<strong>Elche/Elx<\/strong>","<strong>Murcia-del Carmen<\/strong>","<strong>Córdoba<\/strong>","<strong>Jaén<\/strong>","<strong>Gijón/Xixón<\/strong>","<strong>San Fernando de Henares<\/strong>","<strong>Pinar de las Rozas<\/strong>","<strong>Villalba<\/strong>","<strong>Cercedilla<\/strong>","<strong>Los Cotos<\/strong>","<strong>Olmedo-Alta Velocidad<\/strong>","<strong>Puebla de Sanabria<\/strong>","<strong>Tui<\/strong>","<strong>Guillarei<\/strong>","<strong>Redondela<\/strong>","<strong>Arcade<\/strong>","<strong>Matallana<\/strong>","<strong>La Pola de Lena<\/strong>","<strong>Laviana<\/strong>","<strong>El Entrego<\/strong>","<strong>Collanzo<\/strong>","<strong>Soto del Rey<\/strong>","<strong>Trubia<\/strong>","<strong>Pravia<\/strong>","<strong>Sierrapando<\/strong>","<strong>Mataporquera<\/strong>","<strong>Muskiz<\/strong>","<strong>Aranguren<\/strong>","<strong>Orduña<\/strong>","<strong>Altsasu/Alsasua<\/strong>","<strong>Pasaia<\/strong>","<strong>Castejón<\/strong>","<strong>Cabañas de Ebro<\/strong>","<strong>Grisén<\/strong>","<strong>Casetas<\/strong>","<strong>Fuentes de Ebro<\/strong>","<strong>Tardienta<\/strong>","<strong>Canfranc<\/strong>","<strong>Núria<\/strong>","<strong>Portbou<\/strong>","<strong>Massanes<\/strong>","<strong>Ribes de Freser<\/strong>","<strong>Sallent<\/strong>","<strong>Súria<\/strong>","<strong>Castellbisbal<\/strong>","<strong>Arenys de Mar<\/strong>","<strong>Granollers<\/strong>","<strong>Roda de Barà<\/strong>","<strong>Sant Vicenç de Calders<\/strong>","<strong>Móra la Nova<\/strong>","<strong>Vandellós<\/strong>","<strong>Benicasim/Benicàssim<\/strong>","<strong>Bétera<\/strong>","<strong>Rafelbunyol<\/strong>","<strong>Villanueva de Castellón<\/strong>","<strong>Utiel-Requena<\/strong>","<strong>La Encina<\/strong>","<strong>Villena- Alta Velocidad<\/strong>","<strong>Los Nietos<\/strong>","<strong>Huéneja-Dólar<\/strong>","<strong>Moreda<\/strong>","<strong>Bobadilla<\/strong>","<strong>Antequera-Santa Ana<\/strong>","<strong>Los Rosales<\/strong>","<strong>Huelva-Puerto<\/strong>","<strong>Monfragüe<\/strong>","<strong>Villaluenga-Yuncler<\/strong>","<strong>La Sagra<\/strong>","<strong>Algodor<\/strong>","<strong>Castillejo-Añover<\/strong>","<strong>Guadalajara-Yebes<\/strong>","<strong>Chinchilla de Monte-Aragón<\/strong>","<strong>Cinco Casas<\/strong>","<strong>Linares-Baeza<\/strong>","<strong>Santa Cruz de Mudela<\/strong>","<strong>Espelúy<\/strong>","<strong>Mirabueno<\/strong>","<strong>Almodóvar del Río<\/strong>","<strong>Almorchón<\/strong>","<strong>Torralba<\/strong>","<strong>Ateca<\/strong>","<strong>El Reguerón<\/strong>","<strong>El Berrón<\/strong>","<strong>Villabona de Asturias<\/strong>","<strong>Fuentes de Oñoro<\/strong>","<strong>Humanes<\/strong>","<strong>Camp de Tarragona<\/strong>","<strong>Madrid-Puerta de Atocha<\/strong>","<strong>Samper de Calanda<\/strong>","<strong>Puerto de Gijón/Xixón<\/strong>","<strong>Barcelona-Sants<\/strong>","<strong>Barcelona-França<\/strong>","<strong>Gandia-Port<\/strong>","<strong>Murcia-Mercancias<\/strong>","<strong>Puente Genil-Herrera<\/strong>","<strong>Magaz<\/strong>","<strong>Cuenca-Fernando Zóbel<\/strong>","<strong>Valencia-San Isidre<\/strong>","<strong>Valencia-Joaquín Sorolla<\/strong>","<strong>Los Prados<\/strong>","<strong>Santurtzi<\/strong>"],null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["Base","MTN"],["Lineas Ferroviarias","Estaciones"],{"collapsed":false,"autoZIndex":true,"position":"topright"}]}],"limits":{"lat":[36.1291044,43.5684294],"lng":[-8.749295499999999,3.2082201]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="section level2">
@@ -661,6 +673,132 @@ base:</p>
 adicionales</a> que permiten extraer información sobre altitud, rios y
 cuencas hidrográficas de España, así líneas y puntos de <a href="https://ropenspain.github.io/mapSpain/reference/index.html#section-infrastructures">infraestructuras</a>
 de España, como carreteras y líneas ferroviarias.</p>
+</div>
+<div class="section level2">
+<h2 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
+</h2>
+<details><summary>
+Details
+</summary><pre><code><span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
+<span><span class="co">#&gt;  version  R version 4.4.0 (2024-04-24 ucrt)</span></span>
+<span><span class="co">#&gt;  os       Windows Server 2022 x64 (build 20348)</span></span>
+<span><span class="co">#&gt;  system   x86_64, mingw32</span></span>
+<span><span class="co">#&gt;  ui       RTerm</span></span>
+<span><span class="co">#&gt;  language en</span></span>
+<span><span class="co">#&gt;  collate  English_United States.utf8</span></span>
+<span><span class="co">#&gt;  ctype    English_United States.utf8</span></span>
+<span><span class="co">#&gt;  tz       UTC</span></span>
+<span><span class="co">#&gt;  date     2024-06-11</span></span>
+<span><span class="co">#&gt;  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">─ Packages ───────────────────────────────────────────────────────────────────</span></span></span>
+<span><span class="co">#&gt;  <span style="color: #555555; font-style: italic;">package           </span> <span style="color: #555555; font-style: italic;">*</span> <span style="color: #555555; font-style: italic;">version   </span> <span style="color: #555555; font-style: italic;">date (UTC)</span> <span style="color: #555555; font-style: italic;">lib</span> <span style="color: #555555; font-style: italic;">source</span></span></span>
+<span><span class="co">#&gt;  bslib                0.7.0      <span style="color: #555555;">2024-03-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  cachem               1.1.0      <span style="color: #555555;">2024-05-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  class                7.3-22     <span style="color: #555555;">2023-05-03</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.4.0)</span></span></span>
+<span><span class="co">#&gt;  classInt             0.4-10     <span style="color: #555555;">2023-09-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  cli                  3.6.2      <span style="color: #555555;">2023-12-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  codetools            0.2-20     <span style="color: #555555;">2024-03-31</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.4.0)</span></span></span>
+<span><span class="co">#&gt;  colorspace           2.1-0      <span style="color: #555555;">2023-01-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  countrycode          1.6.0      <span style="color: #555555;">2024-03-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  crosstalk            1.2.1      <span style="color: #555555;">2023-11-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  crul                 1.4.2      <span style="color: #555555;">2024-04-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  curl                 5.2.1      <span style="color: #555555;">2024-03-01</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  DBI                  1.2.3      <span style="color: #555555;">2024-06-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  desc                 1.4.3      <span style="color: #555555;">2023-12-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  digest               0.6.35     <span style="color: #555555;">2024-03-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  dplyr              * 1.1.4      <span style="color: #555555;">2023-11-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  e1071                1.7-14     <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  evaluate             0.24.0     <span style="color: #555555;">2024-06-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  fansi                1.0.6      <span style="color: #555555;">2023-12-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  farver               2.1.2      <span style="color: #555555;">2024-05-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  fastmap              1.2.0      <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  forcats            * 1.0.0      <span style="color: #555555;">2023-01-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  fs                   1.6.4      <span style="color: #555555;">2024-04-25</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  generics             0.1.3      <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  geodata            * 0.6-1      <span style="color: #555555;">2024-06-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">Github (rspatial/geodata@50abd54)</span></span></span>
+<span><span class="co">#&gt;  geojsonsf            2.0.3      <span style="color: #555555;">2022-05-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  ggplot2            * 3.5.1      <span style="color: #555555;">2024-04-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  giscoR               0.5.0      <span style="color: #555555;">2024-05-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  glue                 1.7.0      <span style="color: #555555;">2024-01-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  gtable               0.3.5      <span style="color: #555555;">2024-04-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  highr                0.11       <span style="color: #555555;">2024-05-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  hms                  1.1.3      <span style="color: #555555;">2023-03-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  htmltools            0.5.8.1    <span style="color: #555555;">2024-04-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  htmlwidgets          1.6.4      <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  httpcode             0.3.0      <span style="color: #555555;">2020-04-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  httr                 1.4.7      <span style="color: #555555;">2023-08-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  jquerylib            0.1.4      <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  jsonlite             1.8.8      <span style="color: #555555;">2023-12-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  KernSmooth           2.23-22    <span style="color: #555555;">2023-07-10</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.4.0)</span></span></span>
+<span><span class="co">#&gt;  knitr                1.47       <span style="color: #555555;">2024-05-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  labeling             0.4.3      <span style="color: #555555;">2023-08-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  lattice              0.22-6     <span style="color: #555555;">2024-03-20</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.4.0)</span></span></span>
+<span><span class="co">#&gt;  leaflet            * 2.2.2      <span style="color: #555555;">2024-03-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  lifecycle            1.0.4      <span style="color: #555555;">2023-11-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  lubridate          * 1.9.3      <span style="color: #555555;">2023-09-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  magrittr             2.0.3      <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  mapSpain           * 0.9.1      <span style="color: #555555;">2024-06-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
+<span><span class="co">#&gt;  memoise              2.0.1      <span style="color: #555555;">2021-11-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  mime                 0.12       <span style="color: #555555;">2021-09-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  munsell              0.5.1      <span style="color: #555555;">2024-04-01</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  pillar               1.9.0      <span style="color: #555555;">2023-03-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  pkgconfig            2.0.3      <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  pkgdown              2.0.9      <span style="color: #555555;">2024-04-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@2.0.9)</span></span></span>
+<span><span class="co">#&gt;  png                  0.1-8      <span style="color: #555555;">2022-11-29</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  proxy                0.4-27     <span style="color: #555555;">2022-06-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  purrr              * 1.0.2      <span style="color: #555555;">2023-08-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  R.cache              0.16.0     <span style="color: #555555;">2022-07-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  R.methodsS3          1.8.2      <span style="color: #555555;">2022-06-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  R.oo                 1.26.0     <span style="color: #555555;">2024-01-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  R.utils              2.12.3     <span style="color: #555555;">2023-11-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  R6                   2.5.1      <span style="color: #555555;">2021-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  ragg                 1.3.2      <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  Rcpp                 1.0.12     <span style="color: #555555;">2024-01-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  reactable          * 0.4.4      <span style="color: #555555;">2023-03-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  reactR               0.5.0      <span style="color: #555555;">2023-10-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  readr              * 2.1.5      <span style="color: #555555;">2024-01-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rgeoboundaries     * 1.3        <span style="color: #555555;">2024-03-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rlang                1.1.4      <span style="color: #555555;">2024-06-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rmarkdown            2.27       <span style="color: #555555;">2024-05-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rnaturalearth      * 1.0.1      <span style="color: #555555;">2023-12-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  rnaturalearthhires   <span style="color: #BB00BB; font-weight: bold;">1.0.0.9000</span> <span style="color: #555555;">2024-06-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">Github (ropensci/rnaturalearthhires@dd1e210)</span></span></span>
+<span><span class="co">#&gt;  sass                 0.4.9      <span style="color: #555555;">2024-03-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  scales               1.3.0      <span style="color: #555555;">2023-11-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  sessioninfo        * 1.2.2      <span style="color: #555555;">2021-12-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@1.2.2)</span></span></span>
+<span><span class="co">#&gt;  sf                 * 1.0-16     <span style="color: #555555;">2024-03-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  slippymath           0.3.1      <span style="color: #555555;">2019-06-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  sp                   2.1-4      <span style="color: #555555;">2024-04-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  stringi              1.8.4      <span style="color: #555555;">2024-05-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  stringr            * 1.5.1      <span style="color: #555555;">2023-11-14</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  styler               1.10.3     <span style="color: #555555;">2024-04-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  systemfonts          1.1.0      <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  terra              * 1.7-78     <span style="color: #555555;">2024-05-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  textshaping          0.4.0      <span style="color: #555555;">2024-05-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tibble             * 3.2.1      <span style="color: #555555;">2023-03-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tidyr              * 1.3.1      <span style="color: #555555;">2024-01-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tidyselect           1.2.1      <span style="color: #555555;">2024-03-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tidyterra          * 0.6.1      <span style="color: #555555;">2024-06-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tidyverse          * 2.0.0      <span style="color: #555555;">2023-02-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@2.0.0)</span></span></span>
+<span><span class="co">#&gt;  timechange           0.3.0      <span style="color: #555555;">2024-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  triebeard            0.4.1      <span style="color: #555555;">2023-03-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  tzdb                 0.4.0      <span style="color: #555555;">2023-05-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  units                0.8-5      <span style="color: #555555;">2023-11-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  urltools             1.7.3      <span style="color: #555555;">2019-04-14</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  utf8                 1.2.4      <span style="color: #555555;">2023-10-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  vctrs                0.6.5      <span style="color: #555555;">2023-12-01</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  viridisLite          0.4.2      <span style="color: #555555;">2023-05-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  withr                3.0.0      <span style="color: #555555;">2024-01-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  xfun                 0.44       <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt;  yaml                 2.3.8      <span style="color: #555555;">2023-12-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [1] D:/a/_temp/Library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [2] C:/R/site-library</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;"> [3] C:/R/library</span></span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre>
+</details>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

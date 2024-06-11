@@ -20,7 +20,7 @@ provinces or autonomous communities of Spain, as provided by the INE
   <a class="navbar-brand me-2" href="../index.html">
     <img src="../apple-touch-icon-180x180.png" alt="mapSpain logo" height="40" class="d-inline-block me-1">mapSpain</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -74,7 +74,7 @@ provinces or autonomous communities of Spain, as provided by the INE
     </div>
 
     <div class="ref-description section level2">
-    <p>Loads a simplified map (<a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> object) with the boundaries of the
+    <p>Loads a simplified map (<code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code> object) with the boundaries of the
 provinces or autonomous communities of Spain, as provided by the <strong>INE</strong>
 (Instituto Nacional de Estadistica).</p>
     </div>
@@ -103,8 +103,8 @@ provinces or autonomous communities of Spain, as provided by the <strong>INE</st
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>prov</dt>
-<dd><p>A vector of names and/or codes for provinces
-or <code>NULL</code> to get all the provinces. See <strong>Details</strong>.</p></dd>
+<dd><p>A vector of names and/or codes for provinces or <code>NULL</code> to get all
+the provinces. See <strong>Details</strong>.</p></dd>
 
 
 <dt>update_cache</dt>
@@ -130,16 +130,18 @@ or <code>NULL</code> to get all the autonomous communities. See <strong>Details<
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <a href="https://CRAN.R-project.org/package=sf" class="external-link"><span class="pkg">sf</span></a> POLYGON object.</p>
+<p>A <code><a href="https://r-spatial.github.io/sf/reference/sf.html" class="external-link">sf</a></code></p>
+<p></p>
+<p><code>POLYGON</code> object.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Results are provided <strong>without CRS</strong>, as provided on source.</p>
-<p>You can use and mix names, ISO codes, "codauto"/"cpro" codes (see
+<p>You can use and mix names, ISO codes, <code>"codauto"/"cpro"</code> codes (see
 <a href="esp_codelist.html">esp_codelist</a>) and NUTS codes of different levels.</p>
 <p>When using a code corresponding of a higher level (e.g.
 <code>esp_get_simpl_prov("Andalucia")</code>) all the corresponding units of that level
-are provided (in this case , all the provinces of Andalucia).</p>
+are provided (in this case , all the provinces of Andalusia).</p>
     </div>
     <div class="section level2">
     <h2 id="about-caching">About caching<a class="anchor" aria-label="anchor" href="#about-caching"></a></h2>

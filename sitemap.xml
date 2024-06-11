@@ -4,15 +4,6 @@
     <loc>https://ropenspain.github.io/mapSpain/404.html</loc>
   </url>
   <url>
-    <loc>https://ropenspain.github.io/mapSpain/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://ropenspain.github.io/mapSpain/articles/imagery.html</loc>
   </url>
   <url>
@@ -34,7 +25,16 @@
     <loc>https://ropenspain.github.io/mapSpain/authors.html</loc>
   </url>
   <url>
+    <loc>https://ropenspain.github.io/mapSpain/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>https://ropenspain.github.io/mapSpain/index.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/mapSpain/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://ropenspain.github.io/mapSpain/LICENSE.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/mapSpain/news/index.html</loc>
@@ -76,6 +76,9 @@
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_get_country.html</loc>
   </url>
   <url>
+    <loc>https://ropenspain.github.io/mapSpain/reference/esp_get_gridmap.html</loc>
+  </url>
+  <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_get_grid_BDN.html</loc>
   </url>
   <url>
@@ -86,9 +89,6 @@
   </url>
   <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_get_grid_MTN.html</loc>
-  </url>
-  <url>
-    <loc>https://ropenspain.github.io/mapSpain/reference/esp_get_gridmap.html</loc>
   </url>
   <url>
     <loc>https://ropenspain.github.io/mapSpain/reference/esp_get_hydrobasin.html</loc>

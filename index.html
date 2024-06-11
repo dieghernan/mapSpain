@@ -45,7 +45,7 @@
   <a class="navbar-brand me-2" href="index.html">
     <img src="apple-touch-icon-180x180.png" alt="mapSpain logo" height="40" class="d-inline-block me-1">mapSpain</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.1</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -105,8 +105,8 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p><a href="https://ropenspain.github.io/mapSpain/"><strong>mapSpain</strong></a> is a package that provides spatial <code>sf</code> objects of the administrative boundaries of Spain, including CCAA, provinces and municipalities.</p>
-<p><strong>mapSpain</strong> also provides a leaflet plugin to be used with the <a href="https://rstudio.github.io/leaflet/" class="external-link"><code>leaflet</code> package</a>, that loads several basemaps of public institutions of Spain, and the ability of downloading and processing static tiles.</p>
+<p><a href="https://ropenspain.github.io/mapSpain/"><strong>mapSpain</strong></a> is a package that provides spatial <strong>sf</strong> objects of the administrative boundaries of Spain, including CCAA, provinces and municipalities.</p>
+<p><strong>mapSpain</strong> also provides a leaflet plugin to be used with the <a href="https://rstudio.github.io/leaflet/" class="external-link"><strong>leaflet</strong> package</a>, that loads several base maps of public institutions of Spain, and the ability of downloading and processing static tiles.</p>
 <p>Full site with examples and vignettes on <a href="https://ropenspain.github.io/mapSpain/" class="uri">https://ropenspain.github.io/mapSpain/</a></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -126,8 +126,7 @@
 <span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively, you can install the developing version of <strong>mapSpain</strong> with:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"rOpenSpain/mapSpain"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"rOpenSpain/mapSpain"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
@@ -136,78 +135,67 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/">mapSpain</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/pobmun19.html">pobmun19</a></span></span>
 <span></span>
 <span><span class="co"># Extract CCAA from base dataset</span></span>
 <span></span>
-<span><span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/esp_codelist.html">esp_codelist</a></span></span>
+<span><span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/esp_codelist.html">esp_codelist</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cpro</span>, <span class="va">codauto</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">census</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">census</span>, <span class="va">codelist</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"codauto"</span><span class="op">)</span><span class="op">]</span>, all.x <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">census_ccaa</span> <span class="op">&lt;-</span> <span class="va">census</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">codelist</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># Summarize by CCAA</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">codauto</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>pob19 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pob19</span><span class="op">)</span>, men <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">men</span><span class="op">)</span>, women <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">women</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    porc_women <span class="op">=</span> <span class="va">women</span> <span class="op">/</span> <span class="va">pob19</span>,</span>
+<span>    porc_women_lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="va">porc_women</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Summarize by CCAA</span></span>
-<span><span class="va">census_ccaa</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/aggregate.html" class="external-link">aggregate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">pob19</span>, <span class="va">men</span>, <span class="va">women</span><span class="op">)</span> <span class="op">~</span> <span class="va">codauto</span>, data <span class="op">=</span> <span class="va">census</span>, <span class="va">sum</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women</span> <span class="op">&lt;-</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">women</span> <span class="op">/</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">pob19</span></span>
-<span><span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women_lab</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="va">census_ccaa</span><span class="op">$</span><span class="va">porc_women</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Merge into spatial data</span></span>
 <span></span>
-<span><span class="va">CCAA_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">CCAA_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">CCAA_sf</span>, <span class="va">census_ccaa</span><span class="op">)</span></span>
-<span><span class="va">Can</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_can_box.html">esp_get_can_box</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ccaa_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">census_ccaa</span><span class="op">)</span></span>
+<span><span class="va">can</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_can_box.html">esp_get_can_box</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Plot with ggplot</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CCAA_sf</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">porc_women</span><span class="op">)</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"grey70"</span>,</span>
-<span>    linewidth <span class="op">=</span> <span class="fl">.3</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">Can</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">ccaa_sf</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">porc_women</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"grey70"</span>, linewidth <span class="op">=</span> <span class="fl">.3</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">can</span>, color <span class="op">=</span> <span class="st">"grey70"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf_label</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">porc_women_lab</span><span class="op">)</span>,</span>
 <span>    fill <span class="op">=</span> <span class="st">"white"</span>, alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
-<span>    size <span class="op">=</span> <span class="fl">3</span>,</span>
-<span>    label.size <span class="op">=</span> <span class="fl">0</span></span>
+<span>    size <span class="op">=</span> <span class="fl">3</span>, label.size <span class="op">=</span> <span class="fl">0</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html" class="external-link">scale_fill_gradientn</a></span><span class="op">(</span></span>
 <span>    colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html" class="external-link">hcl.colors</a></span><span class="op">(</span><span class="fl">10</span>, <span class="st">"Blues"</span>, rev <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>    n.breaks <span class="op">=</span> <span class="fl">10</span>,</span>
-<span>    labels <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span>
-<span>      <span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"%1.1f%%"</span>, <span class="fl">100</span> <span class="op">*</span> <span class="va">x</span><span class="op">)</span></span>
-<span>    <span class="op">}</span>,</span>
-<span>    guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Porc. women"</span><span class="op">)</span></span>
+<span>    n.breaks <span class="op">=</span> <span class="fl">10</span>, labels <span class="op">=</span> <span class="fu">scales</span><span class="fu">::</span><span class="fu"><a href="https://scales.r-lib.org/reference/label_percent.html" class="external-link">label_percent</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    guide <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Porc. women"</span>, position <span class="op">=</span> <span class="st">"inside"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position.inside <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.6</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/main/img/README-static-1.png" width="100%"></p>
 <p>You can combine <code>sf</code> objects with static tiles</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get census</span></span>
-<span><span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/pobmun19.html">pobmun19</a></span></span>
-<span><span class="va">census</span><span class="op">$</span><span class="va">porc_women</span> <span class="op">&lt;-</span> <span class="va">census</span><span class="op">$</span><span class="va">women</span> <span class="op">/</span> <span class="va">census</span><span class="op">$</span><span class="va">pob19</span></span>
+<span><span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/pobmun19.html">pobmun19</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>porc_women <span class="op">=</span> <span class="va">women</span> <span class="op">/</span> <span class="va">pob19</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cpro</span>, <span class="va">cmun</span>, <span class="va">porc_women</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get shapes</span></span>
 <span><span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_munic.html">esp_get_munic_siane</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Segovia"</span>, epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span><span class="va">provs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_prov.html">esp_get_prov_siane</a></span><span class="op">(</span>epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">shape_pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">shape</span>,</span>
-<span>  <span class="va">census</span>,</span>
-<span>  by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"cpro"</span>, <span class="st">"cmun"</span><span class="op">)</span>,</span>
-<span>  all.x <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
+<span><span class="va">shape_pop</span> <span class="op">&lt;-</span> <span class="va">shape</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">census</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="va">tile</span> <span class="op">&lt;-</span></span>
-<span>  <span class="fu"><a href="reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">shape_pop</span>,</span>
-<span>    type <span class="op">=</span> <span class="st">"IGNBase.Todo"</span>,</span>
-<span>    zoommin <span class="op">=</span> <span class="fl">1</span></span>
-<span>  <span class="op">)</span></span>
+<span><span class="va">tile</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">shape_pop</span>, type <span class="op">=</span> <span class="st">"IGNBase.Todo"</span>, zoommin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Plot</span></span>
 <span></span>
@@ -254,19 +242,13 @@
 <span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"20"</span></span>
 <span></span>
-<span><span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span></span>
-<span>  resolution <span class="op">=</span> <span class="va">res</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3035</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span></span>
-<span>  resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3035</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span></span>
-<span>  moveCAN <span class="op">=</span> <span class="cn">FALSE</span>, resolution <span class="op">=</span> <span class="va">res</span></span>
-<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span>moveCAN <span class="op">=</span> <span class="cn">FALSE</span>, resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3035</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -276,16 +258,10 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">eu_countries</span>, fill <span class="op">=</span> <span class="st">"#FDFBEA"</span>, color <span class="op">=</span> <span class="st">"#656565"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">ccaa</span>, fill <span class="op">=</span> <span class="st">"#C12838"</span>, color <span class="op">=</span> <span class="st">"grey80"</span>, linewidth <span class="op">=</span> <span class="fl">.1</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="co"># Center in Europe: EPSG 3035</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span></span>
-<span>    xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2377294</span>, <span class="fl">7453440</span><span class="op">)</span>,</span>
-<span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1313597</span>, <span class="fl">5628510</span><span class="op">)</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2377294</span>, <span class="fl">7453440</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1313597</span>, <span class="fl">5628510</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>    panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_line</a></span><span class="op">(</span></span>
-<span>      colour <span class="op">=</span> <span class="st">"#DFDFDF"</span>,</span>
-<span>      linetype <span class="op">=</span> <span class="st">"dotted"</span></span>
-<span>    <span class="op">)</span></span>
+<span>    panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"#DFDFDF"</span>, linetype <span class="op">=</span> <span class="st">"dotted"</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="https://raw.githubusercontent.com/ropenspain/mapSpain/main/img/README-giscoR-1.png" width="100%"></p>
 </div>
@@ -319,7 +295,7 @@ Hernangómez D (2024). <em>mapSpain: Administrative Boundaries of Spain</em>. <a
 <div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="sc">@</span>Manual{R<span class="sc">-</span>mapspain,</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  title <span class="ot">=</span> {{mapSpain}<span class="sc">:</span> Administrative Boundaries of Spain},</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  year <span class="ot">=</span> {<span class="dv">2024</span>},</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">9.0</span>},</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  version <span class="ot">=</span> {<span class="dv">0</span>.<span class="fl">9.1</span>},</span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  author <span class="ot">=</span> {Diego Hernangómez},</span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>  doi <span class="ot">=</span> {<span class="fl">10.5281</span><span class="sc">/</span>zenodo<span class="fl">.5366622</span>},</span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>  url <span class="ot">=</span> {https<span class="sc">:</span><span class="er">//</span>ropenspain.github.io<span class="sc">/</span>mapSpain<span class="sc">/</span>},</span>
@@ -392,7 +368,22 @@ Hernangómez D (2024). <em>mapSpain: Administrative Boundaries of Spain</em>. <a
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://ropenspain.es/" class="external-link"><img src="https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg" alt="rOS-badge"></a></li>
+<li><a href="https://CRAN.R-project.org/package=mapSpain" class="external-link"><img src="https://www.r-pkg.org/badges/version/mapSpain" alt="CRAN-status"></a></li>
+<li><a href="https://cran.r-project.org/web/checks/check_results_mapSpain.html" class="external-link"><img src="https://badges.cranchecks.info/worst/mapSpain.svg" alt="CRAN-results"></a></li>
+<li><a href="https://CRAN.R-project.org/package=mapSpain" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/mapSpain" alt="Downloads"></a></li>
+<li><a href="https://ropenspain.r-universe.dev/mapSpain" class="external-link"><img src="https://ropenspain.r-universe.dev/badges/mapSpain" alt="r-universe"></a></li>
+<li><a href="https://github.com/rOpenSpain/mapSpain/actions?query=workflow%3AR-CMD-check" class="external-link"><img src="https://github.com/rOpenSpain/mapSpain/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/rOpenSpain/mapSpain/actions/workflows/rhub.yaml" class="external-link"><img src="https://github.com/rOpenSpain/mapSpain/actions/workflows/rhub.yaml/badge.svg" alt="R-hub"></a></li>
+<li><a href="https://app.codecov.io/gh/rOpenSpain/mapSpain" class="external-link"><img src="https://codecov.io/gh/rOpenSpain/mapSpain/branch/main/graph/badge.svg?token=6L01BKLL85" alt="codecov"></a></li>
+<li><a href="https://doi.org/10.5281/zenodo.5366622" class="external-link"><img src="https://img.shields.io/badge/DOI-10.5281/zenodo.5366622-blue" alt="DOI"></a></li>
+<li><a href="https://www.repostatus.org/#active" class="external-link"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project-Status:Active"></a></li>
+<li><a href="https://CRAN.R-project.org/package=mapSpain" class="external-link"><img src="https://tinyverse.netlify.app/badge/mapSpain" alt="status"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
