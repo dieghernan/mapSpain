@@ -110,9 +110,9 @@ references:
     email: diego.hernangomezherrero@gmail.com
     orcid: https://orcid.org/0000-0001-8457-4658
     affiliation: rOpenGov
+  year: '2024'
   doi: 10.32614/CRAN.package.giscoR
   version: '>= 0.2.4'
-  year: '2024'
 - type: software
   title: rappdirs
   abstract: 'rappdirs: Application Directories: Determine Where to Save Data, Caches,
