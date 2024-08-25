@@ -318,7 +318,9 @@ pre code span.wa
 .navbar-nav .active.nav-item {
 	text-decoration: none;
 }
-
+button.nav-link {
+    text-transform: uppercase;
+}
 @media ((min-width: 992px)) {
 	.navbar-nav .nav-item>.nav-link {
 		border-top: solid 5px transparent;
