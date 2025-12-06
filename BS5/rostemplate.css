@@ -1,4 +1,7 @@
-/* https://www.freeformatter.com/css-beautifier.html */
+/*!
+	* Beautify: https://www.freeformatter.com/css-beautifier.html
+	* Minify: https://www.freeformatter.com/css-minifier.html
+*/
 h1 code,
 h2 code,
 h3 code,
@@ -20,6 +23,20 @@ code a {
 
 .pkg {
 	font-weight: bold;
+}
+
+/* ---allcontributors package--- */
+
+.allctb-avatar {
+	border: 0.2rem solid;
+	border-radius: 50%;
+	border-color: var(--bs-body-bg);
+	max-width: 100px;
+	box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.5)
+}
+
+table.allctb-table td {
+	border-color: transparent;
 }
 
 .template-reference-topic dt code {
@@ -305,6 +322,19 @@ pre code span.wa
 	background-color: #cab3dd;
 }
 
+.navbar .nav-item .nav-link {
+	padding-left: .5rem;
+	padding-right: .5rem;
+	margin-left: .5rem;
+	margin-right: .5rem;
+}
+
+#navbar .dropdown-menu,
+#navbar .form-inline {
+	margin-left: .5rem;
+	margin-right: .5rem;
+}
+
 .navbar small {
 	font-size: 0.75rem;
 	padding-top: 0.65rem;
@@ -318,9 +348,11 @@ pre code span.wa
 .navbar-nav .active.nav-item {
 	text-decoration: none;
 }
+
 button.nav-link {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
+
 @media ((min-width: 992px)) {
 	.navbar-nav .nav-item>.nav-link {
 		border-top: solid 5px transparent;
