@@ -1,5 +1,10 @@
 # Changelog
 
+## mapSpain (development version)
+
+- Remove **slippymath** dependency
+  ([\#126](https://github.com/rOpenSpain/mapSpain/issues/126)).
+
 ## mapSpain 0.10.0
 
 CRAN release: 2024-12-15

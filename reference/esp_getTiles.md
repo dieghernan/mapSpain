@@ -171,10 +171,6 @@ Other imagery utilities:
 
 segovia <- esp_get_prov_siane("segovia", epsg = 3857)
 tile <- esp_getTiles(segovia, "IGNBase.Todo")
-#> Warning: `lift()` was deprecated in purrr 1.0.0.
-#> ℹ The deprecated feature was likely used in the slippymath package.
-#>   Please report the issue at
-#>   <https://www.github.com/milesmcbain/slippymath/issues>.
 
 library(ggplot2)
 library(tidyterra)

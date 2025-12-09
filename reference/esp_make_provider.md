@@ -41,7 +41,7 @@ A named list with two elements `id` and `q`.
 ## Details
 
 This function is meant to work with services provided as of the [OGC
-Standard](http://opengeospatial.github.io/e-learning/wms/text/operations.html#getmap).
+Standard](https://www.ogc.org/standards/wms/).
 
 Note that:
 

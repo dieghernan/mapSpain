@@ -29,5 +29,5 @@ Other cache utilities:
 
 ``` r
 esp_detect_cache_dir()
-#> [1] "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\Rtmp0OZZ2r/mapSpain"
+#> [1] "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpMvbmr0/mapSpain"
 ```

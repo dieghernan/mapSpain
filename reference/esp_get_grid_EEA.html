@@ -15,7 +15,7 @@ provided by the European Environment Agency (EEA)."><meta property="og:image" co
   <a class="navbar-brand me-2" href="../index.html">
     <img src="../apple-touch-icon.png" alt="mapSpain logo" height="40" class="d-inline-block me-1">mapSpain</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0.9000</small>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -122,8 +122,19 @@ corresponding .geojson file by any other method and save it on your
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu">esp_get_grid_EEA</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"main"</span>, resolution <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open URL 'https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/at_download/file': HTTP status was '503 Service Unavailable'</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open URL 'https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/download': HTTP status was '503 Service Unavailable'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Download failed</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> url </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/at_download/file not reachable.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please try with another options. If you think this is a bug please consider opening an issue on:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> https://github.com/rOpenSpain/mapSpain/issues</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in esp_get_grid_EEA(type = "main", resolution = 100):</span> </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> Execution halted</span>
 <span class="r-in"><span><span class="va">grid_can</span> <span class="op">&lt;-</span> <span class="fu">esp_get_grid_EEA</span><span class="op">(</span>type <span class="op">=</span> <span class="st">"canary"</span>, resolution <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open URL 'https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/at_download/file': HTTP status was '503 Service Unavailable'</span>
 <span class="r-in"><span><span class="va">esp</span> <span class="op">&lt;-</span> <span class="fu"><a href="esp_get_country.html">esp_get_country</a></span><span class="op">(</span>moveCAN <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
@@ -134,7 +145,8 @@ corresponding .geojson file by any other method and save it on your
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">esp</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"EEA Grid for Spain"</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="esp_get_grid_EEA-1.png" alt="" width="2188" height="1352"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ggplot(grid):</span> `data` cannot be a function.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Have you misspelled the `data` argument in `ggplot()`?</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
