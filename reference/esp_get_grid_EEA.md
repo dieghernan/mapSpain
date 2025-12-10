@@ -76,19 +76,7 @@ Other grids:
 # \dontrun{
 
 grid <- esp_get_grid_EEA(type = "main", resolution = 100)
-#> Warning: cannot open URL 'https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/at_download/file': HTTP status was '503 Service Unavailable'
-#> Warning: cannot open URL 'https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/download': HTTP status was '503 Service Unavailable'
-#> Download failed
-#> 
-#> url 
-#>  https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/at_download/file not reachable.
-#> 
-#> Please try with another options. If you think this is a bug please consider opening an issue on:
-#> https://github.com/rOpenSpain/mapSpain/issues
-#> Error in esp_get_grid_EEA(type = "main", resolution = 100): 
-#> Execution halted
 grid_can <- esp_get_grid_EEA(type = "canary", resolution = 100)
-#> Warning: cannot open URL 'https://www.eea.europa.eu/data-and-maps/data/eea-reference-grids-2/gis-files/spain-shapefile/at_download/file': HTTP status was '503 Service Unavailable'
 esp <- esp_get_country(moveCAN = FALSE)
 
 library(ggplot2)
@@ -99,7 +87,6 @@ ggplot(grid) +
   geom_sf(data = esp, fill = NA) +
   theme_light() +
   labs(title = "EEA Grid for Spain")
-#> Error in ggplot(grid): `data` cannot be a function.
-#> ℹ Have you misspelled the `data` argument in `ggplot()`?
+
 # }
 ```

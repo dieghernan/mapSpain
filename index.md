@@ -55,15 +55,15 @@ census <- mapSpain::pobmun19
 
 # Extract CCAA from base dataset
 
-codelist <- mapSpain::esp_codelist %>%
-  select(cpro, codauto) %>%
+codelist <- mapSpain::esp_codelist |>
+  select(cpro, codauto) |>
   distinct()
 
-census_ccaa <- census %>%
-  left_join(codelist) %>%
+census_ccaa <- census |>
+  left_join(codelist) |>
   # Summarize by CCAA
-  group_by(codauto) %>%
-  summarise(pob19 = sum(pob19), men = sum(men), women = sum(women)) %>%
+  group_by(codauto) |>
+  summarise(pob19 = sum(pob19), men = sum(men), women = sum(women)) |>
   mutate(
     porc_women = women / pob19,
     porc_women_lab = paste0(round(100 * porc_women, 2), "%")
@@ -72,7 +72,7 @@ census_ccaa <- census %>%
 
 # Merge into spatial data
 
-ccaa_sf <- esp_get_ccaa() %>%
+ccaa_sf <- esp_get_ccaa() |>
   left_join(census_ccaa)
 can <- esp_get_can_box()
 
@@ -103,15 +103,15 @@ You can combine `sf` objects with static tiles
 
 ``` r
 # Get census
-census <- mapSpain::pobmun19 %>%
-  mutate(porc_women = women / pob19) %>%
+census <- mapSpain::pobmun19 |>
+  mutate(porc_women = women / pob19) |>
   select(cpro, cmun, porc_women)
 
 # Get shapes
 shape <- esp_get_munic_siane(region = "Segovia", epsg = 3857)
 provs <- esp_get_prov_siane(epsg = 3857)
 
-shape_pop <- shape %>% left_join(census)
+shape_pop <- shape |> left_join(census)
 
 
 tile <- esp_getTiles(shape_pop, type = "IDErioja.Relieve", zoommin = 1)
@@ -166,13 +166,13 @@ library(giscoR)
 
 res <- "20"
 
-all_countries <- gisco_get_countries(resolution = res) %>%
+all_countries <- gisco_get_countries(resolution = res) |>
   st_transform(3035)
 
-eu_countries <- gisco_get_countries(resolution = res, region = "EU") %>%
+eu_countries <- gisco_get_countries(resolution = res, region = "EU") |>
   st_transform(3035)
 
-ccaa <- esp_get_ccaa(moveCAN = FALSE, resolution = res) %>%
+ccaa <- esp_get_ccaa(moveCAN = FALSE, resolution = res) |>
   st_transform(3035)
 
 library(ggplot2)

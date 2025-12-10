@@ -25,11 +25,11 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/articles/working_imagery.html">Working with imagery</a></li>
-    <li><a class="dropdown-item" href="../articles/articles/x01_regioncodes.html">Annex: Codes and names of the Spanish regions</a></li>
+    <li><a class="dropdown-item" href="../articles/articles/regioncodes.html">Annex: Codes and names of the Spanish regions</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other materials</h6></li>
     <li><a class="external-link dropdown-item" href="https://dieghernan.github.io/rpubs/mapSpain_slides/">mapSpain: Mapas de España en R (xaringan)</a></li>
-    <li><a class="dropdown-item" href="../articles/articles/x02_mapasesp.html">mapSpain: Mapas de España en R (.Rmd)</a></li>
+    <li><a class="dropdown-item" href="../articles/articles/mapasesp.html">mapSpain: Mapas de España en R (.Rmd)</a></li>
     <li><a class="external-link dropdown-item" href="http://madrid.r-es.org/69-jueves-25-de-noviembre-de-2021/">Grupo de Usuarios R Madrid 25-nov-2021 (video)</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -121,17 +121,17 @@ group names are permitted–they need not be short, identifier-style names.</p><
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/" class="external-link">leaflet</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">leafmap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html" class="external-link">leaflet</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"60vh"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-methods.html" class="external-link">setView</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">40.4166</span>, lng <span class="op">=</span> <span class="op">-</span><span class="fl">3.7038400</span>, zoom <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html" class="external-link">addTiles</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Default (OSM)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">leafmap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html" class="external-link">leaflet</a></span><span class="op">(</span>width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"60vh"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-methods.html" class="external-link">setView</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">40.4166</span>, lng <span class="op">=</span> <span class="op">-</span><span class="fl">3.7038400</span>, zoom <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html" class="external-link">addTiles</a></span><span class="op">(</span>group <span class="op">=</span> <span class="st">"Default (OSM)"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">addProviderEspTiles</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    provider <span class="op">=</span> <span class="st">"IDErioja.Claro"</span>,</span></span>
 <span class="r-in"><span>    group <span class="op">=</span> <span class="st">"IDErioja Claro"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">addProviderEspTiles</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    provider <span class="op">=</span> <span class="st">"RedTransporte.Carreteras"</span>,</span></span>
 <span class="r-in"><span>    group <span class="op">=</span> <span class="st">"Carreteras"</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/addLayersControl.html" class="external-link">addLayersControl</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    baseGroups <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IDErioja Claro"</span>, <span class="st">"Default (OSM)"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    overlayGroups <span class="op">=</span> <span class="st">"Carreteras"</span>,</span></span>

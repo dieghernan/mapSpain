@@ -72,9 +72,9 @@ Other cache utilities:
 # \dontrun{
 esp_set_cache_dir(verbose = TRUE)
 #> Using a temporary cache dir. Set 'cache_dir' to a value for store permanently
-#> mapSpain cache dir is: C:\Users\RUNNER~1\AppData\Local\Temp\RtmpMvbmr0/mapSpain
+#> mapSpain cache dir is: C:\Users\RUNNER~1\AppData\Local\Temp\RtmpeudJYL/mapSpain
 # }
 
 Sys.getenv("MAPSPAIN_CACHE_DIR")
-#> [1] "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpMvbmr0/mapSpain"
+#> [1] "C:\\Users\\RUNNER~1\\AppData\\Local\\Temp\\RtmpeudJYL/mapSpain"
 ```

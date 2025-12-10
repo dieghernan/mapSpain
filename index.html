@@ -55,11 +55,11 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="articles/articles/working_imagery.html">Working with imagery</a></li>
-    <li><a class="dropdown-item" href="articles/articles/x01_regioncodes.html">Annex: Codes and names of the Spanish regions</a></li>
+    <li><a class="dropdown-item" href="articles/articles/regioncodes.html">Annex: Codes and names of the Spanish regions</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Other materials</h6></li>
     <li><a class="external-link dropdown-item" href="https://dieghernan.github.io/rpubs/mapSpain_slides/">mapSpain: Mapas de España en R (xaringan)</a></li>
-    <li><a class="dropdown-item" href="articles/articles/x02_mapasesp.html">mapSpain: Mapas de España en R (.Rmd)</a></li>
+    <li><a class="dropdown-item" href="articles/articles/mapasesp.html">mapSpain: Mapas de España en R (.Rmd)</a></li>
     <li><a class="external-link dropdown-item" href="http://madrid.r-es.org/69-jueves-25-de-noviembre-de-2021/">Grupo de Usuarios R Madrid 25-nov-2021 (video)</a></li>
   </ul>
 </li>
@@ -120,15 +120,15 @@
 <span></span>
 <span><span class="co"># Extract CCAA from base dataset</span></span>
 <span></span>
-<span><span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/esp_codelist.html">esp_codelist</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cpro</span>, <span class="va">codauto</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">codelist</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/esp_codelist.html">esp_codelist</a></span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cpro</span>, <span class="va">codauto</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">census_ccaa</span> <span class="op">&lt;-</span> <span class="va">census</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">codelist</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">census_ccaa</span> <span class="op">&lt;-</span> <span class="va">census</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">codelist</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># Summarize by CCAA</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">codauto</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>pob19 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pob19</span><span class="op">)</span>, men <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">men</span><span class="op">)</span>, women <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">women</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">codauto</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>pob19 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">pob19</span><span class="op">)</span>, men <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">men</span><span class="op">)</span>, women <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">women</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
 <span>    porc_women <span class="op">=</span> <span class="va">women</span> <span class="op">/</span> <span class="va">pob19</span>,</span>
 <span>    porc_women_lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="va">porc_women</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span></span>
@@ -137,7 +137,7 @@
 <span></span>
 <span><span class="co"># Merge into spatial data</span></span>
 <span></span>
-<span><span class="va">ccaa_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">ccaa_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">census_ccaa</span><span class="op">)</span></span>
 <span><span class="va">can</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_can_box.html">esp_get_can_box</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -164,15 +164,15 @@
 <p>You can combine <code>sf</code> objects with static tiles</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Get census</span></span>
-<span><span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/pobmun19.html">pobmun19</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>porc_women <span class="op">=</span> <span class="va">women</span> <span class="op">/</span> <span class="va">pob19</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">census</span> <span class="op">&lt;-</span> <span class="fu">mapSpain</span><span class="fu">::</span><span class="va"><a href="reference/pobmun19.html">pobmun19</a></span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>porc_women <span class="op">=</span> <span class="va">women</span> <span class="op">/</span> <span class="va">pob19</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">cpro</span>, <span class="va">cmun</span>, <span class="va">porc_women</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Get shapes</span></span>
 <span><span class="va">shape</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_munic.html">esp_get_munic_siane</a></span><span class="op">(</span>region <span class="op">=</span> <span class="st">"Segovia"</span>, epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span><span class="va">provs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_prov.html">esp_get_prov_siane</a></span><span class="op">(</span>epsg <span class="op">=</span> <span class="fl">3857</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">shape_pop</span> <span class="op">&lt;-</span> <span class="va">shape</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">census</span><span class="op">)</span></span>
+<span><span class="va">shape_pop</span> <span class="op">&lt;-</span> <span class="va">shape</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">census</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="va">tile</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_getTiles.html">esp_getTiles</a></span><span class="op">(</span><span class="va">shape_pop</span>, type <span class="op">=</span> <span class="st">"IDErioja.Relieve"</span>, zoommin <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
@@ -222,13 +222,13 @@
 <span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="st">"20"</span></span>
 <span></span>
-<span><span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">all_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3035</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">eu_countries</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ropengov.github.io/giscoR/reference/gisco_get.html" class="external-link">gisco_get_countries</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="va">res</span>, region <span class="op">=</span> <span class="st">"EU"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3035</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span>moveCAN <span class="op">=</span> <span class="cn">FALSE</span>, resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">ccaa</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esp_get_ccaa.html">esp_get_ccaa</a></span><span class="op">(</span>moveCAN <span class="op">=</span> <span class="cn">FALSE</span>, resolution <span class="op">=</span> <span class="va">res</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html" class="external-link">st_transform</a></span><span class="op">(</span><span class="fl">3035</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
@@ -344,6 +344,7 @@ Hernangómez D (2025). <em>mapSpain: Administrative Boundaries of Spain</em>. <a
 <ul class="list-unstyled">
 <li>
 <a href="https://dieghernan.github.io/" class="external-link">Diego Hernangómez</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0001-8457-4658" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 

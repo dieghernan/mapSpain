@@ -6,6 +6,13 @@
   maintainer, copyright holder.
   [](https://orcid.org/0000-0001-8457-4658)
 
+- **[Miles McBain](https://milesmcbain.xyz/)**. Copyright holder.  
+  Slippy map tiles functions, from slippymath package
+
+- **[Timothée Giraud](https://rcarto.github.io/)**. Contributor.
+  [](https://orcid.org/0000-0002-1932-3323)  
+  Adaptation of slippymath functions
+
 ## Citation
 
 Source:

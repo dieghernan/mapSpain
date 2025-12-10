@@ -2,6 +2,7 @@
 
 ## mapSpain (development version)
 
+- Minimal **R** version required is **4.1.0**.
 - Remove **slippymath** dependency
   ([\#126](https://github.com/rOpenSpain/mapSpain/issues/126)).
 

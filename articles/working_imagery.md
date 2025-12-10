@@ -138,19 +138,19 @@ m <- leaflet(tenerife_leaf,
 )
 
 # Add layers
-m <- m %>%
-  addProviderEspTiles("IDErioja.Relieve") %>%
-  addPolygons(color = NA, fillColor = "red", group = "Polygon") %>%
+m <- m |>
+  addProviderEspTiles("IDErioja.Relieve") |>
+  addPolygons(color = NA, fillColor = "red", group = "Polygon") |>
   addProviderEspTiles("Geofisica.Terremotos365dias",
     group = "Earthquakes"
   )
 
 # Add additional options
-m %>%
+m |>
   addLayersControl(
     overlayGroups = c("Polygon", "Earthquakes"),
     options = layersControlOptions(collapsed = FALSE)
-  ) %>%
+  ) |>
   setMaxBounds(bbox[1], bbox[2], bbox[3], bbox[4])
 ```
 
@@ -198,12 +198,12 @@ labels <- sprintf(
   munic_pop$rotulo,
   munic_pop$ine.prov.name,
   munic_pop$dens_label
-) %>% lapply(htmltools::HTML)
+) |> lapply(htmltools::HTML)
 
 
-leaflet(elementId = "SpainDemo", width = "100%", height = "60vh") %>%
-  setView(lng = -3.684444, lat = 40.308611, zoom = 5) %>%
-  addProviderEspTiles("IDErioja") %>%
+leaflet(elementId = "SpainDemo", width = "100%", height = "60vh") |>
+  setView(lng = -3.684444, lat = 40.308611, zoom = 5) |>
+  addProviderEspTiles("IDErioja") |>
   addPolygons(
     data = munic_pop,
     fillColor = ~ pal(dens),
@@ -218,7 +218,7 @@ leaflet(elementId = "SpainDemo", width = "100%", height = "60vh") %>%
       bringToFront = TRUE
     ),
     popup = labels
-  ) %>%
+  ) |>
   addLegend(
     pal = pal, values = bins, opacity = 0.7,
     title = paste0(
@@ -250,7 +250,7 @@ Details
     #>  collate  English_United States.utf8
     #>  ctype    English_United States.utf8
     #>  tz       UTC
-    #>  date     2025-12-09
+    #>  date     2025-12-10
     #>  pandoc   3.1.11 @ C:/HOSTED~1/windows/pandoc/31F387~1.11/x64/PANDOC~1.11/ (via rmarkdown)
     #>  quarto   NA
     #> 
@@ -288,7 +288,7 @@ Details
     #>  leaflet      * 2.2.3       2025-09-04 [1] RSPM
     #>  lifecycle      1.0.4       2023-11-07 [1] RSPM
     #>  magrittr       2.0.4       2025-09-12 [1] RSPM
-    #>  mapSpain     * 0.10.0.9000 2025-12-09 [1] local
+    #>  mapSpain     * 0.10.0.9000 2025-12-10 [1] local
     #>  pillar         1.11.1      2025-09-17 [1] RSPM
     #>  pkgconfig      2.0.3       2019-09-22 [1] RSPM
     #>  pkgdown        2.2.0       2025-11-06 [1] any (@2.2.0)
