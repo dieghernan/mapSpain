@@ -1,0 +1,491 @@
+/*!
+	* Beautify: https://www.freeformatter.com/css-beautifier.html
+	* Minify: https://www.freeformatter.com/css-minifier.html
+*/
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	background-color: transparent;
+}
+
+pre a {
+	color: inherit;
+	font-weight: inherit;
+	text-decoration: underline;
+}
+
+code a {
+	text-decoration: underline;
+}
+
+.pkg {
+	font-weight: bold;
+}
+
+/* ---allcontributors package--- */
+
+.allctb-avatar {
+	border: 0.2rem solid;
+	border-radius: 50%;
+	border-color: var(--bs-body-bg);
+	max-width: 100px;
+	box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.5)
+}
+
+table.allctb-table td {
+	border-color: transparent;
+}
+
+.template-reference-topic dt code {
+	font-weight: 700;
+	font-family: var(--bs-body-font-family);
+	font-size: var(--bs-body-font-size);
+	color: var(--bs-body-color);
+	text-align: var(--bs-body-text-align);
+	background-color: var(--bs-body-bg);
+	padding: 0;
+	border-radius: 0;
+}
+
+/* Section: Syntax highlighter emacs (como en la web de rOpenSpain) */
+pre {
+	display: block;
+	padding: 9.5px;
+	margin: 0 0 10px;
+	font-size: 13px;
+	line-height: 1.42857143;
+	color: #333;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+pre code
+
+/* Normal         */
+	{
+	color: #333
+}
+
+pre code span.al
+
+/* Alert          */
+	{
+	border: 1px solid #FF0000
+}
+
+pre code span.an
+
+/* Annotation     */
+	{
+	color: #008800;
+	font-style: italic
+}
+
+pre code span.at
+
+/* Attribute      */
+	{
+	color: #BB4444
+}
+
+pre code span.bn
+
+/* BaseN          */
+	{
+	color: #880000
+}
+
+pre code span.bu
+
+/* BuiltIn        */
+	{
+	color: #BB4444
+}
+
+pre code span.cf
+
+/* ControlFlow    */
+	{
+	color: #BB4444
+}
+
+pre code span.ch
+
+/* Char           */
+	{
+	color: #BB4444
+}
+
+pre code span.cn
+
+/* Constant       */
+	{
+	color: #880000
+}
+
+pre code span.co
+
+/* Comment        */
+	{
+	color: #008800;
+	font-style: italic
+}
+
+pre code span.cv
+
+/* CommentVar     */
+	{
+	color: #008800;
+	font-style: italic
+}
+
+pre code span.do
+
+/* Documentation  */
+	{
+	color: #008800;
+	font-style: italic
+}
+
+pre code span.dt
+
+/* DataType       */
+	{
+	color: #BB4444
+}
+
+pre code span.dv
+
+/* DecVal         */
+	{
+	color: #666666
+}
+
+pre code span.er
+
+/* Error          */
+	{
+	border: 1px solid #FF0000
+}
+
+pre code span.ex
+
+/* Extension      */
+	{
+	color: #BB4444;
+	font-weight: bold
+}
+
+pre code span.fl
+
+/* Float          */
+	{
+	color: #666666
+}
+
+pre code span.fu
+
+/* Function       */
+	{
+	color: #00A000
+}
+
+pre code span.im
+
+/* Import         */
+	{
+	color: #BB4444
+}
+
+pre code span.in
+
+/* Information    */
+	{
+	color: #008800;
+	font-style: italic
+}
+
+pre code span.kw
+
+/* Keyword        */
+	{
+	color: #AA22FF;
+	font-weight: bold
+}
+
+pre code span.op
+
+/* Operator       */
+	{
+	color: #666666
+}
+
+pre code span.ot
+
+/* Others         */
+	{
+	color: #008000
+}
+
+pre code span.pp
+
+/* Preprocessor   */
+	{
+	color: #008800
+}
+
+pre code span.re
+
+/* RegionMarker   */
+	{
+	color: #008800;
+	font-style: italic
+}
+
+pre code span.sc
+
+/* SpecialChar    */
+	{
+	color: #666666
+}
+
+pre code span.ss
+
+/* SpecialString  */
+	{
+	color: #008000
+}
+
+pre code span.st
+
+/* String         */
+	{
+	color: #BB4444
+}
+
+pre code span.va
+
+/* Variable       */
+	{
+	color: #B8860B
+}
+
+pre code span.vs
+
+/* VerbatimString */
+	{
+	color: #BB4444
+}
+
+pre code span.wa
+
+/* Warning        */
+	{
+	border: 1px solid #FF0000
+}
+
+/* Section: Navbar */
+.navbar-light .navbar-brand {
+	font-weight: 300;
+}
+
+.navbar-light .navbar-brand:hover,
+.navbar-light .navbar-brand:focus {
+	color: #555555;
+}
+
+.navbar-light .nav-item {
+	text-transform: uppercase;
+	text-decoration: underline;
+	font-weight: bold;
+	letter-spacing: 0.04em;
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+	background-color: #986dbd;
+	color: white;
+}
+
+.navbar-light .navbar-nav .active>.nav-link:hover,
+.navbar-light .navbar-nav .active>.nav-link:focus {
+	background-color: #cab3dd;
+}
+
+.navbar-light .navbar-nav .nav-item>.nav-link:hover,
+.navbar-light .navbar-nav .nav-item>.nav-link:focus {
+	background-color: #cab3dd;
+}
+
+.navbar .nav-item .nav-link {
+	padding-left: .5rem;
+	padding-right: .5rem;
+	margin-left: .5rem;
+	margin-right: .5rem;
+}
+
+#navbar .dropdown-menu,
+#navbar .form-inline {
+	margin-left: .5rem;
+	margin-right: .5rem;
+}
+
+.navbar small {
+	font-size: 0.75rem;
+	padding-top: 0.65rem;
+	padding-right: 1rem;
+}
+
+.navbar small.text-muted {
+	color: #986dbd !important;
+}
+
+.navbar-nav .active.nav-item {
+	text-decoration: none;
+}
+
+button.nav-link {
+	text-transform: uppercase;
+}
+
+@media ((min-width: 992px)) {
+	.navbar-nav .nav-item>.nav-link {
+		border-top: solid 5px transparent;
+	}
+}
+
+@media ((min-width: 992px)) {
+	.navbar-light .navbar-nav .active>.nav-link {
+		border-top: solid 5px #653d87;
+	}
+}
+
+@media ((min-width: 992px)) {
+
+	.navbar-light .navbar-nav .nav-item>.nav-link:hover,
+	.navbar-light .navbar-nav .nav-item>.nav-link:focus {
+		border-top: solid 5px #986dbd;
+	}
+}
+
+@media ((max-width: 992px)) {
+	#navbar {
+		padding-top: 0.75rem;
+	}
+}
+
+@media ((max-width: 992px)) {
+	#navbar ul:first-of-type {
+		border-top: solid 1px #cccccc;
+	}
+}
+
+.navbar-toggler:focus {
+	box-shadow: 0 0 0 0.25rem rgba(152, 109, 189, 0.3);
+}
+
+/* Section: Misc */
+#toc>.nav a.nav-link.active {
+	color: white;
+	background-color: #986dbd;
+}
+
+.logo {
+	display: none;
+}
+
+/* Section: specific ros elements and classes */
+.ROSh1 {
+	background: url('texture-bw.png') center center repeat;
+	padding: 20px 0;
+	color: #333333;
+	text-transform: uppercase;
+	font-size: 30px;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-align: center;
+}
+
+.ROSh1 img {
+	display: none;
+}
+
+#homelogoxs {
+	height: 24px;
+	display: inline;
+}
+
+#ROS-heading-breadcrumbs {
+	padding-top: 10px;
+	padding-bottom: 1px;
+	font-size: 14px;
+	text-decoration: none;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+#ROS-partof {
+	font-weight: 300;
+	color: black;
+}
+
+.ROS-light {
+	font-weight: 300;
+}
+
+/* Section: Footer */
+/* Position hack to get full width footer even though pkgdown puts it inside a container * See: https://css-tricks.com/full-width-containers-limited-width-parents/ */
+#footer {
+	background: #555555;
+	padding: 50px 0;
+	color: #999999;
+	margin-top: 1rem;
+	margin-bottom: 0;
+}
+
+#footer h1,
+#footer h2,
+#footer h3,
+#footer h4,
+#footer h5,
+#footer h6 {
+	color: #eeeeee;
+}
+
+#footer h4 {
+	font-size: 14px;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+}
+
+#copyright {
+	margin: 0;
+	background: #333;
+	color: #ccc;
+	padding: 50px 0;
+	font-size: 12px;
+	line-height: 28px;
+}
+
+/* ---Caption figure--- */
+.caption,
+.figure {
+	color: #6c757d;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.5rem;
+	font-size: 85%;
+	width: 100%;
+}
+
+blockquote {
+	padding: 10px 20px;
+	margin: 0 0 20px;
+	border-left: 5px solid #986dbd;
+}
